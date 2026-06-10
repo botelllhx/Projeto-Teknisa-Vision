@@ -156,8 +156,18 @@ Bento de 5–6 cards: **Restaurantes & Bares · Alimentação Coletiva · Indús
 ### 4 · Faixa de impacto / ROI (ponte para o Ecossistema · realocada, era §7)
 Logo após o roteamento por segmento, dá escala/relevância e serve de **ponte** para o Ecossistema (§5). **Não é mais full-dark:** base branca com copy curtíssima cujas palavras *acendem* para o azul Teknisa ao **scroll**, seguida de uma **faixa azul que entra da esquerda para a direita** (full-bleed à esquerda, parando na direita do conteúdo) com 4 números de impacto grandes em branco. *Conversão:* racionaliza a decisão e emenda no portfólio. *Nota:* números fornecidos pelo cliente (validar com marketing, §8).
 
-### 5 · Ecossistema de produtos (a plataforma)
-Mostrar o portfólio (TecFood · Retail · ERP · Pessoas e RH · Facilities · IA) provando **amplitude + integração** (a plataforma cresce com o cliente). **Abordagem a definir:** uma versão em sticky scroll foi construída e **descartada pelo usuário**; repensar o formato (bento, sticky scroll diferente, scroll horizontal por etapas, etc.). Reaproveitáveis: rotas `/produtos/<slug>` (stub) e **logos SVG** dos produtos. Só tons de azul Teknisa; telas reais em frame, com fallback azul+ícone quando faltar. *Conversão:* leva às landings de produto.
+### 5 · Ecossistema de produtos (a plataforma) — **Interactive Product Tour com hotspots**
+Tour interativo que mostra o ecossistema/integração **por dentro**. Uma **UI de produto em frame**
+(browser chrome) numa **seção dark navy** (tom mais escuro do azul, tonal, sem cor nova), com
+**hotspots** posicionados por coordenadas em % sobre a tela que abrem callouts (título + 1 a 2 linhas)
+explicando cada módulo, e um **switcher de produtos** (as logos reais) que troca a tela + o conjunto de
+hotspots por crossfade. *Craft:* pins com anel pulsante (Framer), indicador ativo via `layoutId`,
+camada de dados editável pelo marketing (`src/data/productTour.ts`). *A11y/mobile:* hotspots são
+`<button>` (hover/click/foco, `Esc`, foco visível); no touch viram tap e os callouts viram **lista
+abaixo da imagem**; `prefers-reduced-motion` cai para **anotação estática**. *Conversão:* leva às
+landings de produto. **Diferenciar do dark da §6 (IA):** §5 = navy-azul (`teknisa-900`), §6 =
+quase-preto, para não virar dois blocos dark idênticos adjacentes. (Sticky scroll foi tentado e
+descartado; não voltar a ele nem ao bento.)
 
 ### 6 · Spotlight de IA — momento-assinatura #5 ⭐
 O que a IA Teknisa faz na prática (previsão de demanda/cardápio, insights de CMV, automação de rotinas de RH/DP, personalização de menu por perfil — como mostrado na NRF). *Craft:* **seção dark**, acento vibrante, labels monospace, animação "dado → insight", glass cards. *Conversão:* posiciona como inovadora vs. TOTVS; CTA "Ver IA em ação".
