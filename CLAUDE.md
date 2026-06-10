@@ -55,8 +55,9 @@ links, ênfases e títulos). Seções **dark** apenas pontuais/estratégicas.
 - **Azul Teknisa (cor de marca real, extraída do Teknisa Vision):** `#040486`
   (HSL `238 97% 27%`) → token semântico `--primary` / classes `bg-primary`, `text-primary`.
 - **Escala `teknisa` 50–900** disponível no Tailwind (`text-teknisa-600` etc.) — a marca `#040486`
-  fica em `teknisa-800`. Use nas próximas seções; o azul claro/ciano de acento usa o `sky` nativo
-  (ex.: a palavra cinética "ecossistema" no hero é `text-sky-300`).
+  fica em `teknisa-800`. **Evitar o azul claro `sky`** como acento: o usuário acha feio (já foi
+  removido do hero, onde o texto agora é todo **branco**). Em seções dark, usar branco/translúcido
+  ou tons da escala `teknisa`.
 - **Tokens semânticos via CSS vars** (estilo shadcn) em `src/styles/index.css`: `background`,
   `foreground`, `primary` (+ `light`/`dark`), `secondary`, `muted`, `accent`, `card`, `popover`,
   `border`, `input`, `ring`, `success`, `destructive`. Suportam **dark mode por `class`**

@@ -38,7 +38,7 @@ export function SectionPlaceholder({
     >
       <div className="section-container flex min-h-[40vh] flex-col items-center justify-center py-20 text-center">
         <span
-          className={`mb-3 text-sm font-semibold ${dark ? "text-sky-300" : "text-primary"}`}
+          className={`mb-3 text-sm font-semibold ${dark ? "text-white/80" : "text-primary"}`}
         >
           {String(index).padStart(2, "0")} {signature ? "· ★ momento-assinatura" : ""}
         </span>

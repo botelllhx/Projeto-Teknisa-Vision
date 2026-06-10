@@ -88,8 +88,8 @@ export function Hero() {
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ delay: 0.05, duration: 0.6, ease: EASE }}
                 >
-                  <div className="h-px w-8 bg-sky-400 sm:w-12" />
-                  <span className="text-[10px] font-semibold uppercase tracking-[0.2em] text-sky-300 sm:text-xs">
+                  <div className="h-px w-8 bg-white/50 sm:w-12" />
+                  <span className="text-[11px] font-semibold text-white/85 sm:text-xs">
                     Food Tech &bull; 35 anos
                   </span>
                 </motion.div>
@@ -108,7 +108,7 @@ export function Hero() {
                     O maior
                   </motion.span>
                   <motion.span
-                    className="block text-[2.75rem] text-sky-300 sm:text-[3.5rem] lg:text-[4rem] xl:text-[5rem] 2xl:text-[5.5rem]"
+                    className="block text-[2.75rem] text-white sm:text-[3.5rem] lg:text-[4rem] xl:text-[5rem] 2xl:text-[5.5rem]"
                     initial={{ opacity: 0, y: "100%" }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.8, delay: 0.25, ease: EASE }}
@@ -177,9 +177,7 @@ export function Hero() {
                     <p className="font-display text-3xl font-bold leading-none text-white xl:text-4xl">
                       {stat.value}
                     </p>
-                    <p className="mt-1 text-[10px] uppercase tracking-wider text-white/35 xl:text-xs">
-                      {stat.label}
-                    </p>
+                    <p className="mt-1 text-[11px] text-white/45 xl:text-xs">{stat.label}</p>
                   </div>
                 ))}
               </motion.div>
@@ -195,9 +193,7 @@ export function Hero() {
               {STATS.map((s) => (
                 <div key={s.label}>
                   <p className="font-display text-xl font-bold leading-none text-white">{s.value}</p>
-                  <p className="mt-0.5 text-[9px] uppercase tracking-wider text-white/40">
-                    {s.label}
-                  </p>
+                  <p className="mt-0.5 text-[10px] text-white/45">{s.label}</p>
                 </div>
               ))}
             </motion.div>
@@ -230,9 +226,7 @@ export function Hero() {
             >
               <div className="flex items-center justify-between border-b border-slate-200 bg-white px-4 py-3 sm:px-5">
                 <div>
-                  <p className="text-[10px] font-semibold uppercase tracking-[0.22em] text-primary/65">
-                    Vídeo institucional
-                  </p>
+                  <p className="text-xs font-semibold text-primary/70">Vídeo institucional</p>
                   <h2 className="mt-1 font-display text-lg font-semibold text-slate-950 sm:text-xl">
                     Teknisa Vision
                   </h2>
