@@ -4,7 +4,7 @@ import { Hero } from "@/components/sections/Hero";
 import { TrustBar } from "@/components/sections/TrustBar";
 import { SegmentExplorer } from "@/components/sections/SegmentExplorer";
 import { ImpactBridge } from "@/components/sections/ImpactBridge";
-import { ProductTour } from "@/components/sections/ProductTour";
+import { ProductShowcase } from "@/components/sections/ProductShowcase";
 import { SectionPlaceholder } from "@/components/sections/SectionPlaceholder";
 
 /**
@@ -43,8 +43,8 @@ export function Home() {
         {/* 4 · Faixa de impacto / ROI — ponte para o Ecossistema ✅ */}
         <ImpactBridge />
 
-        {/* 5 · Ecossistema de produtos — Product Tour com hotspots (claro) ✅ */}
-        <ProductTour />
+        {/* 5 · Ecossistema de produtos — Showcase multi-device + switch + hotspots (claro) ✅ */}
+        <ProductShowcase />
 
         {/* 6–15 · placeholders na ordem do blueprint */}
         {placeholderSections.map((s) => (

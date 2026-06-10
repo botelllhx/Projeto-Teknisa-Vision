@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { useState } from "react";
 import { motion } from "framer-motion";
 import {
   ClipboardCheck,
@@ -21,6 +21,7 @@ import {
   TextCard,
   type BentoTone,
 } from "@/components/ui/BentoCard";
+import { SegmentedControl } from "@/components/ui/SegmentedControl";
 import { EASE } from "@/lib/motion";
 
 /**
@@ -164,22 +165,9 @@ const item = {
 
 export function SegmentExplorer() {
   const [active, setActive] = useState(0);
-  const tabRefs = useRef<(HTMLButtonElement | null)[]>([]);
 
   const tab = TABS[active];
   const cfg = CONFIG[tab.slug];
-
-  const onTabKeyDown = (e: React.KeyboardEvent) => {
-    let next = active;
-    if (e.key === "ArrowRight") next = (active + 1) % TABS.length;
-    else if (e.key === "ArrowLeft") next = (active - 1 + TABS.length) % TABS.length;
-    else if (e.key === "Home") next = 0;
-    else if (e.key === "End") next = TABS.length - 1;
-    else return;
-    e.preventDefault();
-    setActive(next);
-    tabRefs.current[next]?.focus();
-  };
 
   const renderSlot = (slot: Slot) => {
     switch (slot) {
@@ -235,49 +223,17 @@ export function SegmentExplorer() {
           </p>
         </div>
 
-        {/* Abas — segmented control (track claro + pílula azul ativa) */}
-        <div className="mt-10 overflow-x-auto pb-1 lg:mt-12 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
-          <div
-            role="tablist"
-            aria-label="Segmentos"
-            onKeyDown={onTabKeyDown}
-            className="inline-flex gap-1 rounded-full bg-secondary p-1.5"
-          >
-            {TABS.map((t, i) => {
-              const selected = i === active;
-              const Icon = t.icon;
-              return (
-                <button
-                  key={t.slug}
-                  ref={(el) => {
-                    tabRefs.current[i] = el;
-                  }}
-                  role="tab"
-                  id={`segtab-${t.slug}`}
-                  aria-selected={selected}
-                  aria-controls={`segpanel-${t.slug}`}
-                  tabIndex={selected ? 0 : -1}
-                  onClick={() => setActive(i)}
-                  className={`relative shrink-0 rounded-full px-4 py-2.5 text-sm font-medium transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-secondary ${
-                    selected ? "text-white" : "text-foreground/60 hover:text-foreground"
-                  }`}
-                >
-                  {selected && (
-                    <motion.span
-                      layoutId="segTabPill"
-                      className="absolute inset-0 rounded-full bg-primary shadow-md"
-                      transition={{ type: "spring", stiffness: 420, damping: 34 }}
-                    />
-                  )}
-                  <span className="relative z-10 flex items-center gap-2 whitespace-nowrap">
-                    <Icon className="h-4 w-4" aria-hidden />
-                    {t.label}
-                  </span>
-                </button>
-              );
-            })}
-          </div>
-        </div>
+        {/* Abas — segmented control compartilhado (track claro + pílula azul ativa) */}
+        <SegmentedControl
+          tabs={TABS.map((t) => ({ id: t.slug, label: t.label, icon: t.icon }))}
+          active={active}
+          onChange={setActive}
+          ariaLabel="Segmentos"
+          layoutId="segTabPill"
+          tabId={(id) => `segtab-${id}`}
+          panelId={(id) => `segpanel-${id}`}
+          className="mt-10 lg:mt-12"
+        />
 
         {/* Bento do segmento ativo — remonta (key) e entra com stagger ao trocar de aba */}
         <motion.div

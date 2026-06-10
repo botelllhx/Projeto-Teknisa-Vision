@@ -120,7 +120,7 @@ links, ênfases e títulos). Seções **dark** apenas pontuais/estratégicas.
 | 2   | Barra de confiança (marquee de logos, full-width) | ✅ **pronto** (só logos — sem métricas)   |
 | 3   | Explorador de segmentos (abas + bento)  | ✅ **pronto**                                       |
 | 4   | Faixa de impacto / ROI (ponte; base branca + faixa azul) | ✅ **pronto** (realocada, era §7)  |
-| 5   | Ecossistema de produtos (**Product Tour com hotspots**, claro) | ✅ **pronto**                 |
+| 5   | Ecossistema de produtos (**Showcase multi-device** + switch + hotspots, claro) | ✅ **pronto**  |
 | 6   | Spotlight de IA (dark, dado→insight)    | ⬜ placeholder ★                                    |
 | 7   | Deep-dive TecFood (sticky scroll)       | ⬜ placeholder ★                                    |
 | 8   | Casos de sucesso                        | ⬜ placeholder                                      |
@@ -165,17 +165,33 @@ reduced-motion) e uma **faixa azul** que entra da esquerda p/ direita (full-blee
 `left-[calc(50%-50vw)]` + clip-path) com 4 números de impacto grandes em branco. Números fornecidos
 pelo cliente (validar com marketing). A palavra "ecossistema" faz a ponte para a §5.
 
-**§5 Ecossistema de produtos (pronto · `ProductTour`):** **Interactive Product Tour com hotspots** numa
-seção **clara** (base branca, texto preto/azul). Um **switcher** com as logos reais
-(`products/<slug>/*.svg`) troca a tela e o conjunto de hotspots por crossfade; cada **hotspot**
-(`<button>`, por coordenadas %, pin azul) abre um callout (card claro) explicando um módulo. Stage =
-**UI fake realista** (mock de dashboard SaaS **claro** em divs, `ProductFrame`) já que ainda não há
-captura real (trocar por imagem depois via campo `screenshot`). Dados editáveis em
-`src/data/productTour.ts` (conteúdo vindo do CLAUDE.md/mega-menu, nada inventado; **sem números fake**
-na UI, só rótulos + formas abstratas). Escopo: **TecFood carro-chefe** com hotspots completos; Retail ·
-ERP · Pessoas e RH · Facilities no switcher com hotspots mínimos (`TODO`). **IA fica de fora** até ter
-logo. *A11y/mobile/reduced-motion:* `aria-expanded`/`Esc`/foco; no touch/reduced-motion os callouts
-viram **lista abaixo** da imagem (sem hover, sem pulse). **§7 (TecFood deep-dive) segue sticky scroll.**
+**§5 Ecossistema de produtos (pronto · `ProductShowcase`):** **Showcase multi-device** numa seção
+**clara** (base branca, texto preto/azul). Layout em 2 colunas: à esquerda eyebrow + H2 + subhead em
+**registro de BENEFÍCIO** (não funcionalidade, copy placeholder com `// TODO` p/ marketing) + **switch
+de categorias** + **logo lockup** do produto ativo; à direita um **cluster de devices** que **monta um
+a um ao scroll** (Framer `whileInView` + `staggerChildren`, < ~1s, 60fps). O switch troca o conjunto de
+devices/telas/logo/copy por crossfade + re-stagger. **Switch = o MESMO componente da §3**
+(`components/ui/SegmentedControl.tsx`, extraído e reusado nas duas seções; `layoutId` único por
+instância). **Device frames são desenhados em SVG** (vetor: proporção e raio de canto escalam, claros
+e minimalistas, não imagens) em `components/ui/devices/*` (`BrowserWindow`, `DesktopMonitor` = display
+sem haste, `Laptop`, `TabletPortrait`, `TabletLandscape`, `Phone`, `POSTerminal`, `Totem`; cor neutra
+em `frame-tokens.ts`). A **tela âncora grande (display) sangra a 100% da direita** e os devices
+**emergem de baixo e são cortados pela base da seção** (cluster `lg:absolute` ancorado por topo, devices
+transbordam; `place: {x = centro, y = topo, w}` em % editável). Cada categoria mostra **3 a 5 devices
+apropriados** (ex.: Retail = PDV + totem TAA + delivery + retaguarda), cada um exibindo a tela de **um
+módulo** (um produto = vários módulos). **Telas = imagem por ora**
+(`Screen.type 'image'`), com **UI fake** clara de placeholder por device; nunca `img` quebrada
+(fallback = placeholder/bloco azul + nome). Pastas em `products/<categoria>/`, telas nomeadas
+`<categoria>-<device>-<modulo>.webp`. **Hotspots já fazem parte desta fase** (`ShowcaseHotspot` via
+**@floating-ui/react**): pins azuis com anel pulsante, **livres** (hover OU foco OU tap, ordem livre),
+por coordenadas em % sobre a tela, callout com benefício; `<button>`, `aria-expanded`/`aria-controls`,
+`Esc`, flip/collision, foco visível. Hotspots aparecem **após** os devices pousarem. Dados editáveis em
+`src/data/productShowcase.ts` (conteúdo do CLAUDE.md/mega-menu, nada inventado; sem números fake).
+Escopo: **TecFood carro-chefe** com hotspots completos; Retail · ERP · Pessoas e RH · Facilities com
+hotspots mínimos (`TODO`). **IA fica de fora** até ter logo. *A11y/mobile/reduced-motion:* tablist;
+mobile empilha e mostra 1 a 2 devices-herói com hotspots por tap; reduced-motion entra sem fly-in.
+**Único item ADIADO (estrutura pronta): vídeo** — `Screen.type` aceita `'video'`, trocar uma tela por
+vídeo curto em loop no futuro é só mudar o `type`. **§7 (TecFood deep-dive) segue sticky scroll.**
 
 ---
 

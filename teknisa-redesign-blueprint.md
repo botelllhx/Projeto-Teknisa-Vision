@@ -156,17 +156,36 @@ Bento de 5–6 cards: **Restaurantes & Bares · Alimentação Coletiva · Indús
 ### 4 · Faixa de impacto / ROI (ponte para o Ecossistema · realocada, era §7)
 Logo após o roteamento por segmento, dá escala/relevância e serve de **ponte** para o Ecossistema (§5). **Não é mais full-dark:** base branca com copy curtíssima cujas palavras *acendem* para o azul Teknisa ao **scroll**, seguida de uma **faixa azul que entra da esquerda para a direita** (full-bleed à esquerda, parando na direita do conteúdo) com 4 números de impacto grandes em branco. *Conversão:* racionaliza a decisão e emenda no portfólio. *Nota:* números fornecidos pelo cliente (validar com marketing, §8).
 
-### 5 · Ecossistema de produtos (a plataforma) — **Interactive Product Tour com hotspots**
-Tour interativo que mostra o ecossistema/integração **por dentro**. Uma **UI de produto em frame**
-(browser chrome) numa **seção clara** (base branca, texto preto/azul), com **hotspots** posicionados
-por coordenadas em % sobre a tela que abrem callouts (título + 1 a 2 linhas) explicando cada módulo, e
-um **switcher de produtos** (as logos reais) que troca a tela + o conjunto de hotspots por crossfade.
-*Craft:* pins azuis com anel pulsante (Framer), indicador ativo via `layoutId`, camada de dados
-editável pelo marketing (`src/data/productTour.ts`). *A11y/mobile:* hotspots são `<button>`
-(hover/click/foco, `Esc`, foco visível); no touch viram tap e os callouts viram **lista abaixo da
-imagem**; `prefers-reduced-motion` cai para **anotação estática**. *Conversão:* leva às landings de
-produto. A §6 (IA) é a seção **dark** estratégica da vizinhança; a §5 fica clara. (Sticky scroll foi
-tentado e descartado; não voltar a ele nem ao bento.)
+### 5 · Ecossistema de produtos (a plataforma) — **Showcase multi-device**
+**Cluster de telas em devices diferentes que monta no scroll, com switch por categoria e hotspots
+interativos.** Numa **seção clara** (base branca, texto preto/azul): à esquerda, eyebrow + H2 +
+subhead (em **registro de BENEFÍCIO**, não de funcionalidade) + **switch de categorias** (o MESMO
+componente da §3) + **logo lockup** do produto ativo; à direita, um **cluster de devices** (display,
+laptop, tablet, phone, PDV, totem, etc., desenhados em código via **SVG** — claros, minimalistas,
+proporção/raio escalam — não imagens). A **tela âncora grande sangra a 100% da direita** e os devices
+**emergem de baixo, cortados pela base da seção** (estilo premium). A entrada é **amarrada ao scroll**
+(`useScroll`/`useTransform`): sobem de baixo, um a um (stagger por `order`), e travam ao montar
+(< ~1s, 60fps; respeita `prefers-reduced-motion`). Cada device exibe a
+tela de **um módulo** daquele produto, contando "um produto = vários módulos"; cada categoria mostra
+**3 a 5 devices apropriados** (ex.: Retail traz PDV + totem TAA + tablet de cardápio + phone delivery).
+O **switch** troca o conjunto de devices/telas (+ logo e copy) por crossfade/re-stagger.
+- **Telas:** **imagem (estáticas) por ora**, com UI fake clara de placeholder por device/módulo;
+  nunca `img` quebrada (fallback = UI placeholder ou bloco azul + nome).
+- **Hotspots: já fazem parte DESTA fase.** Pins azuis com anel pulsante (Framer), livres (hover OU
+  foco OU tap, em qualquer ordem), por coordenadas em % sobre a tela; abrem callout (título + 1 a 2
+  linhas de **benefício**). Ancoragem/flip/collision e a11y via **@floating-ui/react** (`<button>`,
+  `aria-expanded`/`aria-controls`, `Esc`, foco visível). Hotspots aparecem **após** os devices
+  pousarem. No reduced-motion entram sem fly-in.
+- **Craft:** indicador ativo do switch via `layoutId`, sombra de contato sob cada device, camada de
+  dados editável pelo marketing em `src/data/productShowcase.ts`.
+- **A11y/mobile:** tablist/`aria-selected`; no mobile empilha (texto em cima, switch com scroll
+  horizontal/`select`) e mostra **1 a 2 devices-herói** por categoria; hotspots por tap.
+- **Único item ADIADO (estrutura pronta): vídeo.** `Screen.type` aceita `'image' | 'video'` — trocar
+  uma tela por vídeo curto em loop (UI "viva") no futuro é só mudar o `type`. Nada mais fica para
+  depois (hotspots entram agora).
+
+*Conversão:* leva às landings de produto. A §6 (IA) é a seção **dark** estratégica da vizinhança; a §5
+fica clara. (Sticky scroll e bento foram tentados e descartados; não voltar a eles.)
 
 ### 6 · Spotlight de IA — momento-assinatura #5 ⭐
 O que a IA Teknisa faz na prática (previsão de demanda/cardápio, insights de CMV, automação de rotinas de RH/DP, personalização de menu por perfil — como mostrado na NRF). *Craft:* **seção dark**, acento vibrante, labels monospace, animação "dado → insight", glass cards. *Conversão:* posiciona como inovadora vs. TOTVS; CTA "Ver IA em ação".
@@ -214,7 +233,7 @@ Colunas Produtos · Segmentos · Recursos · **Eventos** · Empresa (Sobre, Carr
 2  Barra de confiança (logos + métricas animadas)
 3  Roteador de público (bento 5–6 segmentos)        ← resolve nº1
 4  Faixa de impacto / ROI (ponte; base branca + faixa azul)   ← realocada (era 7)
-5  Ecossistema de produtos (bento, telas reais)
+5  Ecossistema de produtos (showcase multi-device, switch + hotspots)
 6  Spotlight de IA (dark, dado→insight)             ★ assinatura
 7  Deep-dive TecFood (sticky scroll)                ★ assinatura
 8  Casos de sucesso
