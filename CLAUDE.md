@@ -121,7 +121,7 @@ links, ênfases e títulos). Seções **dark** apenas pontuais/estratégicas.
 | 3   | Explorador de segmentos (abas + bento)  | ✅ **pronto**                                       |
 | 4   | Faixa de impacto / ROI (ponte; base branca + faixa azul) | ✅ **pronto** (realocada, era §7)  |
 | 5   | Ecossistema de produtos (**Showcase multi-device** + switch + hotspots, claro) | ✅ **pronto**  |
-| 6   | Spotlight de IA (**claro/anti-dark**: grain gradient + dot grid interativo) | ✅ **pronto** ★  |
+| 6   | Spotlight de IA (**claro/editorial**: assinatura data→decisão + bento, no sistema) | ✅ **pronto** ★  |
 | 7   | Deep-dive TecFood (sticky scroll)       | ⬜ placeholder ★                                    |
 | 8   | Casos de sucesso                        | ⬜ placeholder                                      |
 | 9   | Integrações (orbital)                   | ⬜ placeholder ★                                    |
@@ -193,28 +193,25 @@ mobile empilha e mostra 1 a 2 devices-herói com hotspots por tap; reduced-motio
 **Único item ADIADO (estrutura pronta): vídeo** — `Screen.type` aceita `'video'`, trocar uma tela por
 vídeo curto em loop no futuro é só mudar o `type`. **§7 (TecFood deep-dive) segue sticky scroll.**
 
-**§6 Spotlight de IA (pronto · `AISection`):** **seção CLARA, anti-dark** (decisão: fugir do clichê
-escuro e manter coerência com a §5 clara, sem empilhar blocos escuros). **Uma linguagem, dois planos:**
-(1) **fundo** = `GrainGradient` do **Paper Shaders** (`@paper-design/shaders-react`) recolorido para
-branco → azul-claro → navy (só tons da escala `teknisa`, sem cor nova), **base quieta** com intensidade/
-noise/`speed` baixos e **dialáveis** (constante `GRADIENT` em `AISection`; pode ir a zero, e a seção
-ainda fecha só com o dot grid); (2) **herói interativo** = `components/ui/DotField.tsx`, um **canvas
-custom** (Paper Shaders é generativo, sem mouse) **full-bleed** (cobre a seção toda, atrás do conteúdo):
-grade densa de pontos **azul-tinta/navy sobre claro** (halftone, **sem glow**) com **movimento ambiente**
-contínuo + pulse, **máscara radial** (densa/opaca numa "zona de energia" no centro, esvaindo nas bordas,
-sem cantos vazios) e **cursor** de raio generoso que repele e faz os pontos **crescerem/escurecerem**
-(lente de atenção) com retorno por mola. É a **assinatura visual da IA**. **Hierarquia anti-salada:**
-gradiente sutil é base; só o dot field reage ao cursor. **Layout centralizado** (eyebrow + H2 + subhead
-+ CTAs no centro) com **identidade própria**: badge/lockup **"Teknisa IA"** (pill + dot-motif; nome
-descritivo, não inventado). Abaixo, um **bento de capacidades de IA** (`components/ui/AiBento.tsx`) com
-os 5 itens reais do mega-menu (Agentes de IA · Automação operacional · IA para compras · IA para gestão
-financeira · IA para atendimento), cada card com **micro-visual** decorativo (digitando, sparkline,
-engrenagens, marcador de otimização, equalizer — Framer, sem número inventado) e 1 card **navy** de
-acento; reveal com stagger + hover. Conteúdo em **registro de BENEFÍCIO** (placeholders `// TODO`). CTAs
-**Ver a IA em ação** / **Falar com especialista**. *A11y/perf:* `prefers-reduced-motion` → dot field e
-micro-visuais **estáticos**; touch → só ambiente (sem repulsão); pausa fora da viewport/aba oculta;
-`devicePixelRatio` capado; canvas `pointer-events-none` (CTA clicável); contraste AA via vinheta clara
-atrás do texto. **§7 (TecFood deep-dive) segue sticky scroll/dark.**
+**§6 Spotlight de IA (pronto · `AISection`):** **seção CLARA, editorial**, refeita como **experiência**
+no **sistema de design do site** (princípios do "Flow" traduzidos, não copiados — sem creme/serif). A
+correção-chave: **dialoga com o resto** — reutiliza o **card do §3** (`Shell`, exportado de
+`BentoCard.tsx`: mesmo radius/sombra/hover/tons) e os tokens (escala `teknisa`, `EASE`, radius). **Sem
+WebGL** (Paper Shaders removido); fundo claro com profundidade só via tokens (radial sutil de
+`secondary` + sombra/elevação dos cards + 1 card **navy** de acento). **A virada de conceito:** o motivo
+de pontos virou **proposital** — `components/ui/SignatureFlow.tsx` é a **assinatura de movimento**: pontos
+de dados entram pelas bordas, **fluem por caminhos curvos suaves (SVG) e se resolvem numa "decisão"** num
+nó focal central (card no sistema, placeholder abstrato `// TODO` exemplo real). Narra a copy (lê milhões
+de pontos → devolve decisão). **Layout centralizado**: badge/lockup **"Teknisa IA"** (pill + dot-motif;
+nome descritivo) → eyebrow → H2 → subhead → CTAs, depois a **assinatura**, depois o **bento de
+capacidades** (`components/ui/AiBento.tsx`) com os 5 itens reais do mega-menu (Agentes de IA · Automação
+operacional · IA para compras · IA para gestão financeira · IA para atendimento). Cada card usa `Shell` +
+um **MiniFlow** (caminho que se desenha até um resultado, **mesma curva EASE da assinatura** — não gráfico
+solto) demonstrando a capacidade. **Sistema de motion único** (EASE em entradas, paths e micro-animações).
+Conteúdo em **registro de BENEFÍCIO** (placeholders `// TODO`, sem número/nome inventado). CTAs **Ver a IA
+em ação** / **Falar com especialista**. *A11y/perf:* `prefers-reduced-motion` → assinatura vira **diagrama
+estático composto** (pontos distribuídos + nó de decisão), cards sem stagger; rAF da assinatura pausa fora
+da viewport/aba oculta; SVG escalável; AA. **§7 (TecFood deep-dive) segue sticky scroll/dark.**
 
 ---
 

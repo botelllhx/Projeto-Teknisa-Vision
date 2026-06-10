@@ -190,18 +190,20 @@ fica clara. (Sticky scroll e bento foram tentados e descartados; não voltar a e
 ### 6 · Spotlight de IA — momento-assinatura #5 ⭐ (clara / anti-dark)
 O que a IA Teknisa entrega na prática (previsão de demanda/cardápio, insights de custo/CMV, automação
 de rotinas de compras/RH/atendimento, personalização de menu por perfil, como mostrado na NRF), em
-**registro de benefício** (o que ela *entrega*, não o que ela *faz*). *Craft (decisão atualizada):*
-**seção CLARA, anti-dark** (na contramão das seções de IA pretas genéricas), com **uma só linguagem
-em dois planos**: (1) **fundo** = grain/mesh gradient azul sutil (branco → azul-claro → navy) via
-**Paper Shaders** (`@paper-design/shaders-react` · `GrainGradient`), base quieta e de intensidade
-dialável (pode ir a zero); (2) **herói interativo** = um **dot grid (canvas custom)** em azul-tinta/navy
-sobre claro (halftone, **sem glow**) que reage ao cursor (repulsão + retorno por mola). Os pontos = os
-milhões de pontos de dados da operação; o cursor "perturbando" o campo = interagir com os dados.
-*Hierarquia:* o gradiente é base quieta; o dot grid é o único herói. *A11y/perf:* `prefers-reduced-motion`
-e mobile/touch entram estáticos; pausa com aba oculta; respeita `devicePixelRatio`; contraste AA do texto.
-*Por que claro:* além de fugir do clichê escuro, **mantém a vizinhança coerente** com a §5 (showcase
-claro) e evita empilhar blocos escuros. *Conversão:* posiciona como inovadora vs. TOTVS; CTA "Ver a IA
-em ação" / "Falar com especialista".
+**registro de benefício** (o que ela *entrega*, não o que ela *faz*). *Craft (conceito atual):* refeita
+como **experiência editorial CLARA**, traduzindo princípios do **Flow** (calma, restrição, animação que
+explica, sistema de motion consistente) **sem copiar** creme/serif — mantém branco + azul Teknisa + sans
+do projeto. **Correção-chave:** a seção **dialoga com o site** — reutiliza o **card do §3** e os tokens
+(escala de azul, radius, sombra, `EASE`). **Sem WebGL.** O motivo de pontos virou **proposital**: uma
+**assinatura de movimento** (`SignatureFlow`, SVG) em que pontos de dados **fluem por caminhos curvos e se
+resolvem numa "decisão"** num nó focal central — narra "lê milhões de pontos → devolve decisão". Layout
+centralizado (badge **"Teknisa IA"** → eyebrow → H2 → subhead → CTAs), depois a assinatura, depois um
+**bento de capacidades** (5 itens reais do mega-menu) com micro-fluxos que **demonstram** cada capacidade
+na **mesma curva de motion**. Profundidade via tokens (sombra/elevação + 1 card navy), não chapado.
+*A11y/perf:* `prefers-reduced-motion` → assinatura vira diagrama estático composto, sem stagger; pausa
+fora da viewport/aba oculta; SVG escalável; contraste AA. *Por que claro:* foge do clichê escuro e
+**mantém a vizinhança coerente** com a §5 clara. *Conversão:* inovadora vs. TOTVS; CTA "Ver a IA em ação"
+/ "Falar com especialista".
 
 ### 7 · Deep-dive carro-chefe (TecFood / coletiva) — momento-assinatura #3 ⭐
 Tour de um fluxo real (cardápio → ficha técnica/CMV → produção → estoque → fiscal) com tabs por sub-segmento (corporativo/hospitalar/escolar/catering aéreo). *Craft:* **sticky scroll** (texto fixo à esquerda, telas trocam à direita). *Conversão:* convence nutricionista/decisor técnico; CTA "Falar sobre alimentação coletiva".
@@ -247,7 +249,7 @@ Colunas Produtos · Segmentos · Recursos · **Eventos** · Empresa (Sobre, Carr
 3  Roteador de público (bento 5–6 segmentos)        ← resolve nº1
 4  Faixa de impacto / ROI (ponte; base branca + faixa azul)   ← realocada (era 7)
 5  Ecossistema de produtos (showcase multi-device, switch + hotspots)
-6  Spotlight de IA (CLARO/anti-dark: grain gradient + dot grid)  ★ assinatura
+6  Spotlight de IA (claro/editorial: assinatura data→decisão + bento)  ★ assinatura
 7  Deep-dive TecFood (sticky scroll)                ★ assinatura
 8  Casos de sucesso
 9  Integrações (orbital)                            ★ assinatura

@@ -31,8 +31,8 @@ const isDark = (tone: BentoTone) => DARK_TONES.has(tone);
 const HOVER =
   "transition-[transform,box-shadow] duration-200 ease-out will-change-transform hover:-translate-y-1 hover:shadow-xl";
 
-/** Casca base dos cards não-interativos (div). */
-function Shell({
+/** Casca base dos cards não-interativos (div). Reutilizável por outras seções (ex.: §6 IA). */
+export function Shell({
   tone,
   className,
   children,
