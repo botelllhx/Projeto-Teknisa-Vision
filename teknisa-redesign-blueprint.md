@@ -158,16 +158,15 @@ Logo após o roteamento por segmento, dá escala/relevância e serve de **ponte*
 
 ### 5 · Ecossistema de produtos (a plataforma) — **Interactive Product Tour com hotspots**
 Tour interativo que mostra o ecossistema/integração **por dentro**. Uma **UI de produto em frame**
-(browser chrome) numa **seção dark navy** (tom mais escuro do azul, tonal, sem cor nova), com
-**hotspots** posicionados por coordenadas em % sobre a tela que abrem callouts (título + 1 a 2 linhas)
-explicando cada módulo, e um **switcher de produtos** (as logos reais) que troca a tela + o conjunto de
-hotspots por crossfade. *Craft:* pins com anel pulsante (Framer), indicador ativo via `layoutId`,
-camada de dados editável pelo marketing (`src/data/productTour.ts`). *A11y/mobile:* hotspots são
-`<button>` (hover/click/foco, `Esc`, foco visível); no touch viram tap e os callouts viram **lista
-abaixo da imagem**; `prefers-reduced-motion` cai para **anotação estática**. *Conversão:* leva às
-landings de produto. **Diferenciar do dark da §6 (IA):** §5 = navy-azul (`teknisa-900`), §6 =
-quase-preto, para não virar dois blocos dark idênticos adjacentes. (Sticky scroll foi tentado e
-descartado; não voltar a ele nem ao bento.)
+(browser chrome) numa **seção clara** (base branca, texto preto/azul), com **hotspots** posicionados
+por coordenadas em % sobre a tela que abrem callouts (título + 1 a 2 linhas) explicando cada módulo, e
+um **switcher de produtos** (as logos reais) que troca a tela + o conjunto de hotspots por crossfade.
+*Craft:* pins azuis com anel pulsante (Framer), indicador ativo via `layoutId`, camada de dados
+editável pelo marketing (`src/data/productTour.ts`). *A11y/mobile:* hotspots são `<button>`
+(hover/click/foco, `Esc`, foco visível); no touch viram tap e os callouts viram **lista abaixo da
+imagem**; `prefers-reduced-motion` cai para **anotação estática**. *Conversão:* leva às landings de
+produto. A §6 (IA) é a seção **dark** estratégica da vizinhança; a §5 fica clara. (Sticky scroll foi
+tentado e descartado; não voltar a ele nem ao bento.)
 
 ### 6 · Spotlight de IA — momento-assinatura #5 ⭐
 O que a IA Teknisa faz na prática (previsão de demanda/cardápio, insights de CMV, automação de rotinas de RH/DP, personalização de menu por perfil — como mostrado na NRF). *Craft:* **seção dark**, acento vibrante, labels monospace, animação "dado → insight", glass cards. *Conversão:* posiciona como inovadora vs. TOTVS; CTA "Ver IA em ação".

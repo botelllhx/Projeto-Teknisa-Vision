@@ -120,8 +120,8 @@ links, ênfases e títulos). Seções **dark** apenas pontuais/estratégicas.
 | 2   | Barra de confiança (marquee de logos, full-width) | ✅ **pronto** (só logos — sem métricas)   |
 | 3   | Explorador de segmentos (abas + bento)  | ✅ **pronto**                                       |
 | 4   | Faixa de impacto / ROI (ponte; base branca + faixa azul) | ✅ **pronto** (realocada, era §7)  |
-| 5   | Ecossistema de produtos (**Product Tour com hotspots**, dark navy) | ✅ **pronto**             |
-| 6   | Spotlight de IA (dark, dado→insight)    | ⬜ placeholder ★ (usar **quase-preto** p/ diferenciar da §5 navy) |
+| 5   | Ecossistema de produtos (**Product Tour com hotspots**, claro) | ✅ **pronto**                 |
+| 6   | Spotlight de IA (dark, dado→insight)    | ⬜ placeholder ★                                    |
 | 7   | Deep-dive TecFood (sticky scroll)       | ⬜ placeholder ★                                    |
 | 8   | Casos de sucesso                        | ⬜ placeholder                                      |
 | 9   | Integrações (orbital)                   | ⬜ placeholder ★                                    |
@@ -166,16 +166,16 @@ reduced-motion) e uma **faixa azul** que entra da esquerda p/ direita (full-blee
 pelo cliente (validar com marketing). A palavra "ecossistema" faz a ponte para a §5.
 
 **§5 Ecossistema de produtos (pronto · `ProductTour`):** **Interactive Product Tour com hotspots** numa
-seção **dark navy** (`bg-teknisa-900`). Um **switcher** com as logos reais (`products/<slug>/*.svg`)
-troca a tela e o conjunto de hotspots por crossfade; cada **hotspot** (`<button>`, por coordenadas %)
-abre um callout explicando um módulo. Stage = **UI fake realista** (mock de dashboard navy em divs,
-`ProductFrame`) já que ainda não há captura real (trocar por imagem depois via campo `screenshot`).
-Dados editáveis em `src/data/productTour.ts` (conteúdo vindo do CLAUDE.md/mega-menu, nada inventado;
-**sem números fake** na UI, só rótulos + formas abstratas). Escopo: **TecFood carro-chefe** com
-hotspots completos; Retail · ERP · Pessoas e RH · Facilities no switcher com hotspots mínimos (`TODO`).
-**IA fica de fora** até ter logo. *A11y/mobile/reduced-motion:* `aria-expanded`/`Esc`/foco; no
-touch/reduced-motion os callouts viram **lista abaixo** da imagem (sem hover, sem pulse). **§6 IA deve
-usar quase-preto** (não navy) para diferenciar. **§7 (TecFood deep-dive) segue sticky scroll.**
+seção **clara** (base branca, texto preto/azul). Um **switcher** com as logos reais
+(`products/<slug>/*.svg`) troca a tela e o conjunto de hotspots por crossfade; cada **hotspot**
+(`<button>`, por coordenadas %, pin azul) abre um callout (card claro) explicando um módulo. Stage =
+**UI fake realista** (mock de dashboard SaaS **claro** em divs, `ProductFrame`) já que ainda não há
+captura real (trocar por imagem depois via campo `screenshot`). Dados editáveis em
+`src/data/productTour.ts` (conteúdo vindo do CLAUDE.md/mega-menu, nada inventado; **sem números fake**
+na UI, só rótulos + formas abstratas). Escopo: **TecFood carro-chefe** com hotspots completos; Retail ·
+ERP · Pessoas e RH · Facilities no switcher com hotspots mínimos (`TODO`). **IA fica de fora** até ter
+logo. *A11y/mobile/reduced-motion:* `aria-expanded`/`Esc`/foco; no touch/reduced-motion os callouts
+viram **lista abaixo** da imagem (sem hover, sem pulse). **§7 (TecFood deep-dive) segue sticky scroll.**
 
 ---
 

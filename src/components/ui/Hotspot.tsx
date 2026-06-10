@@ -44,20 +44,17 @@ export function Hotspot({
           onToggle();
         }}
         className={cn(
-          "relative grid h-6 w-6 place-items-center rounded-full ring-2 transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-teknisa-900",
-          isOpen ? "bg-primary ring-white" : "bg-white ring-white/60 hover:scale-110",
+          "relative grid h-6 w-6 place-items-center rounded-full bg-primary shadow-md shadow-primary/30 ring-2 ring-white transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background",
+          isOpen ? "scale-110" : "hover:scale-110",
         )}
       >
         {!isOpen && (
           <span
             aria-hidden
-            className="absolute inset-0 rounded-full bg-white/60 motion-safe:animate-ping"
+            className="absolute inset-0 rounded-full bg-primary/40 motion-safe:animate-ping"
           />
         )}
-        <span
-          aria-hidden
-          className={cn("relative h-2 w-2 rounded-full", isOpen ? "bg-white" : "bg-primary")}
-        />
+        <span aria-hidden className="relative h-2 w-2 rounded-full bg-white" />
       </button>
 
       {popovers && isOpen && (
@@ -65,13 +62,13 @@ export function Hotspot({
           id={calloutId}
           role="tooltip"
           className={cn(
-            "absolute z-20 w-64 rounded-xl border border-white/10 bg-teknisa-900/95 p-4 shadow-2xl backdrop-blur-md",
+            "absolute z-20 w-64 rounded-xl border border-border bg-popover p-4 shadow-2xl",
             flipLeft ? "right-full mr-3" : "left-full ml-3",
             flipUp ? "bottom-1/2 translate-y-1/2" : "top-1/2 -translate-y-1/2",
           )}
         >
-          <h4 className="font-display text-sm font-bold tracking-tight text-white">{data.title}</h4>
-          <p className="mt-1 text-xs leading-relaxed text-white/65">{data.desc}</p>
+          <h4 className="font-display text-sm font-bold tracking-tight text-foreground">{data.title}</h4>
+          <p className="mt-1 text-xs leading-relaxed text-muted-foreground">{data.desc}</p>
         </div>
       )}
     </div>

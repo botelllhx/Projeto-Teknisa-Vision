@@ -9,10 +9,10 @@ import { ProductFrame } from "@/components/ui/ProductFrame";
 /**
  * §5 · Ecossistema de produtos — Interactive Product Tour com hotspots.
  *
- * Seção dark **navy** (`bg-teknisa-900`). Switcher de logos troca a tela do produto +
- * o conjunto de hotspots (crossfade). Cada hotspot abre um callout explicando um módulo.
- * Touch/reduced-motion: callouts viram lista abaixo da imagem (sem hover/pulse).
- * Só tons de azul Teknisa + neutros. Conteúdo em `src/data/productTour.ts` (nada inventado).
+ * Seção **clara** (base branca). Switcher de logos troca a tela do produto + o conjunto
+ * de hotspots (crossfade). Cada hotspot abre um callout explicando um módulo. Touch/
+ * reduced-motion: callouts viram lista abaixo da imagem (sem hover/pulse). Texto preto/
+ * azul; só tons de azul Teknisa + neutros. Conteúdo em `src/data/productTour.ts` (nada inventado).
  */
 export function ProductTour() {
   const [active, setActive] = useState(0); // produto ativo
@@ -54,16 +54,16 @@ export function ProductTour() {
     <section
       id="produtos"
       aria-label="Ecossistema de produtos"
-      className="scroll-mt-24 bg-teknisa-900 text-white"
+      className="scroll-mt-24 bg-background text-foreground"
     >
       <div className="section-container py-20 lg:py-28">
         {/* Cabeçalho */}
         <div className="max-w-2xl">
-          <span className="text-sm font-semibold text-teknisa-300">O ecossistema por dentro</span>
+          <span className="text-sm font-semibold text-primary">O ecossistema por dentro</span>
           <h2 className="mt-3 font-display text-3xl font-bold tracking-tight sm:text-4xl lg:text-5xl">
             Veja a plataforma por dentro
           </h2>
-          <p className="mt-4 text-base leading-relaxed text-white/65 sm:text-lg">
+          <p className="mt-4 text-base leading-relaxed text-muted-foreground sm:text-lg">
             Cada produto resolve uma operação inteira. Explore os módulos e veja como tudo se conecta
             numa plataforma só.
           </p>
@@ -86,15 +86,15 @@ export function ProductTour() {
                   tabIndex={on ? 0 : -1}
                   onClick={() => selectProduct(i)}
                   className={cn(
-                    "relative shrink-0 rounded-xl bg-white px-4 py-2.5 transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-teknisa-900",
-                    on ? "opacity-100 shadow-lg" : "opacity-50 hover:opacity-90",
+                    "relative shrink-0 rounded-xl px-4 py-2.5 transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background",
+                    on ? "bg-white opacity-100 shadow-md ring-2 ring-primary/50" : "bg-secondary opacity-60 hover:opacity-100",
                   )}
                 >
                   <img src={p.logo} alt={p.name} className="h-6 w-auto" />
                   {on && (
                     <motion.span
                       layoutId="tourActive"
-                      className="absolute -bottom-2 left-3 right-3 h-0.5 rounded-full bg-white"
+                      className="absolute -bottom-2 left-3 right-3 h-0.5 rounded-full bg-primary"
                       transition={{ type: "spring", stiffness: 420, damping: 34 }}
                     />
                   )}
@@ -108,16 +108,18 @@ export function ProductTour() {
         <div className="mt-10 lg:grid lg:grid-cols-[2fr_3fr] lg:items-center lg:gap-12">
           {/* texto do produto ativo */}
           <div>
-            <h3 className="font-display text-2xl font-bold tracking-tight sm:text-3xl">{product.name}</h3>
-            <p className="mt-3 max-w-md text-base leading-relaxed text-white/65 sm:text-lg">
+            <h3 className="font-display text-2xl font-bold tracking-tight text-foreground sm:text-3xl">
+              {product.name}
+            </h3>
+            <p className="mt-3 max-w-md text-base leading-relaxed text-muted-foreground sm:text-lg">
               {product.valueProp}
             </p>
             <Link
               to={`/produtos/${product.slug}`}
-              className="mt-6 inline-flex items-center gap-2 text-base font-semibold text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-teknisa-900"
+              className="group mt-6 inline-flex items-center gap-2 text-base font-semibold text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background"
             >
               Conhecer
-              <ArrowRight className="h-4 w-4 transition-transform duration-200 hover:translate-x-1" />
+              <ArrowRight className="h-4 w-4 transition-transform duration-200 group-hover:translate-x-1" />
             </Link>
           </div>
 
@@ -144,7 +146,7 @@ export function ProductTour() {
 
         {/* Lista de callouts (touch e reduced-motion) abaixo da imagem */}
         <div className={cn("mt-8", reduced ? "block" : "lg:hidden")}>
-          <p className="mb-3 text-sm font-semibold text-white/70">Destaques do produto</p>
+          <p className="mb-3 text-sm font-semibold text-muted-foreground">Destaques do produto</p>
           <ul className="grid gap-3 sm:grid-cols-2">
             {product.hotspots.map((h, i) => {
               const on = openHotspot === i;
@@ -156,15 +158,19 @@ export function ProductTour() {
                     aria-expanded={on}
                     className={cn(
                       "flex w-full items-start gap-3 rounded-xl border p-3.5 text-left transition-colors",
-                      on ? "border-white/30 bg-white/[0.06]" : "border-white/10 hover:bg-white/[0.04]",
+                      on ? "border-primary/30 bg-primary/5" : "border-border hover:bg-secondary",
                     )}
                   >
-                    <span className="mt-0.5 grid h-5 w-5 shrink-0 place-items-center rounded-full bg-white text-[10px] font-bold text-primary">
+                    <span className="mt-0.5 grid h-5 w-5 shrink-0 place-items-center rounded-full bg-primary text-[10px] font-bold text-white">
                       {i + 1}
                     </span>
                     <span>
-                      <span className="block font-display text-sm font-bold text-white">{h.title}</span>
-                      <span className="mt-0.5 block text-xs leading-relaxed text-white/60">{h.desc}</span>
+                      <span className="block font-display text-sm font-bold text-foreground">
+                        {h.title}
+                      </span>
+                      <span className="mt-0.5 block text-xs leading-relaxed text-muted-foreground">
+                        {h.desc}
+                      </span>
                     </span>
                   </button>
                 </li>

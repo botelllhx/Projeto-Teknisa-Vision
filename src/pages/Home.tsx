@@ -14,7 +14,7 @@ import { SectionPlaceholder } from "@/components/sections/SectionPlaceholder";
  * ponte para o Ecossistema (§5). Numeração ajustada no blueprint e abaixo.
  */
 const placeholderSections = [
-  { index: 6, title: "Spotlight de IA", anchor: "ia", note: "Seção dark (quase-preto, diferenciar do navy da §5), dado → insight.", dark: true, signature: true },
+  { index: 6, title: "Spotlight de IA", anchor: "ia", note: "Seção dark, dado → insight (a §5 é clara).", dark: true, signature: true },
   { index: 7, title: "Deep-dive TecFood", anchor: "tecfood", note: "Sticky-scroll do fluxo de uma refeição coletiva.", signature: true },
   { index: 8, title: "Casos de sucesso", anchor: "cases", note: "3 a 4 cases com foto, métrica e citação." },
   { index: 9, title: "Integrações & ecossistema", anchor: "integracoes", note: "Diagrama orbital da plataforma.", signature: true },
@@ -43,7 +43,7 @@ export function Home() {
         {/* 4 · Faixa de impacto / ROI — ponte para o Ecossistema ✅ */}
         <ImpactBridge />
 
-        {/* 5 · Ecossistema de produtos — Product Tour com hotspots (dark navy) ✅ */}
+        {/* 5 · Ecossistema de produtos — Product Tour com hotspots (claro) ✅ */}
         <ProductTour />
 
         {/* 6–15 · placeholders na ordem do blueprint */}
