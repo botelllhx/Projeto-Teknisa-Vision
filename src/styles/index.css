@@ -1,0 +1,132 @@
+/* Fontes self-hosted (sem next/font). Títulos: Google Sans (OFL, open desde nov/2025). Corpo: Inter.
+   Subset latin só, para não inchar o bundle com alfabetos não usados. */
+@import "@fontsource/google-sans/latin-400.css";
+@import "@fontsource/google-sans/latin-500.css";
+@import "@fontsource/google-sans/latin-600.css";
+@import "@fontsource/google-sans/latin-700.css";
+@import "@fontsource/inter/latin-400.css";
+@import "@fontsource/inter/latin-500.css";
+@import "@fontsource/inter/latin-600.css";
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Base branca */
+    --background: 0 0% 100%;
+    --foreground: 222 47% 6%; /* preto/quase-preto no corpo */
+
+    /* Azul Teknisa — cor de marca real #040486 */
+    --primary: 238 97% 27%;
+    --primary-foreground: 0 0% 100%;
+    --primary-light: 238 80% 50%;
+    --primary-dark: 238 97% 18%;
+
+    /* Cinza claro de superfície */
+    --secondary: 220 14% 96%;
+    --secondary-foreground: 222 47% 11%;
+
+    --muted: 220 14% 96%;
+    --muted-foreground: 220 9% 46%;
+
+    --accent: 238 60% 55%;
+    --accent-foreground: 0 0% 100%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 222 47% 11%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 222 47% 11%;
+
+    --success: 142 70% 45%;
+    --success-foreground: 0 0% 100%;
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 220 13% 91%;
+    --input: 220 13% 91%;
+    --ring: 238 97% 27%;
+
+    --radius: 0.75rem;
+
+    /* Sombras suaves ancoradas no azul Teknisa */
+    --shadow-sm: 0 1px 3px hsl(238 97% 27% / 0.05), 0 1px 2px hsl(238 97% 27% / 0.03);
+    --shadow-md: 0 4px 6px hsl(238 97% 27% / 0.05), 0 2px 4px hsl(238 97% 27% / 0.03);
+    --shadow-lg: 0 10px 25px hsl(238 97% 27% / 0.08), 0 4px 10px hsl(238 97% 27% / 0.04);
+    --shadow-xl: 0 20px 40px hsl(238 97% 27% / 0.1), 0 8px 16px hsl(238 97% 27% / 0.05);
+    --shadow-glow: 0 0 50px hsl(238 80% 50% / 0.25);
+
+    /* Gradiente azul Teknisa (CTA final, faixas) */
+    --gradient-primary: linear-gradient(135deg, hsl(238 97% 27%), hsl(238 80% 45%));
+  }
+
+  .dark {
+    --background: 222 47% 6%;
+    --foreground: 0 0% 98%;
+
+    --primary: 238 80% 65%;
+    --primary-foreground: 222 47% 6%;
+    --primary-light: 238 80% 70%;
+    --primary-dark: 238 80% 55%;
+
+    --secondary: 222 30% 14%;
+    --secondary-foreground: 0 0% 98%;
+
+    --muted: 222 30% 14%;
+    --muted-foreground: 220 9% 65%;
+
+    --accent: 238 70% 70%;
+    --accent-foreground: 222 47% 6%;
+
+    --card: 222 40% 8%;
+    --card-foreground: 0 0% 98%;
+    --popover: 222 40% 8%;
+    --popover-foreground: 0 0% 98%;
+
+    --border: 222 30% 18%;
+    --input: 222 30% 18%;
+    --ring: 238 80% 65%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+    overflow-x: hidden;
+    font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply font-display font-semibold tracking-tight;
+  }
+}
+
+@layer components {
+  /* Container padrão de seção */
+  .section-container {
+    @apply mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8;
+  }
+}
+
+/* ─── Acessibilidade: respeitar prefers-reduced-motion globalmente ───
+   Rede de segurança em CSS; o MotionConfig (App) já instrui o Framer Motion. */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
