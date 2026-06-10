@@ -187,8 +187,21 @@ O **switch** troca o conjunto de devices/telas (+ logo e copy) por crossfade/re-
 *Conversão:* leva às landings de produto. A §6 (IA) é a seção **dark** estratégica da vizinhança; a §5
 fica clara. (Sticky scroll e bento foram tentados e descartados; não voltar a eles.)
 
-### 6 · Spotlight de IA — momento-assinatura #5 ⭐
-O que a IA Teknisa faz na prática (previsão de demanda/cardápio, insights de CMV, automação de rotinas de RH/DP, personalização de menu por perfil — como mostrado na NRF). *Craft:* **seção dark**, acento vibrante, labels monospace, animação "dado → insight", glass cards. *Conversão:* posiciona como inovadora vs. TOTVS; CTA "Ver IA em ação".
+### 6 · Spotlight de IA — momento-assinatura #5 ⭐ (clara / anti-dark)
+O que a IA Teknisa entrega na prática (previsão de demanda/cardápio, insights de custo/CMV, automação
+de rotinas de compras/RH/atendimento, personalização de menu por perfil, como mostrado na NRF), em
+**registro de benefício** (o que ela *entrega*, não o que ela *faz*). *Craft (decisão atualizada):*
+**seção CLARA, anti-dark** (na contramão das seções de IA pretas genéricas), com **uma só linguagem
+em dois planos**: (1) **fundo** = grain/mesh gradient azul sutil (branco → azul-claro → navy) via
+**Paper Shaders** (`@paper-design/shaders-react` · `GrainGradient`), base quieta e de intensidade
+dialável (pode ir a zero); (2) **herói interativo** = um **dot grid (canvas custom)** em azul-tinta/navy
+sobre claro (halftone, **sem glow**) que reage ao cursor (repulsão + retorno por mola). Os pontos = os
+milhões de pontos de dados da operação; o cursor "perturbando" o campo = interagir com os dados.
+*Hierarquia:* o gradiente é base quieta; o dot grid é o único herói. *A11y/perf:* `prefers-reduced-motion`
+e mobile/touch entram estáticos; pausa com aba oculta; respeita `devicePixelRatio`; contraste AA do texto.
+*Por que claro:* além de fugir do clichê escuro, **mantém a vizinhança coerente** com a §5 (showcase
+claro) e evita empilhar blocos escuros. *Conversão:* posiciona como inovadora vs. TOTVS; CTA "Ver a IA
+em ação" / "Falar com especialista".
 
 ### 7 · Deep-dive carro-chefe (TecFood / coletiva) — momento-assinatura #3 ⭐
 Tour de um fluxo real (cardápio → ficha técnica/CMV → produção → estoque → fiscal) com tabs por sub-segmento (corporativo/hospitalar/escolar/catering aéreo). *Craft:* **sticky scroll** (texto fixo à esquerda, telas trocam à direita). *Conversão:* convence nutricionista/decisor técnico; CTA "Falar sobre alimentação coletiva".
@@ -234,7 +247,7 @@ Colunas Produtos · Segmentos · Recursos · **Eventos** · Empresa (Sobre, Carr
 3  Roteador de público (bento 5–6 segmentos)        ← resolve nº1
 4  Faixa de impacto / ROI (ponte; base branca + faixa azul)   ← realocada (era 7)
 5  Ecossistema de produtos (showcase multi-device, switch + hotspots)
-6  Spotlight de IA (dark, dado→insight)             ★ assinatura
+6  Spotlight de IA (CLARO/anti-dark: grain gradient + dot grid)  ★ assinatura
 7  Deep-dive TecFood (sticky scroll)                ★ assinatura
 8  Casos de sucesso
 9  Integrações (orbital)                            ★ assinatura
