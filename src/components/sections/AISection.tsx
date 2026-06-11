@@ -176,7 +176,7 @@ export function AISection() {
       aria-label="Inteligência artificial aplicada"
       className="relative min-h-screen scroll-mt-24 bg-background pt-28 pb-16 lg:pt-32 lg:pb-16"
     >
-      <div className="section-container grid w-full items-center gap-10 lg:grid-cols-[30%_70%] lg:gap-12 xl:gap-16">
+      <div className="section-container grid w-full items-center gap-10 lg:grid-cols-[3fr_7fr] lg:gap-12 xl:gap-16">
         {/* ESQUERDA — narrativa */}
         <div className="relative min-h-[240px] lg:min-h-[320px]">
           <AnimatePresence>
