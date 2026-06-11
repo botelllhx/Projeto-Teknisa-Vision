@@ -88,10 +88,9 @@ function AiCard({
         className={cn(CARD_BASE, cap.area, "flex flex-col justify-center p-6", t.card)}
       >
         {label(true)}
-        <p className={cn("mt-3 font-display text-lg font-semibold leading-snug tracking-tight", t.text)}>
+        <p className={cn("mt-4 font-display text-2xl font-bold leading-tight tracking-tight lg:text-3xl", t.text)}>
           {cap.cardLine}
         </p>
-        <p className={cn("mt-2.5 text-sm leading-relaxed", t.sub)}>{cap.hover}</p>
       </motion.button>
     );
   }
