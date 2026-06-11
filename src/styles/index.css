@@ -122,6 +122,15 @@
   }
 }
 
+/* Textura de pontos sutil no topo dos cards textuais (§8 carrossel). currentColor herda
+   o tom do card; máscara faz dissolver para baixo. */
+.card-dots {
+  background-image: radial-gradient(currentColor 1.1px, transparent 1.1px);
+  background-size: 14px 14px;
+  -webkit-mask-image: linear-gradient(to bottom, #000 0%, transparent 100%);
+  mask-image: linear-gradient(to bottom, #000 0%, transparent 100%);
+}
+
 /* Brilho que varre o wordmark "TecFood" (§7). Azul Teknisa, sem cor nova.
    prefers-reduced-motion: cor sólida (sem animação). */
 .shine-text {

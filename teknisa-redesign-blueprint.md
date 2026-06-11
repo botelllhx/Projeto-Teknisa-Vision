@@ -213,14 +213,16 @@ reduced-motion:* frame **estático em pé** (sem rotateX/scale). *Conversão:* d
 emenda os blocos vizinhos. **O deep-dive aprofundado** (fluxo cardápio → ficha técnica/CMV → produção →
 estoque → fiscal, tabs por sub-segmento) **migrou para a página de produto do TecFood**, não fica na home.
 
-### 8 · Casos de sucesso (grid de cards de vídeo, modelo Slack)
-**4 cases em cards de vídeo** com **autoplay mudo em loop** (preview vivo) e **quote + cliente +
-métrica** sempre **em texto** (a maioria não dá play). **Play com som no hover/clique** (pausa os
-outros). Grid **2×2** (1 col no mobile); **tag de segmento** por card (filtro só se fizer sentido,
-reusando o switch da §3, e não com poucos itens). *Craft:* WebM (VP9/AV1) + MP4 fallback, **poster**,
-**lazy-load por viewport** (IntersectionObserver), pausa fora da viewport e em aba oculta; CLS
-controlado. **CTA** após o grid. *Conversão:* identificação + prova viva. Conteúdo placeholder (`// TODO`)
-até o marketing fornecer vídeos/clientes/números reais.
+### 8 · Casos de sucesso (carrossel infinito de testemunhos)
+**Carrossel horizontal infinito** (marquee, full-bleed) misturando **cards de vídeo** (autoplay
+mudo em loop, **play com som no clique**) + **cards textuais coloridos** na paleta (tints de azul +
+navy + neutro, com textura de pontos e logo do cliente). **Cards grandes e impactantes**; quote +
+pessoa sempre em texto. **Blur-reveal** ao entrar na viewport; **pausa no hover** e quando um vídeo
+está com som (um por vez). *Craft:* WebM (VP9/AV1) + MP4 fallback, **poster**, **lazy por viewport**
+(IntersectionObserver, só os cards visíveis tocam), pausa fora da viewport e em aba oculta. *Mobile/
+reduced-motion:* sem marquee (scroll manual) e sem blur; vídeo sem autoplay (poster). **CTA** após o
+carrossel. *Conversão:* identificação + prova viva. Conteúdo placeholder (`// TODO`) até o marketing
+fornecer vídeos/logos/quotes/pessoas reais. **Não inventar** número/claim de cliente.
 
 ### 9 · Integrações & ecossistema — momento-assinatura #4
 Grade/órbita de logos (iFood, adquirentes REDE, fiscal, BI, Gertec/equipamentos, totens de autoatendimento) + API/cloud/on-premise. *Craft:* **diagrama orbital** da plataforma com motion sutil. *Conversão:* remove objeção técnica (resposta ao trunfo "integrações" da Saipos).
