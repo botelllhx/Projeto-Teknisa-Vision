@@ -155,6 +155,29 @@
   }
 }
 
+/* Órbita (§9, base Magic UI — Orbiting Circles). Cada item gira no seu anel mantendo o ícone
+   "em pé"; as CSS vars --angle, --radius e --duration vêm inline por item. Fica no CSS global
+   (não no tailwind.config) para hot-reload confiável. */
+.animate-orbit {
+  animation: orbit calc(var(--duration) * 1s) linear infinite;
+}
+@keyframes orbit {
+  0% {
+    transform: rotate(calc(var(--angle) * 1deg)) translateY(calc(var(--radius) * 1px))
+      rotate(calc(var(--angle) * -1deg));
+  }
+  100% {
+    transform: rotate(calc(var(--angle) * 1deg + 360deg)) translateY(calc(var(--radius) * 1px))
+      rotate(calc((var(--angle) * -1deg) - 360deg));
+  }
+}
+/* reduced-motion: para a rotação; o transform inline mantém o ícone parado no anel. */
+@media (prefers-reduced-motion: reduce) {
+  .animate-orbit {
+    animation: none;
+  }
+}
+
 /* ─── Acessibilidade: respeitar prefers-reduced-motion globalmente ───
    Rede de segurança em CSS; o MotionConfig (App) já instrui o Framer Motion. */
 @media (prefers-reduced-motion: reduce) {

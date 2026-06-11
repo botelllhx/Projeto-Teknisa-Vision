@@ -56,7 +56,7 @@ export function OrbitingCircles({
           <div
             style={style}
             className={cn(
-              "absolute left-1/2 top-1/2 flex items-center justify-center motion-safe:animate-orbit",
+              "absolute left-1/2 top-1/2 flex items-center justify-center animate-orbit",
               reverse && "[animation-direction:reverse]",
             )}
           >
