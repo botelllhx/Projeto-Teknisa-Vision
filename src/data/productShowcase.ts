@@ -72,9 +72,25 @@ export type ProductShowcase = {
 };
 
 const LOGO = (slug: string, file: string) => `/assets/teknisa/products/${slug}/${file}`;
-/** Caminho da tela (imagem) por categoria/device/módulo. Vazio até a designer exportar. */
-const SCREEN = (cat: string, device: string, mod: string) =>
-  `/assets/teknisa/products/${cat}/${cat}-${device}-${mod}.webp`;
+/**
+ * Caminho da tela (imagem) do device. Telas reais **por tipo** em `products/screens/`
+ * (otimizadas em WebP): `monitor` (desktop/laptop/browser), `tablet`, `mobile` (phone/pos/
+ * totem). Usadas em TODOS os devices para um preview realista; `object-cover` enquadra.
+ * TODO: quando houver capturas por produto/módulo, voltar a um caminho específico aqui.
+ */
+const SCREEN_BY_TYPE: Record<string, "monitor" | "tablet" | "mobile"> = {
+  desktop: "monitor",
+  laptop: "monitor",
+  browser: "monitor",
+  tablet: "tablet",
+  phone: "mobile",
+  pos: "mobile",
+  totem: "mobile",
+};
+const SCREEN = (...args: string[]) => {
+  const device = args[1]; // args: [categoria, tipo de device, módulo]; só o tipo importa
+  return `/assets/teknisa/products/screens/${SCREEN_BY_TYPE[device] ?? "monitor"}.webp`;
+};
 
 /**
  * COMPOSIÇÃO (cluster): cada produto tem 1 device ÂNCORA grande (browser, a tela

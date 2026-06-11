@@ -1,7 +1,6 @@
-import { useEffect, useRef, useState } from "react";
+import { useRef, useState } from "react";
 import {
   motion,
-  useMotionValueEvent,
   useReducedMotion,
   useScroll,
   useTransform,
@@ -122,14 +121,6 @@ function DeviceCluster({
   const heroes = devices.filter((d) => d.hero);
   const mobileDevices = (heroes.length ? heroes : devices.slice(0, 1)).slice(0, 2);
 
-  const [assembled, setAssembled] = useState<boolean>(!!reduced);
-  useMotionValueEvent(scrollYProgress, "change", (v) => {
-    if (v > 0.8) setAssembled(true);
-  });
-  useEffect(() => {
-    if (reduced || scrollYProgress.get() > 0.8) setAssembled(true);
-  }, [reduced, scrollYProgress]);
-
   return (
     <>
       {/* DESKTOP: cluster absoluto; crossfade ao trocar de produto */}
@@ -148,7 +139,6 @@ function DeviceCluster({
             productName={product.name}
             scrollYProgress={scrollYProgress}
             reduced={!!reduced}
-            assembled={assembled}
           />
         ))}
       </motion.div>
@@ -165,7 +155,7 @@ function DeviceCluster({
             className="w-full"
             style={{ maxWidth: d.device === "phone" ? "11rem" : "22rem" }}
           >
-            <DeviceRender d={d} productName={product.name} hotspotsVisible />
+            <DeviceRender d={d} productName={product.name} />
           </motion.div>
         ))}
       </div>
@@ -180,14 +170,12 @@ function ClusterDevice({
   productName,
   scrollYProgress,
   reduced,
-  assembled,
 }: {
   d: DeviceInShowcase;
   idx: number;
   productName: string;
   scrollYProgress: MotionValue<number>;
   reduced: boolean;
-  assembled: boolean;
 }) {
   const start = Math.min(idx * 0.12, 0.5);
   const end = Math.min(start + 0.5, 1);
@@ -212,7 +200,7 @@ function ClusterDevice({
       }}
     >
       <motion.div style={{ y, opacity, scale }}>
-        <DeviceRender d={d} productName={productName} hotspotsVisible={assembled} />
+        <DeviceRender d={d} productName={productName} />
       </motion.div>
     </div>
   );
@@ -221,20 +209,18 @@ function ClusterDevice({
 function DeviceRender({
   d,
   productName,
-  hotspotsVisible,
 }: {
   d: DeviceInShowcase;
   productName: string;
-  hotspotsVisible: boolean;
 }) {
   const Frame = DEVICE_FRAMES[d.device];
   return (
     <Frame className={cn(d.device === "phone" && "mx-auto")}>
       <DeviceScreen
         screen={d.screen}
+        deviceKind={d.device}
         productName={productName}
         label={d.label}
-        hotspotsVisible={hotspotsVisible}
       />
     </Frame>
   );
