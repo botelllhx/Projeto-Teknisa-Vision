@@ -65,6 +65,8 @@ links, ênfases e títulos). Seções **dark** apenas pontuais/estratégicas.
 - Tipografia: **títulos em `font-display` = Google Sans** (OFL/open desde nov/2025, self-host via
   `@fontsource/google-sans`, subset latin, pesos 400–700) + `font-sans` (Inter, corpo). Toda heading
   usa `font-display`, então a fonte de título é trocada num só lugar (tailwind `fontFamily.display`).
+  **Exceção única:** `font-wordmark` = **Averia Serif Libre** (`@fontsource/averia-serif-libre`), serif
+  usada **só** no wordmark **"TeknisAI"** (§6) como assinatura da IA. Não usar serif em mais nada.
 - Radius `2xl`/`3xl`, sombras suaves ancoradas no azul (`shadow-sm…xl`, `shadow-glow`).
 - Easing assinatura: `ease-expo-out` (Tailwind) / `EASE`, `EASE_EXPO`, `EASE_SMOOTH` em
   `src/lib/motion.ts`.
@@ -91,7 +93,11 @@ links, ênfases e títulos). Seções **dark** apenas pontuais/estratégicas.
   public/assets/      estáticos servidos como root (vídeo do hero, etc.)
   ```
 - **Padrão de seção:** cada seção é um `<section id="…">` com `scroll-mt-24` para âncoras; container
-  via `.section-container` (`max-w-7xl` + padding). Placeholders seguem `SectionPlaceholder`.
+  via `.section-container`. **Largura:** o container é **largo** (`max-w-[100rem]` + padding enxuto
+  `px-5 sm:px-8 lg:px-10 xl:px-14`) a pedido do usuário (usar mais a página, menos respiro lateral,
+  responsivo p/ telas largas). O **hero** é à parte (quase full-width, não usa o container). Ao montar
+  seção de tela cheia, **descontar a navbar fixa** (~96px no topo; ver §6 que centraliza/usa
+  `calc(100dvh-…)`). Placeholders seguem `SectionPlaceholder`.
 - **PROIBIDO — eyebrow/label em CAIXA ALTA com letter-spacing** (o típico `uppercase
   tracking-[0.2em]`/`tracking-wider`). O usuário **detesta** esse padrão genérico "de IA". Em
   **todo o projeto**, rótulos/eyebrows usam **caixa normal (sentence case)**, peso `font-semibold`
@@ -121,7 +127,7 @@ links, ênfases e títulos). Seções **dark** apenas pontuais/estratégicas.
 | 3   | Explorador de segmentos (abas + bento)  | ✅ **pronto**                                       |
 | 4   | Faixa de impacto / ROI (ponte; base branca + faixa azul) | ✅ **pronto** (realocada, era §7)  |
 | 5   | Ecossistema de produtos (**Showcase multi-device** + switch + hotspots, claro) | ✅ **pronto**  |
-| 6   | Spotlight de IA (**claro/editorial**: assinatura data→decisão + bento, no sistema) | ✅ **pronto** ★  |
+| 6   | Spotlight de IA (**claro**: micro-narrativa "Apresentando → TeknisAI" + bento dot-art) | ✅ **pronto** ★  |
 | 7   | Deep-dive TecFood (sticky scroll)       | ⬜ placeholder ★                                    |
 | 8   | Casos de sucesso                        | ⬜ placeholder                                      |
 | 9   | Integrações (orbital)                   | ⬜ placeholder ★                                    |
@@ -193,25 +199,25 @@ mobile empilha e mostra 1 a 2 devices-herói com hotspots por tap; reduced-motio
 **Único item ADIADO (estrutura pronta): vídeo** — `Screen.type` aceita `'video'`, trocar uma tela por
 vídeo curto em loop no futuro é só mudar o `type`. **§7 (TecFood deep-dive) segue sticky scroll.**
 
-**§6 Spotlight de IA (pronto · `AISection`):** **seção CLARA, editorial**, refeita como **experiência**
-no **sistema de design do site** (princípios do "Flow" traduzidos, não copiados — sem creme/serif). A
-correção-chave: **dialoga com o resto** — reutiliza o **card do §3** (`Shell`, exportado de
-`BentoCard.tsx`: mesmo radius/sombra/hover/tons) e os tokens (escala `teknisa`, `EASE`, radius). **Sem
-WebGL** (Paper Shaders removido); fundo claro com profundidade só via tokens (radial sutil de
-`secondary` + sombra/elevação dos cards + 1 card **navy** de acento). **A virada de conceito:** o motivo
-de pontos virou **proposital** — `components/ui/SignatureFlow.tsx` é a **assinatura de movimento**: pontos
-de dados entram pelas bordas, **fluem por caminhos curvos suaves (SVG) e se resolvem numa "decisão"** num
-nó focal central (card no sistema, placeholder abstrato `// TODO` exemplo real). Narra a copy (lê milhões
-de pontos → devolve decisão). **Layout centralizado**: badge/lockup **"Teknisa IA"** (pill + dot-motif;
-nome descritivo) → eyebrow → H2 → subhead → CTAs, depois a **assinatura**, depois o **bento de
-capacidades** (`components/ui/AiBento.tsx`) com os 5 itens reais do mega-menu (Agentes de IA · Automação
-operacional · IA para compras · IA para gestão financeira · IA para atendimento). Cada card usa `Shell` +
-um **MiniFlow** (caminho que se desenha até um resultado, **mesma curva EASE da assinatura** — não gráfico
-solto) demonstrando a capacidade. **Sistema de motion único** (EASE em entradas, paths e micro-animações).
-Conteúdo em **registro de BENEFÍCIO** (placeholders `// TODO`, sem número/nome inventado). CTAs **Ver a IA
-em ação** / **Falar com especialista**. *A11y/perf:* `prefers-reduced-motion` → assinatura vira **diagrama
-estático composto** (pontos distribuídos + nó de decisão), cards sem stagger; rAF da assinatura pausa fora
-da viewport/aba oculta; SVG escalável; AA. **§7 (TecFood deep-dive) segue sticky scroll/dark.**
+**§6 Spotlight de IA (pronto · `AISection`):** **micro-narrativa "Apresentando → TeknisAI" + bento de
+dot-art**, numa **seção clara** com **cards charcoal** e **halftone azul** (inspiração Anthropic + refs de
+pontos/halftone). Beats ágeis ao entrar na viewport (`useInView`): Beat 1 "Apresentando" + balão de 3
+pontos (typing, blur-reveal via `Reveal`); Beat 2 revela o wordmark **TeknisAI** (sub-brand da IA, grafia
+exata, blur+scale); Beat 3 layout final **navbar-safe** que usa ~100vh: **texto à esquerda** (TeknisAI +
+intro + **subtexto que muda no hover/foco dos cards**), **bento alinhado à direita**. Wordmark em **Averia
+Serif Libre** (`font-wordmark`) usada **SÓ aqui** (assinatura da IA; não reintroduzir serif no resto).
+**Bento variado e ALINHADO** (grid 4×4, estrutura de referência): card **só-texto** (atendimento, sem arte),
+card **azul de acento** (automação, `bg-primary`), card **hero** (agentes), cards de **arte** (compras,
+financeira), card **statement** (frase-conceito), **coluna alta de motivo** (`circles`, decorativa, `fit="fill"`)
+e **card de assinatura** TeknisAI. Cada arte é um **halftone de pontos** da sua forma (`DotArtCard` +
+`dotDraws.ts`): renderizador de pontos **próprio** (a lib `asciify` renderizava em branco neste uso por card;
+trocada), fundo transparente, e desenhado num **quadrado central** (`fit="square"`) p/ **não esticar** em
+cards não-quadrados. Só **azul + charcoal + branco** (sem magenta/rosa/vermelho das refs). *A11y/perf:* cards são `<button>` (foco atualiza o subtexto, não só hover); dot-art
+**lazy** (IntersectionObserver) e **estático**, só **respira no card ativo** (1 por vez);
+`prefers-reduced-motion` → layout final imediato + dot-art estático; mobile → bento empilha (motivo some) +
+blurb no card. **Scroll-snap gentil** via **Lenis** (`lenis/snap`, `type: 'proximity'`, só desktop, alvo
+`[data-snap-start]` em `useSmoothScroll`); reduced-motion/mobile sem snap. **§7 (TecFood) segue sticky
+scroll/dark.**
 
 ---
 

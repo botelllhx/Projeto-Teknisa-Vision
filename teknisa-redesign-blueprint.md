@@ -187,23 +187,22 @@ O **switch** troca o conjunto de devices/telas (+ logo e copy) por crossfade/re-
 *Conversão:* leva às landings de produto. A §6 (IA) é a seção **dark** estratégica da vizinhança; a §5
 fica clara. (Sticky scroll e bento foram tentados e descartados; não voltar a eles.)
 
-### 6 · Spotlight de IA — momento-assinatura #5 ⭐ (clara / anti-dark)
-O que a IA Teknisa entrega na prática (previsão de demanda/cardápio, insights de custo/CMV, automação
-de rotinas de compras/RH/atendimento, personalização de menu por perfil, como mostrado na NRF), em
-**registro de benefício** (o que ela *entrega*, não o que ela *faz*). *Craft (conceito atual):* refeita
-como **experiência editorial CLARA**, traduzindo princípios do **Flow** (calma, restrição, animação que
-explica, sistema de motion consistente) **sem copiar** creme/serif — mantém branco + azul Teknisa + sans
-do projeto. **Correção-chave:** a seção **dialoga com o site** — reutiliza o **card do §3** e os tokens
-(escala de azul, radius, sombra, `EASE`). **Sem WebGL.** O motivo de pontos virou **proposital**: uma
-**assinatura de movimento** (`SignatureFlow`, SVG) em que pontos de dados **fluem por caminhos curvos e se
-resolvem numa "decisão"** num nó focal central — narra "lê milhões de pontos → devolve decisão". Layout
-centralizado (badge **"Teknisa IA"** → eyebrow → H2 → subhead → CTAs), depois a assinatura, depois um
-**bento de capacidades** (5 itens reais do mega-menu) com micro-fluxos que **demonstram** cada capacidade
-na **mesma curva de motion**. Profundidade via tokens (sombra/elevação + 1 card navy), não chapado.
-*A11y/perf:* `prefers-reduced-motion` → assinatura vira diagrama estático composto, sem stagger; pausa
-fora da viewport/aba oculta; SVG escalável; contraste AA. *Por que claro:* foge do clichê escuro e
-**mantém a vizinhança coerente** com a §5 clara. *Conversão:* inovadora vs. TOTVS; CTA "Ver a IA em ação"
-/ "Falar com especialista".
+### 6 · Spotlight de IA, momento-assinatura #5 ⭐ (clara)
+O que a TeknisAI entrega (previsão de demanda/cardápio, automação de rotinas, IA para compras e
+atendimento), em **registro de benefício**. *Craft (conceito atual):* uma **micro-narrativa** inspirada na
+Anthropic + refs de **halftone/dot-art** (pontos, não caracteres). Beats ágeis ao entrar na seção:
+"Apresentando" + balão de 3 pontos (blur-reveal), depois revela o wordmark **TeknisAI** (sub-brand da IA,
+serif **Averia Serif Libre** usada SÓ aqui), depois o layout final que **ocupa ~100vh**: cabeçalho
+(TeknisAI + intro + **subtexto que muda no hover/foco dos cards**) em cima, **bento full-width variado**
+embaixo. O bento segue uma **estrutura de referência densa** (grid 12×4): card de texto, card azul de
+acento, card hero, cards de arte, **coluna alta de motivo** (círculos) e **card de assinatura**, com
+tamanhos e composições diferentes (como a §3). Cada capacidade é um **halftone de pontos azuis sobre
+charcoal**, numa seção **clara**. Paleta reduzida a **azul, charcoal e branco** (sem magenta/rosa/vermelho
+das refs). *A11y/perf:* cards `<button>` (foco atualiza o subtexto, não só hover); dot-art lazy e estático,
+respira só no card ativo; `prefers-reduced-motion` cai pro layout final imediato e dot-art estático; mobile
+empilha. **Scroll-snap gentil** via Lenis (`lenis/snap`, proximity, só desktop). *Por que claro:*
+foge do clichê escuro e mantém a vizinhança coerente com a §5 clara. *Conversão:* inovadora vs. TOTVS; CTA
+"Falar com especialista".
 
 ### 7 · Deep-dive carro-chefe (TecFood / coletiva) — momento-assinatura #3 ⭐
 Tour de um fluxo real (cardápio → ficha técnica/CMV → produção → estoque → fiscal) com tabs por sub-segmento (corporativo/hospitalar/escolar/catering aéreo). *Craft:* **sticky scroll** (texto fixo à esquerda, telas trocam à direita). *Conversão:* convence nutricionista/decisor técnico; CTA "Falar sobre alimentação coletiva".

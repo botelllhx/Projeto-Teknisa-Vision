@@ -1,6 +1,7 @@
 import { useEffect, useRef } from "react";
 import { useLocation } from "react-router-dom";
 import Lenis from "lenis";
+import Snap from "lenis/snap";
 
 /** Altura aproximada do header fixo ao rolar para âncoras (#ia, #eventos, …). */
 const ANCHOR_HEADER_OFFSET = 96;
@@ -33,6 +34,20 @@ export function useSmoothScroll() {
     // como o glass/blur da navbar — funcionam normalmente. Despachar um Event("scroll")
     // criaria recursão infinita (Lenis re-emite → callback → dispatch → ...).
 
+    // Snap GENTIL (proximity) integrado ao Lenis: ajuda a "assentar" em seções de tela
+    // cheia marcadas com [data-snap-start] (ex.: §6 IA). Só no desktop; nunca prende o
+    // scroll (proximity = só quando já está perto e devagar). Reduced-motion nem chega aqui.
+    let snap: Snap | null = null;
+    let snapRAF = 0;
+    if (window.matchMedia("(min-width: 1024px)").matches) {
+      snap = new Snap(lenis, { type: "proximity", debounce: 500, duration: 1, distanceThreshold: "15%" });
+      snapRAF = requestAnimationFrame(() => {
+        document.querySelectorAll<HTMLElement>("[data-snap-start]").forEach((el) => {
+          snap?.addElement(el, { align: ["start"] });
+        });
+      });
+    }
+
     let frame = 0;
     const raf = (time: number) => {
       lenis.raf(time);
@@ -42,6 +57,8 @@ export function useSmoothScroll() {
 
     return () => {
       cancelAnimationFrame(frame);
+      cancelAnimationFrame(snapRAF);
+      snap?.destroy();
       lenis.destroy();
       lenisRef.current = null;
     };

@@ -7,6 +7,9 @@
 @import "@fontsource/inter/latin-400.css";
 @import "@fontsource/inter/latin-500.css";
 @import "@fontsource/inter/latin-600.css";
+/* Averia Serif Libre — assinatura de marca da IA. Usar SÓ no wordmark "TeknisAI" (font-wordmark). */
+@import "@fontsource/averia-serif-libre/latin-400.css";
+@import "@fontsource/averia-serif-libre/latin-700.css";
 
 @tailwind base;
 @tailwind components;
@@ -112,9 +115,10 @@
 }
 
 @layer components {
-  /* Container padrão de seção */
+  /* Container padrão de seção. Largura generosa (mais moderno, usa mais a página) com
+     respiro lateral enxuto; cap em telas muito largas para legibilidade. */
   .section-container {
-    @apply mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8;
+    @apply mx-auto w-full max-w-[100rem] px-5 sm:px-8 lg:px-10 xl:px-14;
   }
 }
 

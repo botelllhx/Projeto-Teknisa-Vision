@@ -25,6 +25,8 @@ export default {
         sans: ["Inter", "system-ui", "sans-serif"],
         // Títulos em Google Sans (OFL desde nov/2025). Inter segue no corpo.
         display: ["Google Sans", "system-ui", "sans-serif"],
+        // Assinatura serif EXCLUSIVA do wordmark "TeknisAI" (§6 IA). Não usar em mais nada.
+        wordmark: ["Averia Serif Libre", "Georgia", "serif"],
       },
       colors: {
         border: "hsl(var(--border))",

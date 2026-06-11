@@ -12,6 +12,7 @@
   },
   "dependencies": {
     "@floating-ui/react": "^0.27.19",
+    "@fontsource/averia-serif-libre": "^5.2.7",
     "@fontsource/google-sans": "^5.2.1",
     "@fontsource/inter": "^5.2.8",
     "@radix-ui/react-slot": "^1.2.3",
