@@ -206,15 +206,17 @@ pontos (typing, blur-reveal via `Reveal`); Beat 2 revela o wordmark **TeknisAI**
 exata, blur+scale); Beat 3 layout final **navbar-safe** que usa ~100vh: **texto à esquerda** (TeknisAI +
 intro + **subtexto que muda no hover/foco dos cards**), **bento alinhado à direita**. Wordmark em **Averia
 Serif Libre** (`font-wordmark`) usada **SÓ aqui** (assinatura da IA; não reintroduzir serif no resto).
-**Bento variado e ALINHADO** (grid 4×4, estrutura de referência): card **só-texto** (atendimento, sem arte),
-card **azul de acento** (automação, `bg-primary`), card **hero** (agentes), cards de **arte** (compras,
-financeira), card **statement** (frase-conceito), **coluna alta de motivo** (`circles`, decorativa, `fit="fill"`)
-e **card de assinatura** TeknisAI. Cada arte é um **halftone de pontos** da sua forma (`DotArtCard` +
-`dotDraws.ts`): renderizador de pontos **próprio** (a lib `asciify` renderizava em branco neste uso por card;
-trocada), fundo transparente, e desenhado num **quadrado central** (`fit="square"`) p/ **não esticar** em
-cards não-quadrados. Só **azul + charcoal + branco** (sem magenta/rosa/vermelho das refs). *A11y/perf:* cards são `<button>` (foco atualiza o subtexto, não só hover); dot-art
+Os cards entram em **blur-stagger** (Beat 3). **Bento variado** (grid 12×2): **6 cards** com copy do
+cliente (food service real, nada inventado) = `name` + `cardLine` (no card) + `hover` (detalhe que
+aparece à esquerda no hover/foco). Variedade real por **`layout`** (1 **hero** com arte grande `fit="fill"`
++ 5 **panels** com rótulo em cima e arte preenchendo embaixo) e por **`tone`** (4+ cores dos tokens:
+`charcoal`, `blue` = `teknisa-600`, `blue2` = `teknisa-500`, `navy` = `primary`, `light` = `secondary`), em
+tamanhos diferentes. Cada arte é um **halftone de pontos** (`DotArtCard` + `dotDraws.ts`, renderizador
+próprio; a lib `asciify` renderizava em branco), **fundo transparente** e **cor de ponto por tom** (`dotColor`/
+`accentColor`: claro nos fundos escuros, `primary` no card claro). Só **azul + charcoal + branco/neutros**
+(sem magenta/rosa/vermelho das refs). *A11y/perf:* cards são `<button>` (foco atualiza o subtexto, não só hover); dot-art
 **lazy** (IntersectionObserver) e **estático**, só **respira no card ativo** (1 por vez);
-`prefers-reduced-motion` → layout final imediato + dot-art estático; mobile → bento empilha (motivo some) +
+`prefers-reduced-motion` → layout final imediato + dot-art estático e sem blur-stagger; mobile → bento empilha +
 blurb no card. **Scroll-snap gentil** via **Lenis** (`lenis/snap`, `type: 'proximity'`, só desktop, alvo
 `[data-snap-start]` em `useSmoothScroll`); reduced-motion/mobile sem snap. **§7 (TecFood) segue sticky
 scroll/dark.**

@@ -40,7 +40,7 @@ export function useSmoothScroll() {
     let snap: Snap | null = null;
     let snapRAF = 0;
     if (window.matchMedia("(min-width: 1024px)").matches) {
-      snap = new Snap(lenis, { type: "proximity", debounce: 500, duration: 1, distanceThreshold: "15%" });
+      snap = new Snap(lenis, { type: "proximity", debounce: 400, duration: 1.1, distanceThreshold: "35%" });
       snapRAF = requestAnimationFrame(() => {
         document.querySelectorAll<HTMLElement>("[data-snap-start]").forEach((el) => {
           snap?.addElement(el, { align: ["start"] });

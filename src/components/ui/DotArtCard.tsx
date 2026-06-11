@@ -20,12 +20,17 @@ export function DotArtCard({
   draw,
   active = false,
   fit = "square",
+  dotColor = DOT_BLUE,
+  accentColor = DOT_ACCENT,
   className,
 }: {
   draw: DotDraw;
   active?: boolean;
   /** "square": desenha a forma num quadrado central (proporcional, não estica). "fill": usa o card todo. */
   fit?: "square" | "fill";
+  /** Cor dos pontos (adapta ao fundo do card). */
+  dotColor?: string;
+  accentColor?: string;
   className?: string;
 }) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
@@ -78,7 +83,7 @@ export function DotArtCard({
             const v = (d[i + 2] - 40) / 215 - d[i] * 0.0008;
             if (v > 0.08) {
               const rad = Math.min(CELL * 0.46, CELL * 0.5 * Math.min(1, v * 1.25));
-              octx.fillStyle = (cx * 7 + cy * 13) % 31 === 0 ? DOT_ACCENT : DOT_BLUE;
+              octx.fillStyle = (cx * 7 + cy * 13) % 31 === 0 ? accentColor : dotColor;
               octx.beginPath();
               octx.arc(cx * CELL + CELL / 2, cy * CELL + CELL / 2, rad, 0, Math.PI * 2);
               octx.fill();
@@ -101,7 +106,7 @@ export function DotArtCard({
     );
     io.observe(out);
     return () => io.disconnect();
-  }, [draw, fit]);
+  }, [draw, fit, dotColor, accentColor]);
 
   // respiração: rAF só enquanto `active` e fora de reduced-motion
   useEffect(() => {

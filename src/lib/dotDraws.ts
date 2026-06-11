@@ -149,5 +149,24 @@ export const circles: DotDraw = (ctx, w, h, t) => {
   }
 };
 
-export const DOT_DRAWS = { network, loop, bars, chat, spiral, circles } as const;
+/** Textura orgânica (preenche o card, fit="fill"): blob ondulado em halftone, vivo. */
+export const field: DotDraw = (ctx, w, h, t) => {
+  const cx = w * 0.5;
+  const cy = h * 0.52;
+  const rx = w * 0.46;
+  const ry = h * 0.46;
+  ctx.fillStyle = DOT_BLUE;
+  ctx.beginPath();
+  for (let a = 0; a <= Math.PI * 2 + 0.001; a += 0.08) {
+    const r = 1 + 0.16 * Math.sin(a * 3 + (t ? t / 650 : 0)) + 0.08 * Math.sin(a * 5 - (t ? t / 900 : 0));
+    const x = cx + Math.cos(a) * rx * r;
+    const y = cy + Math.sin(a) * ry * r;
+    if (a === 0) ctx.moveTo(x, y);
+    else ctx.lineTo(x, y);
+  }
+  ctx.closePath();
+  ctx.fill();
+};
+
+export const DOT_DRAWS = { network, loop, bars, chat, spiral, circles, field } as const;
 export type DotDrawKey = keyof typeof DOT_DRAWS;

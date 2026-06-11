@@ -1,35 +1,41 @@
 import { useEffect, useRef, useState } from "react";
-import { AnimatePresence, motion, useInView, useReducedMotion } from "framer-motion";
-import { ArrowRight } from "lucide-react";
+import { AnimatePresence, motion, useInView, useReducedMotion, type Variants } from "framer-motion";
 import { Reveal } from "@/components/ui/Reveal";
 import { DotArtCard } from "@/components/ui/DotArtCard";
 import { cn } from "@/lib/utils";
 import { EASE_EXPO } from "@/lib/motion";
 import {
-  AI_BRAND_AREA,
-  AI_BRAND_LINE,
   AI_DEFAULT_HINT,
   AI_EYEBROW,
   AI_INTRO,
-  AI_MOTIF,
-  AI_STATEMENT,
   CAPABILITIES,
   DOT_DRAWS,
+  type CardTone,
   type Capability,
 } from "@/data/aiSection";
 
 /**
  * §6 · Spotlight de IA — micro-narrativa "Apresentando → TeknisAI" + bento de dot-art.
  *
- * Showcase clara. **Texto à esquerda** (wordmark TeknisAI + intro + subtexto que muda no
- * hover/foco), **bento alinhado à direita** (grid 4×4, navbar-safe no 100vh). Variedade de
- * cards: só-texto, azul de acento, hero, arte, statement, coluna de motivo e assinatura.
- * Dot-art halftone azul (`DotArtCard`, proporcional via `fit`). Só azul + charcoal + branco.
- * Beats sem pressa. Snap gentil via Lenis (desktop). Reduced-motion/mobile: final imediato,
- * dot-art estático, sem snap.
+ * Showcase clara: **texto à esquerda** (wordmark TeknisAI + intro + detalhe que muda no
+ * hover/foco dos cards), **bento variado à direita**. Variedade real: 1 card **hero** com
+ * arte grande + 5 **panels**, em **4 cores** (charcoal/azul vivo/navy/claro). Beats com
+ * **blur**: "Apresentando" + balão → TeknisAI → cards entram em blur-stagger. Dot-art
+ * halftone (`DotArtCard`), recolorido por tom. Navbar-safe no 100vh, sem clipar.
  */
 const CARD_BASE =
-  "group relative overflow-hidden rounded-3xl text-left ring-1 transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background lg:min-h-0";
+  "group relative overflow-hidden rounded-3xl text-left transition-shadow duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background lg:min-h-0";
+
+const TONE: Record<
+  CardTone,
+  { card: string; text: string; sub: string; icon: string; dot: string; accent: string }
+> = {
+  charcoal: { card: "bg-[#15151b] ring-1 ring-white/10 hover:ring-white/25", text: "text-white", sub: "text-white/55", icon: "text-teknisa-300", dot: "#6175ff", accent: "#9aa6ff" },
+  blue: { card: "bg-teknisa-600 ring-1 ring-white/15 hover:ring-white/30", text: "text-white", sub: "text-white/75", icon: "text-white", dot: "#c6ccff", accent: "#ffffff" },
+  blue2: { card: "bg-teknisa-500 ring-1 ring-white/15 hover:ring-white/30", text: "text-white", sub: "text-white/80", icon: "text-white", dot: "#dfe2ff", accent: "#ffffff" },
+  navy: { card: "bg-primary ring-1 ring-white/15 hover:ring-white/30", text: "text-white", sub: "text-white/65", icon: "text-teknisa-300", dot: "#9aa6ff", accent: "#c6ccff" },
+  light: { card: "bg-secondary ring-1 ring-border hover:ring-primary/40", text: "text-foreground", sub: "text-muted-foreground", icon: "text-primary", dot: "#040486", accent: "#5a59ef" },
+};
 
 function TypingBubble() {
   const reduced = useReducedMotion();
@@ -50,108 +56,87 @@ function TypingBubble() {
 function AiCard({
   cap,
   active,
+  variants,
   onActivate,
   onDeactivate,
 }: {
   cap: Capability;
   active: boolean;
+  variants: Variants;
   onActivate: () => void;
   onDeactivate: () => void;
 }) {
-  const handlers = {
-    onMouseEnter: onActivate,
-    onMouseLeave: onDeactivate,
-    onFocus: onActivate,
-    onBlur: onDeactivate,
-  };
-  const wide = cap.variant === "split" || cap.variant === "text";
-  const cls = cn(CARD_BASE, cap.area, wide && "sm:col-span-2");
-  const art = (extra?: string) => (
-    <DotArtCard draw={DOT_DRAWS[cap.draw]} active={active} className={cn("absolute inset-0 h-full w-full", extra)} />
+  const t = TONE[cap.tone];
+  const Icon = cap.icon;
+  const handlers = { onMouseEnter: onActivate, onMouseLeave: onDeactivate, onFocus: onActivate, onBlur: onDeactivate };
+
+  const label = (big: boolean) => (
+    <div className="flex items-center gap-2">
+      <Icon className={cn("shrink-0", big ? "h-5 w-5" : "h-4 w-4", t.icon)} aria-hidden />
+      <span className={cn("font-semibold", big ? "text-xs" : "text-[11px]", t.sub)}>{cap.name}</span>
+    </div>
   );
 
-  if (cap.variant === "text") {
-    // só-texto (sem arte)
+  // só-texto (sem arte): ícone + nome + frase + detalhe
+  if (cap.layout === "text") {
     return (
-      <button type="button" {...handlers} aria-label={`${cap.title}. ${cap.body}`} className={cn(cls, "flex min-h-[180px] flex-col justify-center bg-[#15151b] p-7 ring-white/10 hover:ring-white/25")}>
-        <h3 className="font-display text-xl font-semibold text-white">{cap.title}</h3>
-        <p className="mt-3 max-w-md text-sm leading-relaxed text-white/65">{cap.body}</p>
-        <span className="mt-4 inline-flex items-center gap-1.5 text-sm font-semibold text-[#9aa6ff]">
-          Conhecer
-          <ArrowRight className="h-4 w-4 transition-transform duration-200 group-hover:translate-x-1" />
-        </span>
-      </button>
+      <motion.button
+        type="button"
+        variants={variants}
+        {...handlers}
+        aria-label={`${cap.name}. ${cap.hover}`}
+        className={cn(CARD_BASE, cap.area, "flex flex-col justify-center p-6", t.card)}
+      >
+        {label(true)}
+        <p className={cn("mt-3 font-display text-lg font-semibold leading-snug tracking-tight", t.text)}>
+          {cap.cardLine}
+        </p>
+        <p className={cn("mt-2.5 text-sm leading-relaxed", t.sub)}>{cap.hover}</p>
+      </motion.button>
     );
   }
 
-  if (cap.variant === "split") {
-    // hero (arte em cima + texto embaixo)
+  if (cap.layout === "hero") {
     return (
-      <button type="button" {...handlers} aria-label={`${cap.title}. ${cap.body}`} className={cn(cls, "flex min-h-[300px] flex-col bg-[#15151b] ring-white/10 hover:ring-white/25")}>
-        <div className="relative min-h-0 flex-1">{art()}</div>
-        <div className="relative border-t border-white/10 p-6">
-          <h3 className="font-display text-xl font-semibold text-white">{cap.title}</h3>
-          <p className="mt-2 text-sm leading-relaxed text-white/60">{cap.body}</p>
-          <span className="mt-4 inline-flex items-center gap-1.5 text-sm font-semibold text-[#9aa6ff]">
-            Conhecer
-            <ArrowRight className="h-4 w-4 transition-transform duration-200 group-hover:translate-x-1" />
-          </span>
+      <motion.button
+        type="button"
+        variants={variants}
+        {...handlers}
+        aria-label={`${cap.name}. ${cap.hover}`}
+        className={cn(CARD_BASE, cap.area, "flex min-h-[300px] flex-col sm:col-span-2", t.card)}
+      >
+        <div className="relative min-h-0 flex-1">
+          <DotArtCard draw={DOT_DRAWS[cap.draw]} fit="fill" active={active} dotColor={t.dot} accentColor={t.accent} className="absolute inset-0 h-full w-full" />
         </div>
-      </button>
-    );
-  }
-
-  if (cap.variant === "blue") {
-    return (
-      <button type="button" {...handlers} aria-label={`${cap.title}. ${cap.body}`} className={cn(cls, "flex min-h-[180px] flex-col justify-end bg-primary ring-white/15 hover:ring-white/30")}>
-        {art("opacity-85")}
-        <div className="relative bg-gradient-to-t from-primary via-primary/85 to-transparent p-5 pt-12">
-          <h3 className="font-display text-base font-semibold text-white">{cap.title}</h3>
-          <p className="mt-1 text-sm leading-relaxed text-white/75">{cap.lead}</p>
+        <div className="relative p-6">
+          {label(true)}
+          <p className={cn("mt-1.5 font-display text-xl font-semibold leading-snug tracking-tight", t.text)}>
+            {cap.cardLine}
+          </p>
         </div>
-      </button>
+      </motion.button>
     );
   }
 
-  // "art": arte + rótulo
+  // panel: rótulo (com ícone) em cima, arte preenchendo embaixo
   return (
-    <button type="button" {...handlers} aria-label={`${cap.title}. ${cap.body}`} className={cn(cls, "min-h-[180px] bg-[#15151b] ring-white/10 hover:ring-white/25")}>
-      {art()}
-      <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-[#15151b] via-[#15151b]/85 to-transparent p-5 pt-12">
-        <h3 className="font-display text-base font-semibold text-white">{cap.title}</h3>
-        <p className="mt-1 text-sm leading-relaxed text-white/55">{cap.lead}</p>
+    <motion.button
+      type="button"
+      variants={variants}
+      {...handlers}
+      aria-label={`${cap.name}. ${cap.hover}`}
+      className={cn(CARD_BASE, cap.area, "flex min-h-[170px] flex-col", t.card)}
+    >
+      <div className="p-5 pb-1.5">
+        {label(false)}
+        <p className={cn("mt-1 font-display text-base font-semibold leading-snug tracking-tight", t.text)}>
+          {cap.cardLine}
+        </p>
       </div>
-    </button>
-  );
-}
-
-function StatementCard() {
-  return (
-    <div className={cn(CARD_BASE, AI_STATEMENT.area, "flex min-h-[160px] flex-col justify-center bg-[#15151b] p-7 ring-white/10 sm:col-span-2")}>
-      <p className="font-display text-2xl font-semibold leading-snug tracking-tight text-white lg:text-3xl">
-        Do dado à <span className="text-[#9aa6ff]">decisão</span>, antes do problema aparecer.
-      </p>
-    </div>
-  );
-}
-
-function MotifCard() {
-  return (
-    <div className={cn(CARD_BASE, AI_MOTIF.area, "hidden ring-white/10 lg:block lg:bg-[#15151b]")}>
-      <DotArtCard draw={DOT_DRAWS[AI_MOTIF.draw]} fit="fill" className="absolute inset-0 h-full w-full" />
-      <span className="absolute bottom-5 left-1/2 -translate-x-1/2 whitespace-nowrap text-xs font-medium text-white/40">
-        {AI_MOTIF.caption}
-      </span>
-    </div>
-  );
-}
-
-function BrandCard() {
-  return (
-    <div className={cn(CARD_BASE, AI_BRAND_AREA, "flex min-h-[150px] flex-col justify-between bg-[#15151b] p-6 ring-white/10")}>
-      <span className="font-wordmark text-2xl text-white">TeknisAI</span>
-      <p className="text-sm leading-relaxed text-white/55">{AI_BRAND_LINE}</p>
-    </div>
+      <div className="relative min-h-0 flex-1">
+        <DotArtCard draw={DOT_DRAWS[cap.draw]} fit="square" active={active} dotColor={t.dot} accentColor={t.accent} className="absolute inset-0 h-full w-full" />
+      </div>
+    </motion.button>
   );
 }
 
@@ -169,14 +154,20 @@ export function AISection() {
       return;
     }
     const t1 = setTimeout(() => setPhase(1), 1500);
-    const t2 = setTimeout(() => setPhase(2), 3100);
+    const t2 = setTimeout(() => setPhase(2), 3000);
     return () => {
       clearTimeout(t1);
       clearTimeout(t2);
     };
   }, [inView, reduced]);
 
-  const hint = activeCap === null ? AI_DEFAULT_HINT : CAPABILITIES[activeCap].lead;
+  const container: Variants = { hidden: {}, show: { transition: { staggerChildren: 0.09, delayChildren: 0.05 } } };
+  const item: Variants = reduced
+    ? { hidden: { opacity: 0 }, show: { opacity: 1 } }
+    : {
+        hidden: { opacity: 0, filter: "blur(16px)", y: 22 },
+        show: { opacity: 1, filter: "blur(0px)", y: 0, transition: { duration: 0.65, ease: EASE_EXPO } },
+      };
 
   return (
     <section
@@ -184,18 +175,17 @@ export function AISection() {
       ref={ref}
       data-snap-start
       aria-label="Inteligência artificial aplicada"
-      className="relative min-h-screen scroll-mt-24 overflow-hidden bg-background pt-28 pb-16 lg:pt-36 lg:pb-20"
+      className="relative min-h-screen scroll-mt-24 bg-background pt-28 pb-16 lg:pt-32 lg:pb-16"
     >
       <div className="section-container grid w-full items-center gap-10 lg:grid-cols-[30%_70%] lg:gap-12 xl:gap-16">
-        {/* ESQUERDA — narrativa (texto sempre à esquerda) */}
-        <div className="relative min-h-[220px] lg:min-h-[300px]">
-          {/* intro: Apresentando + balão (some no layout final) */}
+        {/* ESQUERDA — narrativa */}
+        <div className="relative min-h-[240px] lg:min-h-[320px]">
           <AnimatePresence>
             {phase < 2 && (
               <motion.div
                 key="intro"
-                exit={reduced ? { opacity: 0 } : { opacity: 0, filter: "blur(12px)", y: -14 }}
-                transition={{ duration: 0.6, ease: EASE_EXPO }}
+                exit={reduced ? { opacity: 0 } : { opacity: 0, filter: "blur(14px)", y: -16 }}
+                transition={{ duration: 0.7, ease: EASE_EXPO }}
                 className="absolute inset-x-0 top-0"
               >
                 <Reveal show={phase >= 0}>
@@ -211,11 +201,7 @@ export function AISection() {
                   animate={
                     reduced
                       ? { opacity: phase >= 1 ? 1 : 0 }
-                      : {
-                          opacity: phase >= 1 ? 1 : 0,
-                          filter: phase >= 1 ? "blur(0px)" : "blur(16px)",
-                          scale: phase >= 1 ? 1 : 0.92,
-                        }
+                      : { opacity: phase >= 1 ? 1 : 0, filter: phase >= 1 ? "blur(0px)" : "blur(18px)", scale: phase >= 1 ? 1 : 0.92 }
                   }
                   transition={{ duration: 1, ease: EASE_EXPO }}
                   className="mt-7 origin-left"
@@ -226,54 +212,64 @@ export function AISection() {
             )}
           </AnimatePresence>
 
-          {/* layout final */}
           {phase === 2 && (
             <motion.div
-              initial={{ opacity: 0, y: 12 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.7, ease: EASE_EXPO }}
+              initial={reduced ? { opacity: 0 } : { opacity: 0, filter: "blur(10px)", y: 14 }}
+              animate={{ opacity: 1, filter: "blur(0px)", y: 0 }}
+              transition={{ duration: 0.8, ease: EASE_EXPO }}
             >
               <span className="text-sm font-semibold text-primary">{AI_EYEBROW}</span>
               <h2 className="mt-2 font-wordmark text-6xl leading-[0.92] text-foreground sm:text-7xl xl:text-8xl">
                 TeknisAI
               </h2>
               <p className="mt-6 max-w-md text-base leading-relaxed text-muted-foreground">{AI_INTRO}</p>
-              <div className="mt-6 border-t border-border pt-4">
+              <div className="mt-6 min-h-[5.5rem] border-t border-border pt-5">
                 <AnimatePresence mode="wait">
-                  <motion.p
-                    key={hint}
-                    initial={{ opacity: 0, y: 5 }}
+                  <motion.div
+                    key={activeCap ?? "default"}
+                    initial={{ opacity: 0, y: 6 }}
                     animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: -5 }}
+                    exit={{ opacity: 0, y: -6 }}
                     transition={{ duration: 0.28 }}
-                    className="flex items-center gap-2 text-sm font-semibold text-foreground"
                   >
-                    <span className="h-1.5 w-1.5 rounded-full bg-primary" />
-                    {hint}
-                  </motion.p>
+                    {activeCap === null ? (
+                      <p className="flex items-center gap-2 text-sm font-semibold text-foreground">
+                        <span className="h-1.5 w-1.5 rounded-full bg-primary" />
+                        {AI_DEFAULT_HINT}
+                      </p>
+                    ) : (
+                      <>
+                        <p className="text-sm font-semibold text-primary">{CAPABILITIES[activeCap].name}</p>
+                        <p className="mt-1 max-w-md text-sm leading-relaxed text-muted-foreground">
+                          {CAPABILITIES[activeCap].hover}
+                        </p>
+                      </>
+                    )}
+                  </motion.div>
                 </AnimatePresence>
               </div>
             </motion.div>
           )}
         </div>
 
-        {/* DIREITA — bento alinhado 4×4 */}
-        <Reveal show={phase === 2}>
-          <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:h-[calc(100svh-14rem)] lg:min-h-[40rem] lg:grid-cols-4 lg:grid-rows-4">
-            {CAPABILITIES.map((c, i) => (
-              <AiCard
-                key={c.slug}
-                cap={c}
-                active={activeCap === i}
-                onActivate={() => setActiveCap(i)}
-                onDeactivate={() => setActiveCap(null)}
-              />
-            ))}
-            <StatementCard />
-            <BrandCard />
-            <MotifCard />
-          </div>
-        </Reveal>
+        {/* DIREITA — bento variado (blur-stagger) */}
+        <motion.div
+          variants={container}
+          initial="hidden"
+          animate={phase === 2 ? "show" : "hidden"}
+          className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:h-[calc(100svh-12rem)] lg:min-h-[30rem] lg:grid-cols-12 lg:grid-rows-2"
+        >
+          {CAPABILITIES.map((c, i) => (
+            <AiCard
+              key={c.slug}
+              cap={c}
+              active={activeCap === i}
+              variants={item}
+              onActivate={() => setActiveCap(i)}
+              onDeactivate={() => setActiveCap(null)}
+            />
+          ))}
+        </motion.div>
       </div>
     </section>
   );

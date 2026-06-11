@@ -1,90 +1,107 @@
+import { Bot, CookingPot, Gauge, Headset, PackageCheck, ScanEye } from "lucide-react";
+import type { LucideIcon } from "lucide-react";
 import { DOT_DRAWS, type DotDrawKey } from "@/lib/dotDraws";
 
 /**
- * §6 · TeknisAI — copy + cards do bento (vindos do CLAUDE.md / mega-menu, nada inventado;
- * sem números/claims). Bento **alinhado** (grid 4×4) e **variado**: card só-texto, card azul
- * de acento, hero, cards de arte, **statement**, coluna alta de motivo e **assinatura**.
- * `lead` no card; `body` (mais texto) nos cards grandes e no subtexto dinâmico à esquerda.
+ * §6 · TeknisAI — copy + cards do bento. Conteúdo do cliente (food service real, nada
+ * inventado). Cada card: `name` (rótulo) + `cardLine` (frase curta, no card) + `hover`
+ * (detalhe que aparece à esquerda no hover/foco). Variedade real: `layout` (hero = arte
+ * grande / panel) e `tone` (cor do card), tamanhos diferentes no grid 12×2.
  */
+export type CardTone = "charcoal" | "blue" | "blue2" | "navy" | "light";
+
 export type Capability = {
   slug: string;
-  title: string;
-  lead: string;
-  body: string;
+  name: string;
+  cardLine: string;
+  hover: string;
+  /** Ícone específico (não genérico) ao lado do nome. */
+  icon: LucideIcon;
   draw: DotDrawKey;
-  variant: "split" | "blue" | "art" | "text";
+  layout: "hero" | "panel" | "text";
+  tone: CardTone;
   area: string;
 };
 
 export const AI_EYEBROW = "Apresentando";
 
 export const AI_INTRO =
-  "A inteligência que move a alimentação agora tem nome. A TeknisAI lê os milhões de pontos da sua operação e devolve o que importa: o que produzir, o que comprar e onde cortar, antes de o problema chegar ao seu caixa.";
+  "A inteligência que move a alimentação agora tem nome. A TeknisAI lê os milhões de pontos da sua operação e devolve o que importa, antes de o problema chegar ao seu caixa.";
 
 export const AI_DEFAULT_HINT = "Passe pelos cards e veja onde a inteligência atua.";
 
-/** Card de statement (frase-conceito, sem dado inventado). */
-export const AI_STATEMENT = {
-  text: "Do dado à decisão, antes do problema aparecer.",
-  area: "lg:col-span-2 lg:row-start-4",
-};
-
-/** Coluna alta decorativa (motivo de pontos), preenche a altura (fit "fill"). */
-export const AI_MOTIF = {
-  draw: "circles" as DotDrawKey,
-  caption: "Sinal no ruído",
-  area: "lg:col-start-4 lg:row-span-4",
-};
-
-/** Card de assinatura da marca. */
-export const AI_BRAND_LINE = "A inteligência que move a alimentação.";
-export const AI_BRAND_AREA = "lg:col-start-3 lg:row-start-4";
-
 export const CAPABILITIES: Capability[] = [
   {
-    slug: "atendimento",
-    title: "IA para atendimento",
-    lead: "Suporte que entende a sua operação.",
-    body: "Atendimento e suporte assistidos por IA que entendem o contexto da operação e respondem no seu tom, do balcão ao chamado interno.",
-    draw: "chat",
-    variant: "text",
-    area: "lg:col-span-2",
+    slug: "odhen-go",
+    name: "Odhen Go",
+    cardLine: "A câmera vê o que vende.",
+    hover:
+      "Object Detection identifica os itens na bandeja e lança a venda sozinho. Menos fila, mais autonomia, zero digitação.",
+    icon: ScanEye,
+    draw: "field",
+    layout: "hero",
+    tone: "charcoal",
+    area: "lg:col-span-4 lg:row-span-2",
+  },
+  {
+    slug: "producao",
+    name: "Produção sob medida",
+    cardLine: "A quantidade exata, todo dia.",
+    hover:
+      "A IA conta os comensais e ajusta a produção ao pico real. Cubas repostas na hora, sem sobra nem falta.",
+    icon: CookingPot,
+    draw: "bars",
+    layout: "panel",
+    tone: "blue",
+    area: "lg:col-start-5 lg:col-span-4 lg:row-start-1",
+  },
+  {
+    slug: "compra",
+    name: "Compra no ponto certo",
+    cardLine: "Nunca falta, nunca sobra.",
+    hover:
+      "Prevê o consumo e diz o que e quanto comprar antes de o estoque apertar. Acabou o achismo.",
+    icon: PackageCheck,
+    draw: "loop",
+    layout: "panel",
+    tone: "light",
+    area: "lg:col-start-9 lg:col-span-4 lg:row-start-1",
   },
   {
     slug: "agentes",
-    title: "Agentes de IA",
-    lead: "Rotinas inteiras no piloto, com você no comando.",
-    body: "Agentes que assumem fluxos inteiros da operação, do pedido de compra ao fechamento do dia, e chamam a sua equipe só quando a decisão é humana. Menos clique, mais controle.",
+    name: "Agentes que executam",
+    cardLine: "Tarefa pedida, tarefa feita.",
+    hover:
+      "Assistentes que respondem em linguagem natural e disparam rotinas (pedido, escala, conferência) no seu lugar.",
+    icon: Bot,
     draw: "network",
-    variant: "split",
-    area: "lg:col-span-2 lg:row-start-2 lg:row-span-2",
+    layout: "text",
+    tone: "navy",
+    area: "lg:col-start-5 lg:col-span-3 lg:row-start-2",
   },
   {
-    slug: "automacao",
-    title: "Automação operacional",
-    lead: "O repetitivo rodando sozinho.",
-    body: "Conciliações, lançamentos e alertas que se repetem todo dia passam a rodar sozinhos, no ritmo da operação e sem planilha paralela.",
-    draw: "loop",
-    variant: "blue",
-    area: "lg:col-start-3 lg:row-start-1",
-  },
-  {
-    slug: "compras",
-    title: "IA para compras",
-    lead: "Comprar na medida, faltar e sobrar menos.",
-    body: "A previsão de demanda por unidade e período vira sugestão de compra na medida certa, para faltar menos, desperdiçar menos e proteger a margem.",
-    draw: "bars",
-    variant: "art",
-    area: "lg:col-start-3 lg:row-start-2",
-  },
-  {
-    slug: "financeira",
-    title: "IA para gestão financeira",
-    lead: "O financeiro lendo a operação em tempo real.",
-    body: "Fluxo de caixa, custos e margem lidos direto da operação, com alerta antes de o número virar problema.",
+    slug: "margem",
+    name: "Margem sem surpresa",
+    cardLine: "O desvio aparece antes do fechamento.",
+    hover:
+      "CMV e margem vigiados em tempo real, com alerta quando algo foge do padrão. Você corrige no mês, não no relatório.",
+    icon: Gauge,
     draw: "spiral",
-    variant: "art",
-    area: "lg:col-start-3 lg:row-start-3",
+    layout: "panel",
+    tone: "charcoal",
+    area: "lg:col-start-8 lg:col-span-2 lg:row-start-2",
+  },
+  {
+    slug: "atendimento",
+    name: "Atendimento que não dorme",
+    cardLine: "Responde na hora, na voz da sua marca.",
+    hover:
+      "Tira dúvida do cliente a qualquer hora, no tom do seu negócio, e passa pro humano quando precisa.",
+    icon: Headset,
+    draw: "chat",
+    layout: "panel",
+    tone: "blue2",
+    area: "lg:col-start-10 lg:col-span-3 lg:row-start-2",
   },
 ];
 
