@@ -64,23 +64,25 @@ export function EcosystemOrbit() {
   return (
     <section id="integracoes" aria-label="Integrações e ecossistema" className="scroll-mt-24 overflow-hidden bg-background py-20 lg:py-28">
       <div className="section-container">
-        <div className="mx-auto max-w-2xl text-center">
-          <span className="text-sm font-semibold text-primary">Integrações &amp; ecossistema</span>
-          {/* TODO: copy final (benefício, sem "gestão", sem travessão) */}
-          <h2 className="mt-3 font-display text-4xl font-bold leading-[1.05] tracking-tight text-foreground sm:text-5xl lg:text-[4rem]">
-            Conecta com tudo que sua operação já usa.
-          </h2>
-          <p className="mx-auto mt-4 max-w-xl text-base leading-relaxed text-muted-foreground sm:text-lg">
-            Fim do silo e do retrabalho. Seus sistemas trocam dados sozinhos, sem digitação dupla nem
-            ilha de informação.
-          </p>
-        </div>
+        <div className="grid items-center gap-10 lg:grid-cols-2 lg:gap-16">
+          {/* texto à esquerda */}
+          <div className="max-w-xl">
+            <span className="text-sm font-semibold text-primary">Integrações &amp; ecossistema</span>
+            {/* TODO: copy final (benefício, sem "gestão", sem travessão) */}
+            <h2 className="mt-3 font-display text-4xl font-bold leading-[1.05] tracking-tight text-foreground sm:text-5xl lg:text-[4rem]">
+              Conecta com tudo que sua operação já usa.
+            </h2>
+            <p className="mt-5 max-w-lg text-base leading-relaxed text-muted-foreground sm:text-lg">
+              Fim do silo e do retrabalho. Seus sistemas trocam dados sozinhos, sem digitação dupla
+              nem ilha de informação.
+            </p>
+          </div>
 
-        {/* órbita */}
-        <div
-          className="relative mx-auto mt-12 lg:mt-16"
-          style={{ height: boxSize, maxWidth: boxSize }}
-        >
+          {/* órbita à direita */}
+          <div
+            className="relative mx-auto mt-2 w-full lg:mt-0"
+            style={{ height: boxSize, maxWidth: boxSize }}
+          >
           {/* centro: ecossistema Teknisa + halo azul */}
           <div className="absolute left-1/2 top-1/2 z-10 -translate-x-1/2 -translate-y-1/2">
             <div className="absolute left-1/2 top-1/2 -z-10 h-40 w-40 -translate-x-1/2 -translate-y-1/2 rounded-full bg-primary/20 blur-3xl" aria-hidden />
@@ -101,6 +103,7 @@ export function EcosystemOrbit() {
               {items.map(badge)}
             </OrbitingCircles>
           ))}
+          </div>
         </div>
       </div>
     </section>
