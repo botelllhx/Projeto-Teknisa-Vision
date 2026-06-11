@@ -45,7 +45,7 @@ export function CasesSection() {
         <div className="max-w-2xl">
           <span className="text-sm font-semibold text-primary">Histórias reais</span>
           <h2 className="mt-3 font-display text-4xl font-bold leading-[1.05] tracking-tight text-foreground sm:text-5xl lg:text-[4rem]">
-            Quem move a alimentação roda na Teknisa.
+            Quem move a alimentação <span className="whitespace-nowrap">roda na Teknisa.</span>
           </h2>
           <p className="mt-4 text-base leading-relaxed text-muted-foreground sm:text-lg">
             Grandes operações do food service rodam todo dia na plataforma. Dê o play e ouça quem vive
