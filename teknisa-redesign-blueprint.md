@@ -204,8 +204,14 @@ empilha. **Scroll-snap gentil** via Lenis (`lenis/snap`, proximity, só desktop)
 foge do clichê escuro e mantém a vizinhança coerente com a §5 clara. *Conversão:* inovadora vs. TOTVS; CTA
 "Falar com especialista".
 
-### 7 · Deep-dive carro-chefe (TecFood / coletiva) — momento-assinatura #3 ⭐
-Tour de um fluxo real (cardápio → ficha técnica/CMV → produção → estoque → fiscal) com tabs por sub-segmento (corporativo/hospitalar/escolar/catering aéreo). *Craft:* **sticky scroll** (texto fixo à esquerda, telas trocam à direita). *Conversão:* convence nutricionista/decisor técnico; CTA "Falar sobre alimentação coletiva".
+### 7 · Ponte TecFood — mockup com Container Scroll Animation
+**Transição** (não deep-dive): um **frame de tela** que faz **rotateX (deita→levanta) + scale (cresce)**
+conforme o scroll (base **Container Scroll Animation** do Aceternity, adaptado a React + Vite + Framer
+Motion, **recolorido aos tokens**, sem moldura de Mac), exibindo a **tela do TecFood** (`screens/monitor.webp`,
+placeholder até a captura final). Headline curta de **benefício** (sem "gestão", sem travessão). *Mobile/
+reduced-motion:* frame **estático em pé** (sem rotateX/scale). *Conversão:* dá um "produto tangível" e
+emenda os blocos vizinhos. **O deep-dive aprofundado** (fluxo cardápio → ficha técnica/CMV → produção →
+estoque → fiscal, tabs por sub-segmento) **migrou para a página de produto do TecFood**, não fica na home.
 
 ### 8 · Casos de sucesso
 3–4 cases (logo, foto, métrica, citação curta — ex.: Risotolândia e clientes de coletiva). *Craft:* cards com foto real + quote, hover que eleva; carrossel cinético. *Conversão:* identificação.

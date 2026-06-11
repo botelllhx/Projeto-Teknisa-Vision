@@ -128,7 +128,7 @@ links, ênfases e títulos). Seções **dark** apenas pontuais/estratégicas.
 | 4   | Faixa de impacto / ROI (ponte; base branca + faixa azul) | ✅ **pronto** (realocada, era §7)  |
 | 5   | Ecossistema de produtos (**Showcase multi-device** + switch + hotspots, claro) | ✅ **pronto**  |
 | 6   | Spotlight de IA (**claro**: micro-narrativa "Apresentando → TeknisAI" + bento dot-art) | ✅ **pronto** ★  |
-| 7   | Deep-dive TecFood (sticky scroll)       | ⬜ placeholder ★                                    |
+| 7   | Ponte TecFood (mockup com **Container Scroll Animation**, tela do produto) | ✅ **pronto**     |
 | 8   | Casos de sucesso                        | ⬜ placeholder                                      |
 | 9   | Integrações (orbital)                   | ⬜ placeholder ★                                    |
 | 10  | Food Service Show (mapa da turnê, dark) | ⬜ placeholder ★                                    |
