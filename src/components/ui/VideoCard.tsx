@@ -4,24 +4,26 @@ import { cn } from "@/lib/utils";
 import type { Case } from "@/data/cases";
 
 /**
- * Card de case (§8, modelo Slack): vídeo de **preview em autoplay mudo/loop** + **quote +
- * cliente + métrica em TEXTO** (a maioria não dá play). **Play com som** no clique do botão
- * (pausa os outros via `anySound`/`hasSound`). Vídeo é decorativo (`aria-hidden`) enquanto mudo.
+ * Card de testemunho em vídeo (§8, mural estilo Slack/Function): vídeo de **preview em
+ * autoplay mudo/loop** preenchendo o card, com **quote + cliente sobrepostos** (texto branco
+ * sobre gradiente escuro, sobre a mídia). **Play com som** no clique (um por vez via
+ * `anySound`/`hasSound`, pausa os outros). Vídeo decorativo (`aria-hidden`) enquanto mudo.
  *
- * Lazy real: só toca quando o card entra na viewport (IntersectionObserver); pausa ao sair e
- * em aba oculta. `prefers-reduced-motion`/mobile → **poster estático** (sem autoplay), play manual.
- * Sem mídia (placeholder): mostra gradiente de marca + poster (se existir) — nunca mídia quebrada.
+ * Lazy real (IntersectionObserver: toca só em viewport, pausa ao sair e em aba oculta);
+ * `prefers-reduced-motion`/mobile → poster estático, play manual. Sem mídia: gradiente de marca.
  */
 export function VideoCard({
   data,
   hasSound,
   anySound,
   onActivateSound,
+  className,
 }: {
   data: Case;
   hasSound: boolean;
   anySound: boolean;
   onActivateSound: () => void;
+  className?: string;
 }) {
   const cardRef = useRef<HTMLElement>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
@@ -29,7 +31,6 @@ export function VideoCard({
   const [posterOk, setPosterOk] = useState(true);
   const [allowAutoplay, setAllowAutoplay] = useState(false);
 
-  // autoplay só fora de reduced-motion e fora de mobile
   useEffect(() => {
     const reduce = window.matchMedia("(prefers-reduced-motion: reduce)");
     const mobile = window.matchMedia("(max-width: 768px)");
@@ -43,39 +44,31 @@ export function VideoCard({
     };
   }, []);
 
-  // lazy: detectar viewport
   useEffect(() => {
     const el = cardRef.current;
     if (!el) return;
-    const io = new IntersectionObserver((e) => setInView(e[0].isIntersecting), { threshold: 0.35 });
+    const io = new IntersectionObserver((e) => setInView(e[0].isIntersecting), { threshold: 0.3 });
     io.observe(el);
     return () => io.disconnect();
   }, []);
 
-  // autoplay mudo: em view, permitido e ninguém com som
   useEffect(() => {
     const v = videoRef.current;
-    if (!v) return;
-    const playMuted = inView && allowAutoplay && !anySound;
-    if (hasSound) return; // controlado pelo efeito de som
+    if (!v || hasSound) return;
     v.muted = true;
     v.controls = false;
-    if (playMuted) v.play().catch(() => {});
+    if (inView && allowAutoplay && !anySound) v.play().catch(() => {});
     else v.pause();
   }, [inView, allowAutoplay, anySound, hasSound]);
 
-  // som: este card tocando com áudio + controles; pausa os outros (anySound)
   useEffect(() => {
     const v = videoRef.current;
-    if (!v) return;
-    if (hasSound) {
-      v.muted = false;
-      v.controls = true;
-      v.play().catch(() => {});
-    }
+    if (!v || !hasSound) return;
+    v.muted = false;
+    v.controls = true;
+    v.play().catch(() => {});
   }, [hasSound]);
 
-  // pausa em aba oculta
   useEffect(() => {
     const onVis = () => {
       const v = videoRef.current;
@@ -90,70 +83,56 @@ export function VideoCard({
   return (
     <article
       ref={cardRef}
-      className="group overflow-hidden rounded-3xl border border-border bg-card shadow-sm transition-shadow duration-200 hover:shadow-xl"
+      className={cn(
+        "group relative aspect-[4/5] overflow-hidden rounded-2xl bg-gradient-to-br from-teknisa-700 to-teknisa-900 ring-1 ring-black/5 lg:aspect-auto lg:h-full",
+        className,
+      )}
     >
-      {/* mídia (aspect fixo = sem CLS) */}
-      <div className="relative aspect-video overflow-hidden bg-gradient-to-br from-teknisa-700 to-teknisa-900">
-        {posterOk && (
-          <img
-            src={data.poster}
-            alt=""
-            aria-hidden
-            loading="lazy"
-            onError={() => setPosterOk(false)}
-            className="absolute inset-0 h-full w-full object-cover"
-          />
-        )}
-        <video
-          ref={videoRef}
-          muted
-          playsInline
-          loop
-          preload="none"
-          aria-hidden={!hasSound}
+      {posterOk && (
+        <img
+          src={data.poster}
+          alt=""
+          aria-hidden
+          loading="lazy"
+          onError={() => setPosterOk(false)}
           className="absolute inset-0 h-full w-full object-cover"
-        >
-          <source src={data.videoWebm} type="video/webm" />
-          <source src={data.videoMp4} type="video/mp4" />
-        </video>
+        />
+      )}
+      <video
+        ref={videoRef}
+        muted
+        playsInline
+        loop
+        preload="none"
+        aria-hidden={!hasSound}
+        className="absolute inset-0 h-full w-full object-cover"
+      >
+        <source src={data.videoWebm} type="video/webm" />
+        <source src={data.videoMp4} type="video/mp4" />
+      </video>
 
-        {/* segmento (tag) */}
-        <span className="absolute left-4 top-4 z-10 rounded-full bg-white/90 px-3 py-1 text-xs font-semibold text-primary backdrop-blur">
-          {data.segment}
-        </span>
+      {/* gradiente p/ legibilidade do texto */}
+      <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/85 via-black/25 to-transparent" />
 
-        {/* play com som */}
-        <button
-          type="button"
-          onClick={onActivateSound}
-          aria-label={`Ouvir o depoimento de ${data.client}, ${data.company}`}
-          className={cn(
-            "absolute inset-0 z-10 grid place-items-center transition-opacity focus-visible:outline-none",
-            hasSound ? "opacity-0" : "opacity-0 focus-visible:opacity-100 group-hover:opacity-100",
-          )}
-        >
-          <span className="grid h-14 w-14 place-items-center rounded-full bg-white/95 text-primary shadow-lg ring-1 ring-black/5">
-            {hasSound ? <Volume2 className="h-6 w-6" /> : <Play className="h-6 w-6 translate-x-0.5 fill-current" />}
-          </span>
-        </button>
-      </div>
+      {/* play com som */}
+      <button
+        type="button"
+        onClick={onActivateSound}
+        aria-label={`Ouvir o depoimento de ${data.brand}`}
+        className="absolute right-4 top-4 z-10 grid h-11 w-11 place-items-center rounded-full bg-white/95 text-primary shadow-lg ring-1 ring-black/5 transition-transform hover:scale-105 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
+      >
+        {hasSound ? <Volume2 className="h-5 w-5" /> : <Play className="h-5 w-5 translate-x-0.5 fill-current" />}
+      </button>
 
-      {/* corpo (texto na paleta: preto/azul sobre branco) */}
-      <div className="p-6 lg:p-7">
-        <p className="font-display text-lg font-semibold leading-snug text-foreground">
+      {/* quote + cliente sobrepostos */}
+      <div className="absolute inset-x-0 bottom-0 z-10 p-5 text-white lg:p-6">
+        <p className="font-display text-base font-semibold leading-snug lg:text-lg">
           &ldquo;{data.quote}&rdquo;
         </p>
-        <div className="mt-5 flex items-end justify-between gap-4">
-          <div className="min-w-0">
-            <p className="truncate font-semibold text-foreground">{data.client}</p>
-            <p className="truncate text-sm text-muted-foreground">
-              {data.role}, {data.company}
-            </p>
-          </div>
-          {data.metric && (
-            <p className="shrink-0 text-right text-sm font-bold text-primary">{data.metric}</p>
-          )}
-        </div>
+        <p className="mt-3 font-semibold">{data.brand}</p>
+        <p className="text-sm text-white/65">
+          {data.person}, {data.role}
+        </p>
       </div>
     </article>
   );

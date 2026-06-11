@@ -1,4 +1,4 @@
-Cases (§8): por slug de case.
-Colocar aqui video.webm + video.mp4 (loop curto 8-15s, mudo, recortado, resolucao compativel com o card) + poster.webp (1o quadro).
-Fallback: sem video/poster, o card mostra placeholder CSS (sem midia quebrada).
-TODO: vídeos, posters, quotes, clientes e métricas reais (validar com marketing).
+Cases (§8) — mural de video + logos, por slug de cliente (madero, pobre-juan, familia-madalosso, cosechas).
+Colocar: video.webm + video.mp4 (loop curto, mudo, recortado) + poster.webp + logo.svg.
+Fallback: sem midia, o card mostra placeholder (gradiente / wordmark do nome) — nada quebrado.
+TODO: videos, posters, LOGOS reais, quotes e pessoas/cargos reais (validar com marketing).
