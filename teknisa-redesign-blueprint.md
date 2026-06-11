@@ -213,8 +213,14 @@ reduced-motion:* frame **estático em pé** (sem rotateX/scale). *Conversão:* d
 emenda os blocos vizinhos. **O deep-dive aprofundado** (fluxo cardápio → ficha técnica/CMV → produção →
 estoque → fiscal, tabs por sub-segmento) **migrou para a página de produto do TecFood**, não fica na home.
 
-### 8 · Casos de sucesso
-3–4 cases (logo, foto, métrica, citação curta — ex.: Risotolândia e clientes de coletiva). *Craft:* cards com foto real + quote, hover que eleva; carrossel cinético. *Conversão:* identificação.
+### 8 · Casos de sucesso (grid de cards de vídeo, modelo Slack)
+**4 cases em cards de vídeo** com **autoplay mudo em loop** (preview vivo) e **quote + cliente +
+métrica** sempre **em texto** (a maioria não dá play). **Play com som no hover/clique** (pausa os
+outros). Grid **2×2** (1 col no mobile); **tag de segmento** por card (filtro só se fizer sentido,
+reusando o switch da §3, e não com poucos itens). *Craft:* WebM (VP9/AV1) + MP4 fallback, **poster**,
+**lazy-load por viewport** (IntersectionObserver), pausa fora da viewport e em aba oculta; CLS
+controlado. **CTA** após o grid. *Conversão:* identificação + prova viva. Conteúdo placeholder (`// TODO`)
+até o marketing fornecer vídeos/clientes/números reais.
 
 ### 9 · Integrações & ecossistema — momento-assinatura #4
 Grade/órbita de logos (iFood, adquirentes REDE, fiscal, BI, Gertec/equipamentos, totens de autoatendimento) + API/cloud/on-premise. *Craft:* **diagrama orbital** da plataforma com motion sutil. *Conversão:* remove objeção técnica (resposta ao trunfo "integrações" da Saipos).

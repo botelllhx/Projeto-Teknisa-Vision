@@ -131,7 +131,7 @@ links, ênfases e títulos). Seções **dark** apenas pontuais/estratégicas.
 | 5   | Ecossistema de produtos (**Showcase multi-device** + switch + hotspots, claro) | ✅ **pronto**  |
 | 6   | Spotlight de IA (**claro**: micro-narrativa "Apresentando → TeknisAI" + bento dot-art) | ✅ **pronto** ★  |
 | 7   | Ponte TecFood (mockup com **Container Scroll Animation**, tela do produto) | ✅ **pronto**     |
-| 8   | Casos de sucesso                        | ⬜ placeholder                                      |
+| 8   | Casos de sucesso (grid de cards de **vídeo**, autoplay mudo, modelo Slack) | ✅ **pronto**    |
 | 9   | Integrações (orbital)                   | ⬜ placeholder ★                                    |
 | 10  | Food Service Show (mapa da turnê, dark) | ⬜ placeholder ★                                    |
 | 11  | Onde nos encontrar / feiras             | ⬜ placeholder                                      |

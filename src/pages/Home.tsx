@@ -7,6 +7,7 @@ import { ImpactBridge } from "@/components/sections/ImpactBridge";
 import { ProductShowcase } from "@/components/sections/ProductShowcase";
 import { AISection } from "@/components/sections/AISection";
 import { TecFoodScrollBridge } from "@/components/sections/TecFoodScrollBridge";
+import { CasesSection } from "@/components/sections/CasesSection";
 import { SectionPlaceholder } from "@/components/sections/SectionPlaceholder";
 
 /**
@@ -16,7 +17,6 @@ import { SectionPlaceholder } from "@/components/sections/SectionPlaceholder";
  * ponte para o Ecossistema (§5). Numeração ajustada no blueprint e abaixo.
  */
 const placeholderSections = [
-  { index: 8, title: "Casos de sucesso", anchor: "cases", note: "3 a 4 cases com foto, métrica e citação." },
   { index: 9, title: "Integrações & ecossistema", anchor: "integracoes", note: "Diagrama orbital da plataforma.", signature: true },
   { index: 10, title: "Food Service Show", anchor: "eventos", note: "Mapa da turnê pelo Brasil + timeline de edições.", dark: true, signature: true },
   { index: 11, title: "Onde nos encontrar (feiras)", anchor: "feiras", note: "Timeline Fispal · NRF · Anuga 2026/2027." },
@@ -52,7 +52,10 @@ export function Home() {
         {/* 7 · Ponte TecFood — mockup com Container Scroll Animation ✅ */}
         <TecFoodScrollBridge />
 
-        {/* 8–15 · placeholders na ordem do blueprint */}
+        {/* 8 · Cases — grid de cards de vídeo (autoplay mudo, modelo Slack) ✅ */}
+        <CasesSection />
+
+        {/* 9–15 · placeholders na ordem do blueprint */}
         {placeholderSections.map((s) => (
           <SectionPlaceholder
             key={s.index}
