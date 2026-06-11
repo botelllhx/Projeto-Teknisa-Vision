@@ -14,7 +14,7 @@ import { EASE_EXPO } from "@/lib/motion";
  * `prefers-reduced-motion`: sem marquee (scroll manual) e sem blur. Conteúdo placeholder (`// TODO`).
  */
 // margem à direita por card (espaçamento uniforme p/ o loop -50% fechar sem emenda)
-const CARD_SIZE = "mr-5 h-[28rem] w-[20rem] sm:mr-6 sm:h-[30rem] sm:w-[22rem] lg:h-[34rem] lg:w-[26rem]";
+const CARD_SIZE = "mr-5 h-[30rem] w-[22rem] sm:mr-6 sm:h-[34rem] sm:w-[25rem] lg:h-[40rem] lg:w-[30rem]";
 
 export function CasesSection() {
   const [soundId, setSoundId] = useState<string | null>(null);
