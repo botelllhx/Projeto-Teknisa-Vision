@@ -3,10 +3,6 @@ import { Play, Volume2 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import type { Testimonial } from "@/data/cases";
 
-/** Começa o preview um pouco à frente (pula a abertura) e loopa a partir daqui. */
-const START_AT = 15;
-const startPoint = (v: HTMLVideoElement) => (v.duration > START_AT + 2 ? START_AT : 0);
-
 /**
  * Card de testemunho em vídeo (§8 carrossel): vídeo de preview em **autoplay mudo/loop**
  * preenchendo o card, com **tag + quote + pessoa sobrepostos** (branco sobre gradiente).
@@ -106,17 +102,9 @@ export function VideoCard({
         ref={videoRef}
         muted
         playsInline
+        loop
         preload="none"
         aria-hidden={!hasSound}
-        onLoadedMetadata={(e) => {
-          const v = e.currentTarget;
-          if (v.currentTime < 1) v.currentTime = startPoint(v);
-        }}
-        onEnded={(e) => {
-          const v = e.currentTarget;
-          v.currentTime = startPoint(v);
-          v.play().catch(() => {});
-        }}
         className="absolute inset-0 h-full w-full object-cover"
       >
         {data.videoWebm && <source src={data.videoWebm} type="video/webm" />}

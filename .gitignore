@@ -20,7 +20,5 @@ dist-ssr
 .env.*
 !.env.example
 
-# Cases — videos pesados (nao versionar; usar versoes web-otimizadas/CDN no deploy)
-public/assets/teknisa/cases/**/*.mp4
-public/assets/teknisa/cases/**/*.webm
-public/assets/teknisa/cases/**/*.mov
+# Cases — originais pesados dos videos (so as versoes web-otimizadas em public/ vao pro git)
+raw-assets/cases/
