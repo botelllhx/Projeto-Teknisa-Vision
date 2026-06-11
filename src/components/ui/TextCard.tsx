@@ -25,13 +25,9 @@ export function TextCard({ data, className }: { data: Testimonial; className?: s
     <article className={cn("relative flex shrink-0 flex-col overflow-hidden rounded-3xl p-7 lg:p-8", t.bg, className)}>
       <div className={cn("card-dots pointer-events-none absolute inset-x-0 top-0 h-[56%]", t.dots)} aria-hidden />
 
-      <div className="relative flex items-start justify-between gap-3">
-        <span className={cn("rounded-full px-3 py-1 text-xs font-semibold", t.tag)}>{data.tag}</span>
-      </div>
-
       {/* logo do cliente numa zona LIMPA: o retângulo com a cor do card "apaga" os pontinhos
           atrás da logo (detalhe da referência). Placeholder = wordmark do nome. */}
-      <div className="relative mt-8 flex flex-1 items-center justify-center">
+      <div className="relative flex flex-1 items-center justify-center">
         <div className={cn("inline-flex min-w-[58%] items-center justify-center rounded-2xl px-10 py-10", t.bg)}>
           {logoOk && data.logo ? (
             <img
@@ -50,10 +46,10 @@ export function TextCard({ data, className }: { data: Testimonial; className?: s
       </div>
 
       <div className="relative mt-auto">
-        <p className={cn("font-display text-xl font-semibold leading-snug lg:text-2xl", t.text)}>
+        <p className={cn("font-display text-2xl font-semibold leading-snug lg:text-[1.75rem]", t.text)}>
           &ldquo;{data.quote}&rdquo;
         </p>
-        <p className={cn("mt-4 font-semibold", t.text)}>{data.person}</p>
+        <p className={cn("mt-5 text-lg font-semibold", t.text)}>{data.person}</p>
         <p className={cn("text-sm", t.sub)}>{data.role}</p>
       </div>
     </article>

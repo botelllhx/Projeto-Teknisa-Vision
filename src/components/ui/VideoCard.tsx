@@ -113,10 +113,6 @@ export function VideoCard({
 
       <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/90 via-black/25 to-transparent" />
 
-      <span className="absolute left-5 top-5 z-10 rounded-full bg-white/90 px-3 py-1 text-xs font-semibold text-primary backdrop-blur">
-        {data.tag}
-      </span>
-
       <button
         type="button"
         onClick={onActivateSound}
@@ -126,11 +122,11 @@ export function VideoCard({
         {hasSound ? <Volume2 className="h-5 w-5" /> : <Play className="h-5 w-5 translate-x-0.5 fill-current" />}
       </button>
 
-      <div className="absolute inset-x-0 bottom-0 z-10 p-6 text-white lg:p-7">
-        <p className="font-display text-xl font-semibold leading-snug lg:text-2xl">
+      <div className="absolute inset-x-0 bottom-0 z-10 p-6 text-white lg:p-8">
+        <p className="font-display text-2xl font-semibold leading-snug lg:text-[1.75rem]">
           &ldquo;{data.quote}&rdquo;
         </p>
-        <p className="mt-4 font-semibold">{data.person}</p>
+        <p className="mt-5 text-lg font-semibold">{data.person}</p>
         <p className="text-sm text-white/65">
           {data.role}, {data.brand}
         </p>
