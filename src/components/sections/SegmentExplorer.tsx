@@ -215,7 +215,7 @@ export function SegmentExplorer() {
         {/* Cabeçalho */}
         <div className="max-w-2xl">
           <span className="text-sm font-semibold text-primary">Para o seu segmento</span>
-          <h2 className="mt-3 font-display text-3xl font-bold tracking-tight text-foreground sm:text-4xl lg:text-5xl">
+          <h2 className="mt-3 font-display text-4xl font-bold leading-[1.05] tracking-tight text-foreground sm:text-5xl lg:text-[4rem]">
             Cada <span className="text-primary">operação</span> tem sua própria realidade
           </h2>
           <p className="mt-4 text-base leading-relaxed text-muted-foreground sm:text-lg">

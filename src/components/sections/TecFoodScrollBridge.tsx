@@ -25,10 +25,7 @@ export function TecFoodScrollBridge() {
                 TecFood
               </p>
               <p className="mx-auto mt-6 max-w-2xl text-base leading-relaxed text-muted-foreground sm:text-lg">
-                Cardápio, ficha técnica, pré-custeio e produção numa plataforma só, pensada pra quem
-                vive a rotina de uma Unidade de Alimentação e Nutrição. Do restaurante corporativo ao
-                hospitalar, escolar e catering aéreo, cada etapa conversa com a próxima e nada se
-                perde no caminho. É o software onde a alimentação coletiva do país já roda todo dia, do
+                É o software onde a refeição corporativa do país já roda todo dia, do
                 planejamento do prato ao prato servido.
               </p>
             </>

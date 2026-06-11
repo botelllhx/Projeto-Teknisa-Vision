@@ -67,6 +67,8 @@ links, ênfases e títulos). Seções **dark** apenas pontuais/estratégicas.
   usa `font-display`, então a fonte de título é trocada num só lugar (tailwind `fontFamily.display`).
   **Exceção única:** `font-wordmark` = **Averia Serif Libre** (`@fontsource/averia-serif-libre`), serif
   usada **só** no wordmark **"TeknisAI"** (§6) como assinatura da IA. Não usar serif em mais nada.
+  **Tamanho do título de seção (h2):** `text-4xl sm:text-5xl lg:text-[4rem]` (**64px** no desktop) +
+  `leading-[1.05]`. Wordmarks (TeknisAI/TecFood) e o hero têm escala própria, maior.
 - Radius `2xl`/`3xl`, sombras suaves ancoradas no azul (`shadow-sm…xl`, `shadow-glow`).
 - Easing assinatura: `ease-expo-out` (Tailwind) / `EASE`, `EASE_EXPO`, `EASE_SMOOTH` em
   `src/lib/motion.ts`.

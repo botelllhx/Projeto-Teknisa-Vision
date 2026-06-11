@@ -42,7 +42,7 @@ export function SectionPlaceholder({
         >
           {String(index).padStart(2, "0")} {signature ? "· ★ momento-assinatura" : ""}
         </span>
-        <h2 className="font-display text-2xl font-bold tracking-tight sm:text-3xl lg:text-4xl">
+        <h2 className="font-display text-3xl font-bold leading-[1.05] tracking-tight sm:text-5xl lg:text-[4rem]">
           {title}
         </h2>
         {note ? (
