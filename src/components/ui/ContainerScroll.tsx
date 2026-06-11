@@ -42,7 +42,7 @@ export function ContainerScroll({
       {header && (
         <motion.div
           style={staticMode ? undefined : { y: headerY }}
-          className="mx-auto max-w-2xl text-center"
+          className="mx-auto max-w-3xl text-center"
         >
           {header}
         </motion.div>
@@ -51,7 +51,7 @@ export function ContainerScroll({
       <div ref={wrapRef} className="mt-10 [perspective:1300px] lg:mt-14">
         <motion.div
           style={staticMode ? undefined : { rotateX: rotate, scale }}
-          className="mx-auto w-full max-w-5xl will-change-transform"
+          className="mx-auto w-full max-w-[80rem] will-change-transform"
         >
           {/* moldura clara da tela (bezel) */}
           <div className="rounded-[1.75rem] border border-border bg-white p-2 shadow-2xl shadow-primary/10 lg:p-2.5">

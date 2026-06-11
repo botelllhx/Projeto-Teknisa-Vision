@@ -14,11 +14,23 @@ export function TecFoodScrollBridge() {
         <ContainerScroll
           header={
             <>
-              <span className="text-sm font-semibold text-primary">TecFood</span>
-              {/* TODO: copy final (benefício, sem "gestão", sem travessão) */}
-              <h2 className="mt-3 font-display text-3xl font-bold tracking-tight text-foreground sm:text-4xl lg:text-5xl">
-                O <span className="text-primary">TecFood</span> inteiro, numa tela só.
+              <span className="text-sm font-semibold text-primary">
+                Referência em refeições coletivas
+              </span>
+              <h2 className="mt-4 font-display text-2xl font-bold leading-tight tracking-tight text-foreground sm:text-3xl">
+                O sistema que os nutricionistas pedem pelo nome.
               </h2>
+              {/* efeito criativo: brilho varrendo o wordmark (.shine-text) */}
+              <p className="shine-text mt-3 font-display text-6xl font-bold tracking-tight sm:text-7xl">
+                TecFood
+              </p>
+              <p className="mx-auto mt-6 max-w-2xl text-base leading-relaxed text-muted-foreground sm:text-lg">
+                Cardápio, ficha técnica, pré-custeio e produção numa plataforma só, pensada pra quem
+                vive a rotina de uma Unidade de Alimentação e Nutrição. Do restaurante corporativo ao
+                hospitalar, escolar e catering aéreo, cada etapa conversa com a próxima e nada se
+                perde no caminho. É o software onde a alimentação coletiva do país já roda todo dia, do
+                planejamento do prato ao prato servido.
+              </p>
             </>
           }
         >

@@ -122,6 +122,30 @@
   }
 }
 
+/* Brilho que varre o wordmark "TecFood" (§7). Azul Teknisa, sem cor nova.
+   prefers-reduced-motion: cor sólida (sem animação). */
+.shine-text {
+  background-image: linear-gradient(100deg, #040486 35%, #7c7ff9 50%, #040486 65%);
+  background-size: 220% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+  animation: tf-shine 3.6s linear infinite;
+}
+@keyframes tf-shine {
+  to {
+    background-position: -220% center;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .shine-text {
+    animation: none;
+    -webkit-text-fill-color: hsl(var(--primary));
+    color: hsl(var(--primary));
+  }
+}
+
 /* ─── Acessibilidade: respeitar prefers-reduced-motion globalmente ───
    Rede de segurança em CSS; o MotionConfig (App) já instrui o Framer Motion. */
 @media (prefers-reduced-motion: reduce) {
