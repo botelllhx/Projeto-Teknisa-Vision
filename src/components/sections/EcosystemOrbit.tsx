@@ -1,7 +1,9 @@
 import { useEffect, useState } from "react";
 import { OrbitingCircles } from "@/components/ui/OrbitingCircles";
 import { byRing, type Integration } from "@/data/integrations";
-import teknisaLogo from "@/assets/teknisa-logo.png";
+
+// símbolo da marca (SVG quadrado) no centro do ecossistema
+const TEKNISA_MARK = "/assets/teknisa/integrations/Teknisa.svg";
 
 /**
  * §9 · Integrações & ecossistema (momento-assinatura). **Ecossistema Teknisa no centro** (logo +
@@ -83,7 +85,7 @@ export function EcosystemOrbit() {
           <div className="absolute left-1/2 top-1/2 z-10 -translate-x-1/2 -translate-y-1/2">
             <div className="absolute left-1/2 top-1/2 -z-10 h-40 w-40 -translate-x-1/2 -translate-y-1/2 rounded-full bg-primary/20 blur-3xl" aria-hidden />
             <div className="grid h-28 w-28 place-items-center rounded-full bg-white shadow-xl ring-1 ring-border sm:h-32 sm:w-32">
-              <img src={teknisaLogo} alt="Ecossistema Teknisa" className="h-5 w-auto object-contain sm:h-6" />
+              <img src={TEKNISA_MARK} alt="Ecossistema Teknisa" className="h-16 w-16 object-contain sm:h-20 sm:w-20" />
             </div>
           </div>
 
