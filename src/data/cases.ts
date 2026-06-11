@@ -27,20 +27,23 @@ export type Testimonial = {
 
 const A = (id: string, file: string) => `/assets/teknisa/cases/${id}/${file}`;
 
-const vid = (id: string, brand: string, tag: string, quote: string): Testimonial => ({
-  id,
-  kind: "video",
-  brand,
-  person: "Nome da pessoa", // TODO
-  role: "Cargo", // TODO
-  tag,
-  quote, // TODO
-  videoWebm: A(id, "video.webm"),
-  videoMp4: A(id, "video.mp4"),
-  poster: A(id, "poster.webp"),
-  logo: A(id, "logo.svg"),
-  alt: `Depoimento em vídeo de cliente ${brand}`,
-});
+const vid = (id: string, brand: string, tag: string, quote: string): Testimonial => {
+  const folder = id.split("--")[0]; // pasta = marca-base (ids "--v" reusam a mesma mídia)
+  return {
+    id,
+    kind: "video",
+    brand,
+    person: "Nome da pessoa", // TODO
+    role: "Cargo", // TODO
+    tag,
+    quote, // TODO
+    videoWebm: A(folder, "video.webm"),
+    videoMp4: A(folder, "video.mp4"),
+    poster: A(folder, "poster.webp"),
+    logo: A(folder, "logo.svg"),
+    alt: `Depoimento em vídeo de cliente ${brand}`,
+  };
+};
 
 const txt = (
   id: string,
