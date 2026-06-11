@@ -8,6 +8,7 @@ import { ProductShowcase } from "@/components/sections/ProductShowcase";
 import { AISection } from "@/components/sections/AISection";
 import { TecFoodScrollBridge } from "@/components/sections/TecFoodScrollBridge";
 import { CasesSection } from "@/components/sections/CasesSection";
+import { EcosystemOrbit } from "@/components/sections/EcosystemOrbit";
 import { SectionPlaceholder } from "@/components/sections/SectionPlaceholder";
 
 /**
@@ -17,7 +18,6 @@ import { SectionPlaceholder } from "@/components/sections/SectionPlaceholder";
  * ponte para o Ecossistema (§5). Numeração ajustada no blueprint e abaixo.
  */
 const placeholderSections = [
-  { index: 9, title: "Integrações & ecossistema", anchor: "integracoes", note: "Diagrama orbital da plataforma.", signature: true },
   { index: 10, title: "Food Service Show", anchor: "eventos", note: "Mapa da turnê pelo Brasil + timeline de edições.", dark: true, signature: true },
   { index: 11, title: "Onde nos encontrar (feiras)", anchor: "feiras", note: "Timeline Fispal · NRF · Anuga 2026/2027." },
   { index: 12, title: "Por que Teknisa", anchor: "por-que", note: "Pilares escaneáveis com micro-animação." },
@@ -52,10 +52,13 @@ export function Home() {
         {/* 7 · Ponte TecFood — mockup com Container Scroll Animation ✅ */}
         <TecFoodScrollBridge />
 
-        {/* 8 · Cases — grid de cards de vídeo (autoplay mudo, modelo Slack) ✅ */}
+        {/* 8 · Cases — carrossel infinito de testemunhos ✅ */}
         <CasesSection />
 
-        {/* 9–15 · placeholders na ordem do blueprint */}
+        {/* 9 · Integrações & ecossistema — logos em órbita (Orbiting Circles) ✅ */}
+        <EcosystemOrbit />
+
+        {/* 10–15 · placeholders na ordem do blueprint */}
         {placeholderSections.map((s) => (
           <SectionPlaceholder
             key={s.index}

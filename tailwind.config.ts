@@ -112,11 +112,24 @@ export default {
           from: { transform: "translateX(0)" },
           to: { transform: "translateX(-50%)" },
         },
+        /** Órbita (§9, base Magic UI): gira no anel mantendo o ícone "em pé". As CSS
+            vars --angle e --radius vêm inline em cada item. */
+        orbit: {
+          "0%": {
+            transform:
+              "rotate(calc(var(--angle) * 1deg)) translateY(calc(var(--radius) * 1px)) rotate(calc(var(--angle) * -1deg))",
+          },
+          "100%": {
+            transform:
+              "rotate(calc(var(--angle) * 1deg + 360deg)) translateY(calc(var(--radius) * 1px)) rotate(calc(var(--angle) * -1deg - 360deg))",
+          },
+        },
       },
       animation: {
         "fade-in-up": "fade-in-up 0.6s ease-out forwards",
         float: "float 6s ease-in-out infinite",
         marquee: "marquee 38s linear infinite",
+        orbit: "orbit calc(var(--duration) * 1s) linear infinite",
       },
       /** `ease-expo-out` — easing assinatura usada em transições do mega-menu. */
       transitionTimingFunction: {

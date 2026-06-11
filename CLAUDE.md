@@ -132,7 +132,7 @@ links, ênfases e títulos). Seções **dark** apenas pontuais/estratégicas.
 | 6   | Spotlight de IA (**claro**: micro-narrativa "Apresentando → TeknisAI" + bento dot-art) | ✅ **pronto** ★  |
 | 7   | Ponte TecFood (mockup com **Container Scroll Animation**, tela do produto) | ✅ **pronto**     |
 | 8   | Casos de sucesso (**carrossel infinito** de cards de vídeo + textuais, blur-reveal) | ✅ **pronto** |
-| 9   | Integrações (orbital)                   | ⬜ placeholder ★                                    |
+| 9   | Integrações & ecossistema (**logos em órbita**, Orbiting Circles) | ✅ **pronto** ★          |
 | 10  | Food Service Show (mapa da turnê, dark) | ⬜ placeholder ★                                    |
 | 11  | Onde nos encontrar / feiras             | ⬜ placeholder                                      |
 | 12  | Por que Teknisa                         | ⬜ placeholder                                      |

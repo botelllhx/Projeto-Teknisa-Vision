@@ -225,7 +225,17 @@ carrossel. *Conversão:* identificação + prova viva. Conteúdo placeholder (`/
 fornecer vídeos/logos/quotes/pessoas reais. **Não inventar** número/claim de cliente.
 
 ### 9 · Integrações & ecossistema — momento-assinatura #4
-Grade/órbita de logos (iFood, adquirentes REDE, fiscal, BI, Gertec/equipamentos, totens de autoatendimento) + API/cloud/on-premise. *Craft:* **diagrama orbital** da plataforma com motion sutil. *Conversão:* remove objeção técnica (resposta ao trunfo "integrações" da Saipos).
+**Ecossistema Teknisa no centro** (logo + halo azul) e os **logos das integrações orbitando** em
+**anéis concêntricos** (2 a 3 órbitas, raios/velocidades/`reverse` diferentes = profundidade). Base:
+**Magic UI — Orbiting Circles** (install manual no Vite: keyframes `orbit` no Tailwind, recolorido aos
+tokens). Categorias do domínio como placeholder: fiscal/NFC-e, pagamento/TEF, bancos, catraca/acesso,
+marketplace/delivery, ERPs, BI, balança, ponto, contabilidade. Headline de **benefício** (sem "gestão",
+sem travessão); eyebrow "Integrações & ecossistema" + subhead. *Interação:* hover/foco num logo pausa a
+órbita e mostra tooltip (acessível por teclado). *Craft:* órbita via transform/CSS (60fps); amarra com o
+"maior ecossistema" do Hero. *A11y/perf:* `prefers-reduced-motion` deixa os logos **estáticos** nos anéis;
+mobile com menos logos/raios menores. *Conversão:* remove objeção técnica ("integra com tudo que você já
+usa"). Logos/parceiros reais (`// TODO`) entram em `public/assets/teknisa/integrations/`, validados com o
+marketing (não inventar marca).
 
 ### 10 · Food Service Show (evento próprio) — momento-assinatura #2 ⭐ NOVO
 **O ativo de autoridade mais subaproveitado hoje.** O Food Service Show é o **evento itinerante exclusivo da Teknisa** (10+ edições por capitais — SP, RJ, Curitiba, Brasília…), que reúne líderes do setor, palestras, demos ao vivo de TecFood/Retail/HCM e celebrou os **35 anos** em 2025.
