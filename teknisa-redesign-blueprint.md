@@ -252,13 +252,20 @@ Anuga). *Estrutura (do rascunho do cliente):* topo branco (eyebrow "Nossos Event
   (troca instantânea, navegação por setas). Mobile empilha, sem scroll-jack.
 - **Conversão:** leads de altíssimo valor (gestores do setor) + prova de que a Teknisa lidera a pauta.
 
-### 11 · EAD Teknisa
-Destaque do **EAD Teknisa** (ensino a distância / capacitação da Teknisa). Substitui a antiga "Por que
-Teknisa", considerada menos relevante. *Conteúdo e design a definir numa sessão futura* (`// TODO`; não
-inventar números/cursos/claims). **Placeholder por ora.**
+### 11 · EAD Teknisa ✅
+A **academia dos sistemas Teknisa** (capacitação + certificação). *Estética editorial* (referência
+theswaddle.com **traduzida para branco+azul**): imagem grande do **curso em destaque** + lista **"mais
+buscados" numerada** (01, 02…), eyebrow de módulo (sentence case), tipografia forte. Card de curso com
+módulo, carga horária, público, Livre/Privado, Certificado (`courses.ts`, módulos reais do EAD ancoram).
+**Craft:** painel de **sticky stacking** (GSAP ScrollTrigger): gruda no topo e o Blog sobe e o cobre,
+enquanto encolhe/escurece de leve (`scrub`). Fundo **branco** (divisão com o Blog). Conteúdo `// TODO`.
 
-### 12 · Hub de conteúdo (Recursos)
-3 posts recentes + e-books. *Craft:* bento de 3 cards com tag. *Conversão:* topo de funil; captura por e-book.
+### 12 · Blog / Conteúdo ✅
+Editorial em branco+azul: **artigo em destaque** (imagem enorme) + **"últimas do blog"** (lista compacta),
+eyebrow de categoria. Card de artigo via `posts.ts` (categorias realistas; **títulos/datas reais a puxar
+de teknisa.com/blog**, não inventar). **Craft:** mesmo **sticky stacking** (último painel, cobre a EAD).
+Fundo **azul bem claro** (`teknisa-50`) marca a divisão. *A11y/perf:* `prefers-reduced-motion` e mobile
+**desligam o stacking** (fluxo normal, sem scroll-jack); imagens WebP/lazy; cards são links reais.
 
 ### 13 · CTA final de conversão
 Headline de fechamento + form curto ("Ligamos para você": nome, empresa, segmento, contato) ou agendamento de demo. *Craft:* full-bleed com **gradiente azul Teknisa**, validação animada (checkmark). *Conversão:* **captura principal.**

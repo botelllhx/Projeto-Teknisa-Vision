@@ -10,6 +10,8 @@ import { TecFoodScrollBridge } from "@/components/sections/TecFoodScrollBridge";
 import { CasesSection } from "@/components/sections/CasesSection";
 import { EcosystemOrbit } from "@/components/sections/EcosystemOrbit";
 import { EventsSection } from "@/components/sections/EventsSection";
+import { EADSection } from "@/components/sections/EADSection";
+import { BlogSection } from "@/components/sections/BlogSection";
 import { SectionPlaceholder } from "@/components/sections/SectionPlaceholder";
 
 /**
@@ -19,9 +21,7 @@ import { SectionPlaceholder } from "@/components/sections/SectionPlaceholder";
  * ponte para o Ecossistema (§5). Numeração ajustada no blueprint e abaixo.
  */
 const placeholderSections = [
-  { index: 11, title: "EAD Teknisa", anchor: "ead", note: "Ensino a distância / capacitação da Teknisa. // TODO: design e conteúdo a definir (não inventar números/cursos)." },
-  { index: 12, title: "Hub de conteúdo", anchor: "recursos", note: "Bento de 3 posts/e-books." },
-  { index: 13, title: "CTA final de conversão", anchor: "contato", note: "Full-bleed gradiente azul Teknisa + form.", signature: false },
+  { index: 13, title: "CTA final de conversão", anchor: "contato", note: "Full-bleed gradiente azul Teknisa + form." },
 ] as const;
 
 export function Home() {
@@ -59,7 +59,13 @@ export function Home() {
         {/* 10 · Onde nos encontrar — slider de eventos (halftone + parallax + darken) ✅ */}
         <EventsSection />
 
-        {/* 11–13 · placeholders na ordem do blueprint */}
+        {/* 11 · EAD Teknisa + 12 · Blog — grupo de sticky stacking (GSAP) ✅ */}
+        <div className="relative isolate">
+          <EADSection />
+          <BlogSection />
+        </div>
+
+        {/* 13 · placeholder na ordem do blueprint */}
         {placeholderSections.map((s) => (
           <SectionPlaceholder
             key={s.index}
