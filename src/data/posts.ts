@@ -31,4 +31,9 @@ export const POSTS: Post[] = [
   P("cmv-uan", "CMV sob controle: o que toda UAN precisa acompanhar", "Nutrição & UAN", "7 min"),
   P("frente-de-loja-filas", "Frente de loja: menos fila sem perder margem", "Varejo", "4 min"),
   P("cardapio-ao-caixa", "Do cardápio ao caixa: integrando a operação numa plataforma", "Food service", "6 min"),
+  P("delivery-apps", "Delivery sem caos: um painel para todos os apps", "Delivery", "5 min"),
+  P("equipe-esocial", "Escala, ponto e eSocial: o RH do food service em ordem", "Pessoas e RH", "6 min"),
+  P("comanda-digital", "Comanda digital: do salão à cozinha sem ruído", "Atendimento", "4 min"),
+  P("self-service-peso", "Self-service por peso: balança integrada ao caixa", "Operação", "5 min"),
+  P("cardapio-qr-code", "Cardápio digital e QR code: o pedido na mão do cliente", "Inovação", "4 min"),
 ];

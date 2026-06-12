@@ -82,10 +82,10 @@ export function BlogSection() {
                   />
                 ))}
                 <div
-                  className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/20 to-transparent"
+                  className="absolute inset-0 bg-gradient-to-b from-black/75 via-black/15 to-transparent"
                   aria-hidden
                 />
-                <div className="absolute inset-x-0 bottom-0 p-8">
+                <div className="absolute inset-x-0 top-0 p-8">
                   <span className="flex items-center gap-2 text-sm font-semibold text-white">
                     <span className="h-2.5 w-2.5 shrink-0 bg-white" aria-hidden />
                     {active.category}
