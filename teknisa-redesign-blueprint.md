@@ -237,35 +237,31 @@ mobile com menos logos/raios menores. *Conversão:* remove objeção técnica ("
 usa"). Logos/parceiros reais (`// TODO`) entram em `public/assets/teknisa/integrations/`, validados com o
 marketing (não inventar marca).
 
-### 10 · Food Service Show & Feiras (Onde nos encontrar) — momento-assinatura escuro ⭐
-**§10 e §11 fundidas** numa seção só (não esticar a home). **Momento-assinatura ESCURO** (a
-identidade do Food Service Show é escura: navy/azul-profundo + gradiente azul→ciano, "SHOW" em
-ciano, texto branco). **Exceção de paleta escopada só aqui** (tons da família azul + a arte do
-evento, não cor nova; o resto do site segue branco+azul). **Fundo 100% em código** (gradiente/halo
-azul→ciano + grão + curva de horizonte sutil), **sem imagem de fundo**; o único asset é a **logo do
-FSS** (entra por cima, protagonista). **Entrada showcase** (blur/reveal) + **scroll que escurece
-(section reveal) + trava leve** (scroll-snap suave), **reusando a mecânica da §6 IA** (`Reveal` +
-`[data-snap-start]`). **SEM mapa.** *Conteúdo:* **cards de evento** (data · cidade · local
-· status · CTA) com **toggle "Food Service Show / Feiras"** (switch da §3): a **turnê** (Food Service
-Show, evento itinerante da Teknisa, 10+ edições por capitais) e as **feiras** (Fispal · NRF · Anuga
-2026/2027). CTA por linha ("Inscreva-se" / "Agende uma reunião"). *Conversão:* leads de altíssimo
-valor (gestores do setor) + prova de que a Teknisa lidera a pauta. **Datas/cidades/estandes são
-`// TODO`** (validar com marketing, não inventar). *reduced-motion:* seção escura estática (sem
-snap/blur); mobile sem scroll-jack.
+### 10 · Food Service Show (evento próprio) — momento-assinatura #2 ⭐ NOVO
+**O ativo de autoridade mais subaproveitado hoje.** O Food Service Show é o **evento itinerante exclusivo da Teknisa** (10+ edições por capitais — SP, RJ, Curitiba, Brasília…), que reúne líderes do setor, palestras, demos ao vivo de TecFood/Retail/HCM e celebrou os **35 anos** em 2025.
+- **Conteúdo:** pitch do evento + **próxima edição com CTA "Inscreva-se"** + reel de vídeo/fotos das edições + depoimentos.
+- **Momento-assinatura:** **mapa do Brasil** com as cidades-sede acendendo em sequência (a "turnê" vira gráfico vivo) + timeline de edições.
+- **Conversão:** captura de leads de altíssimo valor (gestores do setor) e prova de que a Teknisa **lidera a pauta**, não só vende software.
 
-### 11 · Por que Teknisa (diferenciais)
+### 11 · Onde nos encontrar (feiras do setor) — NOVO
+A Teknisa marca presença nas maiores feiras: **Fispal Food Service** (maior da América do Sul — 70 mil visitantes, Distrito Anhembi/SP), **NRF** (NY, maior varejo do mundo, via parceria Gertec), **Anuga Select Brazil**, entre outras.
+- **Conteúdo:** timeline/calendário 2026–2027 com logos das feiras, datas e "Agende uma reunião no estande".
+- **Craft:** linha do tempo horizontal com scroll; cards de evento com status (próximo/realizado).
+- **Conversão:** agendamento de reunião presencial = lead quente.
+
+### 12 · Por que Teknisa (diferenciais)
 Pilares escaneáveis: *35 anos de especialização · Cloud + On-premise · Suporte e implantação especializados · Verticalização profunda.* *Craft:* bento com ícones e micro-animação. *Conversão:* quebra objeções de confiança.
 
-### 12 · Prêmios & certificações
+### 13 · Prêmios & certificações
 Selos em faixa discreta, monocromáticos. *Conversão:* credibilidade enterprise.
 
-### 13 · Hub de conteúdo (Recursos)
+### 14 · Hub de conteúdo (Recursos)
 3 posts recentes + e-books + EAD/Teknisa Treinamentos. *Craft:* bento de 3 cards com tag. *Conversão:* topo de funil; captura por e-book.
 
-### 14 · CTA final de conversão
+### 15 · CTA final de conversão
 Headline de fechamento + form curto ("Ligamos para você": nome, empresa, segmento, contato) ou agendamento de demo. *Craft:* full-bleed com **gradiente azul Teknisa**, validação animada (checkmark). *Conversão:* **captura principal.**
 
-### 15 · Rodapé rico
+### 16 · Rodapé rico
 Colunas Produtos · Segmentos · Recursos · **Eventos** · Empresa (Sobre, Carreiras "Vamos tomar um café?", Revenda) · Contato (Rua Sergipe 1014, Savassi, BH) · social · seletor PT/EN/ES · newsletter. *Nota:* mover o recrutamento "Vamos tomar um café?" para cá / página de Carreiras, fora do fluxo comercial.
 
 ### Mapa-resumo
