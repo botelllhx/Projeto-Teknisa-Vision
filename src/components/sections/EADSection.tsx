@@ -4,63 +4,55 @@ import { CourseCard } from "@/components/ui/CourseCard";
 import { COURSES } from "@/data/courses";
 
 /**
- * §11 · EAD Teknisa — a **academia dos sistemas Teknisa** (capacitação + certificação). Painel de
- * **sticky stacking** (cobre a §10 e é coberto pelo Blog). Estética editorial em branco+azul:
- * imagem grande do curso em destaque + lista "mais buscados" numerada. Eyebrow **sentence case**.
- * Conteúdo `// TODO` (módulos reais do EAD ancoram). Fundo **branco** (divisão com o Blog claro).
+ * §11 · EAD Teknisa — a academia dos sistemas Teknisa. Painel de **sticky stacking**. Estética
+ * **editorial** (theswaddle, branco+azul): header grande + **linha horizontal scrollável** de cards
+ * de curso **grandes e numerados** (01, 02…), com ■ módulo + título bold + badges. Fundo branco.
  */
-export function EADSection() {
-  const featured = COURSES[0];
-  const popular = COURSES.slice(1, 5);
+const CtaButton = ({ className = "" }: { className?: string }) => (
+  <a
+    href="#contato"
+    className={`group inline-flex h-12 w-fit items-center gap-2 rounded-xl bg-primary px-6 text-sm font-semibold text-primary-foreground transition-all hover:bg-primary/90 hover:shadow-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 ${className}`}
+  >
+    Conheça o EAD Teknisa
+    <ArrowRight className="h-4 w-4 transition-transform duration-200 group-hover:translate-x-1" />
+  </a>
+);
 
+export function EADSection() {
   return (
     <StackingSection id="ead" ariaLabel="EAD Teknisa" className="bg-background">
-      <div className="section-container grid items-center gap-12 py-20 lg:min-h-screen lg:grid-cols-2 lg:gap-16 lg:py-24">
-        {/* esquerda: header + mais buscados + CTA */}
-        <div>
-          <span className="text-sm font-semibold text-primary">EAD Teknisa · Capacitação</span>
-          {/* TODO: headline final */}
-          <h2 className="mt-3 font-display text-4xl font-bold leading-[1.05] tracking-tight text-foreground sm:text-5xl lg:text-[3.5rem]">
-            Sua equipe dominando o sistema.
-          </h2>
-          <p className="mt-4 max-w-lg text-base leading-relaxed text-muted-foreground sm:text-lg">
-            A academia dos sistemas Teknisa: treinamentos por módulo, livres e privados, com
-            certificado. No ritmo de cada um, do operador ao gestor.
-          </p>
-
-          <div className="mt-8">
-            <h3 className="text-sm font-semibold text-foreground/70">Mais buscados</h3>
-            <ol className="mt-1 divide-y divide-border">
-              {popular.map((c, i) => (
-                <li key={c.id}>
-                  <a href={c.url} className="group flex items-baseline gap-5 py-3.5">
-                    <span className="font-display text-xl font-bold tabular-nums text-primary/30">
-                      {String(i + 1).padStart(2, "0")}
-                    </span>
-                    <span className="min-w-0 flex-1">
-                      <span className="text-xs font-semibold text-primary">{c.module}</span>
-                      <span className="block font-display text-lg font-semibold leading-snug text-foreground transition-colors duration-200 group-hover:text-primary">
-                        {c.title}
-                      </span>
-                    </span>
-                    <span className="shrink-0 text-sm text-muted-foreground">{c.duration}</span>
-                  </a>
-                </li>
-              ))}
-            </ol>
+      <div className="flex min-h-screen flex-col justify-center pb-12 pt-20 lg:pb-14">
+        <div className="section-container">
+          <div className="flex flex-wrap items-end justify-between gap-x-10 gap-y-6">
+            <div className="max-w-2xl">
+              <span className="text-sm font-semibold text-primary">EAD Teknisa · Capacitação</span>
+              {/* TODO: headline final */}
+              <h2 className="mt-3 font-display text-4xl font-bold leading-[1.02] tracking-tight text-foreground sm:text-5xl lg:text-[3.25rem]">
+                Sua equipe dominando o sistema.
+              </h2>
+              <p className="mt-4 max-w-xl text-base leading-relaxed text-muted-foreground sm:text-lg">
+                A academia dos sistemas Teknisa: treinamentos por módulo, livres e privados, com
+                certificado. No ritmo de cada um.
+              </p>
+            </div>
+            <CtaButton className="hidden lg:inline-flex" />
           </div>
-
-          <a
-            href="#contato"
-            className="group mt-8 inline-flex h-12 items-center gap-2 rounded-xl bg-primary px-6 text-sm font-semibold text-primary-foreground transition-all hover:bg-primary/90 hover:shadow-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2"
-          >
-            Conheça o EAD Teknisa
-            <ArrowRight className="h-4 w-4 transition-transform duration-200 group-hover:translate-x-1" />
-          </a>
         </div>
 
-        {/* direita: curso em destaque (imagem grande) */}
-        <CourseCard course={featured} />
+        {/* linha horizontal scrollável de cursos (mais buscados) */}
+        <div className="mt-8 snap-x snap-mandatory overflow-x-auto pb-2 [scrollbar-width:none] lg:mt-10 [&::-webkit-scrollbar]:hidden">
+          <ul className="flex gap-6 px-5 sm:px-8 lg:gap-8 lg:px-10 xl:px-14">
+            {COURSES.map((course, i) => (
+              <li key={course.id} className="flex">
+                <CourseCard course={course} number={i + 1} />
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        <div className="section-container mt-10 lg:hidden">
+          <CtaButton />
+        </div>
       </div>
     </StackingSection>
   );
