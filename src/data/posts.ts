@@ -1,7 +1,8 @@
 /**
  * §12 · Blog/Conteúdo — artigos. **Conteúdo placeholder** (`// TODO`): categorias realistas, mas
  * **títulos/datas reais devem ser puxados do blog (teknisa.com/blog)** depois — não inventar claim.
- * Imagem em `public/assets/teknisa/blog/<id>.webp`; sem imagem, o card cai num placeholder.
+ * Imagem real (Pexels, food service, webp) em `public/assets/teknisa/blog/<id>.webp`; sem imagem,
+ * cai num placeholder. TODO: trocar pelas featured images reais dos posts depois.
  */
 export type Post = {
   id: string;

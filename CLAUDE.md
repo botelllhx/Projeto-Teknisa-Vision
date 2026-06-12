@@ -134,8 +134,7 @@ links, ênfases e títulos). Seções **dark** apenas pontuais/estratégicas.
 | 8   | Casos de sucesso (**carrossel infinito** de cards de vídeo + textuais, blur-reveal) | ✅ **pronto** |
 | 9   | Integrações & ecossistema (**logos em órbita**, Orbiting Circles) | ✅ **pronto** ★          |
 | 10  | Onde nos encontrar (**slider de eventos**: halftone + parallax + darken na troca) | ✅ **pronto** ★ |
-| 11  | EAD Teknisa (editorial + **sticky stacking** GSAP) | ✅ **pronto** (conteúdo `// TODO`)       |
-| 12  | Blog / Conteúdo (editorial + **sticky stacking** GSAP) | ✅ **pronto** (conteúdo `// TODO`)   |
+| 11  | Blog / Conteúdo (**galeria sticky + scroll sincronizado**: featured grande à esq. + índice à dir.) | ✅ **pronto** (conteúdo `// TODO`) |
 | 13  | CTA final (form)                        | ⬜ placeholder                                      |
 | 14  | Rodapé rico (**wordmark gigante + pontos que docam** via GSAP) | ✅ **pronto** ★            |
 
@@ -259,9 +258,12 @@ em **`public/assets/teknisa/brand/`**. Decorativo `aria-hidden`.
 - **SEO sem SSR (antes do go-live):** prerendering/SSG estático via **`vite-react-ssg`** (ou
   equivalente) + **`react-helmet-async`** para `<title>`/meta/OpenGraph por rota. Importante para
   site institucional. _Ainda não configurado._
-- **GSAP/ScrollTrigger:** **instalado** (`gsap`) e usado no **sticky stacking** das §11 EAD / §12 Blog
-  (`ui/StackingSection.tsx`). Reusar para outros momentos sticky-scroll. **React Three Fiber** (WebGL
-  pontual no hero/orbital) segue no roadmap, **não instalar ainda**.
+- **GSAP/ScrollTrigger:** **instalado** (`gsap`) e usado no **docking dos pontos do rodapé**
+  (`ui/DockingDots.tsx`) e no **Container Scroll** da §7. _(O sticky stacking de EAD/Blog foi
+  **descartado** — ficava apertado vs o resto do site; a **EAD foi removida** e o **Blog** virou
+  galeria sticky + scroll sincronizado, sem GSAP. `StackingSection`/`CourseCard`/`courses.ts`/
+  `PostCard` deletados.)_ **React Three Fiber** (WebGL pontual no hero/orbital) segue no roadmap,
+  **não instalar ainda**.
 - **i18n PT/EN/ES** por rota desde cedo.
 - **Camada de IA-readability:** schema.org (Organization, Product, Event do Food Service Show,
   BreadcrumbList), `sitemap.xml`, `llms.txt`/`agents.json`.
@@ -278,7 +280,8 @@ em **`public/assets/teknisa/brand/`**. Decorativo `aria-hidden`.
 - **Não alterar** o conceito/implementação do hero e do navbar sem pedir (estão aprovados).
 - **Não usar Next.js**, `next/font`, nem `localStorage`/`sessionStorage` para estado (usar estado
   React).
-- **GSAP** já instalado (sticky stacking §11/§12); **não instalar React Three Fiber** antes da hora.
+- **GSAP** já instalado (docking do rodapé · Container Scroll §7); **não instalar React Three Fiber**
+  antes da hora.
 - **Performance:** LCP < 2,5s, CLS ~0. **Acessibilidade:** WCAG AA.
 - **Consultar o blueprint a cada nova seção** — ele é a fonte de verdade.
 - **Git — sem coautoria nos commits.** **Não** incluir o trailer `Co-Authored-By: Claude …` (nem

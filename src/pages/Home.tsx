@@ -10,7 +10,6 @@ import { TecFoodScrollBridge } from "@/components/sections/TecFoodScrollBridge";
 import { CasesSection } from "@/components/sections/CasesSection";
 import { EcosystemOrbit } from "@/components/sections/EcosystemOrbit";
 import { EventsSection } from "@/components/sections/EventsSection";
-import { EADSection } from "@/components/sections/EADSection";
 import { BlogSection } from "@/components/sections/BlogSection";
 import { SectionPlaceholder } from "@/components/sections/SectionPlaceholder";
 
@@ -59,11 +58,9 @@ export function Home() {
         {/* 10 · Onde nos encontrar — slider de eventos (halftone + parallax + darken) ✅ */}
         <EventsSection />
 
-        {/* 11 · EAD Teknisa + 12 · Blog — grupo de sticky stacking (GSAP) ✅ */}
-        <div className="relative isolate">
-          <EADSection />
-          <BlogSection />
-        </div>
+        {/* 11 · Blog / Conteúdo — galeria editorial sticky + scroll sincronizado ✅
+            (EAD removida; o sticky stacking foi descartado por ficar apertado vs o resto do site) */}
+        <BlogSection />
 
         {/* 13 · placeholder na ordem do blueprint */}
         {placeholderSections.map((s) => (
