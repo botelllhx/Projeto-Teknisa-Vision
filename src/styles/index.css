@@ -178,21 +178,6 @@
   }
 }
 
-/* §10 Eventos — efeito halftone (foto + tela de pontos) aplicado no código. A foto ganha um
-   leve contraste/saturação e uma malha de pontos por cima (mix-blend), evocando o material do
-   evento sem usar imagem pré-processada. */
-.evt-halftone {
-  filter: contrast(1.14) saturate(1.1) brightness(1.02);
-}
-.evt-dots {
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  background-image: radial-gradient(circle, rgba(4, 8, 22, 0.92) 1.4px, transparent 1.9px);
-  background-size: 5px 5px;
-  mix-blend-mode: hard-light;
-}
-
 /* ─── Acessibilidade: respeitar prefers-reduced-motion globalmente ───
    Rede de segurança em CSS; o MotionConfig (App) já instrui o Framer Motion. */
 @media (prefers-reduced-motion: reduce) {

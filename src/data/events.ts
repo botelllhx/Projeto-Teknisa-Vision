@@ -30,9 +30,8 @@ export const EVENTS: EventSlide[] = [
     imageAlt: "Plateia reunida no Food Service Show da Teknisa",
     logo: A("Food-Service-Show.svg"),
     logoAlt: "Food Service Show",
-    logoClass: "h-16 sm:h-20 lg:h-24",
+    logoClass: "h-24 sm:h-28 lg:h-36",
     text: "O evento itinerante da Teknisa que reúne o setor de food service para palestras, demonstrações ao vivo da plataforma e networking de alto nível.",
-    cta: { label: "Saiba mais", url: "#contato" },
   },
   {
     id: "fispal",
@@ -42,8 +41,7 @@ export const EVENTS: EventSlide[] = [
     imageAlt: "Estande da Teknisa na Fispal Food Service",
     logo: A("fispal-logo.png"),
     logoAlt: "Fispal Food Service e Fispal Sorvetes",
-    logoClass: "h-10 sm:h-12 lg:h-14",
+    logoClass: "h-14 sm:h-16 lg:h-20",
     text: "A Teknisa marca presença na Fispal Food Service. Venha conhecer a plataforma e falar com nosso time direto no estande.",
-    cta: { label: "Saiba mais", url: "#contato" },
   },
 ];
