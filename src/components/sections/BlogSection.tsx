@@ -22,7 +22,8 @@ const CtaButton = ({ className = "" }: { className?: string }) => (
 export function BlogSection() {
   return (
     <StackingSection id="recursos" ariaLabel="Blog e conteúdo da Teknisa" last className="bg-teknisa-50">
-      <div className="flex min-h-screen flex-col justify-center pb-12 pt-20 lg:pb-14">
+      {/* respiro como o resto do site + pt limpa a navbar fixa */}
+      <div className="flex min-h-screen flex-col justify-center pb-16 pt-28 lg:pb-20">
         <div className="section-container">
           <div className="flex flex-wrap items-end justify-between gap-x-10 gap-y-6">
             <div className="max-w-2xl">

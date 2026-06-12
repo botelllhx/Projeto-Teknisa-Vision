@@ -21,18 +21,18 @@ const CtaButton = ({ className = "" }: { className?: string }) => (
 export function EADSection() {
   return (
     <StackingSection id="ead" ariaLabel="EAD Teknisa" className="bg-background">
-      <div className="flex min-h-screen flex-col justify-center pb-12 pt-20 lg:pb-14">
+      {/* respiro como o resto do site + pt limpa a navbar fixa */}
+      <div className="flex min-h-screen flex-col justify-center pb-16 pt-28 lg:pb-20">
         <div className="section-container">
-          <div className="flex flex-wrap items-end justify-between gap-x-10 gap-y-6">
+          <div className="flex flex-wrap items-end justify-between gap-x-10 gap-y-5">
             <div className="max-w-2xl">
               <span className="text-sm font-semibold text-primary">EAD Teknisa · Capacitação</span>
               {/* TODO: headline final */}
               <h2 className="mt-3 font-display text-4xl font-bold leading-[1.02] tracking-tight text-foreground sm:text-5xl lg:text-[3.25rem]">
                 Sua equipe dominando o sistema.
               </h2>
-              <p className="mt-4 max-w-xl text-base leading-relaxed text-muted-foreground sm:text-lg">
-                A academia dos sistemas Teknisa: treinamentos por módulo, livres e privados, com
-                certificado. No ritmo de cada um.
+              <p className="mt-3 max-w-md text-base text-muted-foreground">
+                A academia dos sistemas Teknisa, com certificado.
               </p>
             </div>
             <CtaButton className="hidden lg:inline-flex" />
@@ -40,7 +40,7 @@ export function EADSection() {
         </div>
 
         {/* linha horizontal scrollável de cursos (mais buscados) */}
-        <div className="mt-8 snap-x snap-mandatory overflow-x-auto pb-2 [scrollbar-width:none] lg:mt-10 [&::-webkit-scrollbar]:hidden">
+        <div className="mt-8 snap-x snap-mandatory overflow-x-auto pb-2 [scrollbar-width:none] lg:mt-9 [&::-webkit-scrollbar]:hidden">
           <ul className="flex gap-6 px-5 sm:px-8 lg:gap-8 lg:px-10 xl:px-14">
             {COURSES.map((course, i) => (
               <li key={course.id} className="flex">
@@ -54,6 +54,8 @@ export function EADSection() {
           <CtaButton />
         </div>
       </div>
+      {/* pausa: mantém o painel inteiro visível um instante antes do próximo cobrir */}
+      <div className="hidden lg:block lg:h-[16vh]" aria-hidden />
     </StackingSection>
   );
 }

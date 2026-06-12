@@ -30,7 +30,7 @@ export function PostCard({ post, number }: { post: Post; number?: number }) {
         </span>
       )}
 
-      <div className="relative h-[34vh] overflow-hidden rounded-2xl bg-secondary ring-1 ring-border lg:h-[40vh]">
+      <div className="relative h-[30vh] overflow-hidden rounded-2xl bg-secondary ring-1 ring-border lg:h-[36vh]">
         {ok ? (
           <img
             src={post.image}
