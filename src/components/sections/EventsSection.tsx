@@ -39,14 +39,25 @@ function Slide({
       style={{ pointerEvents: active ? "auto" : "none" }}
       aria-hidden={!active}
     >
-      {/* imagem halftone (parallax) */}
+      {/* imagem (parallax). A foto base aparece na hora; o halftone entra por cima com fade
+          quando fica pronto, evitando flash escuro no load. */}
       <div className="relative h-[44vh] shrink-0 overflow-hidden bg-[#05060f] sm:h-[50vh] lg:h-[56vh]">
+        <motion.img
+          src={ev.image}
+          alt=""
+          aria-hidden
+          style={{ scale: reduced ? 1 : scaleMV }}
+          className="absolute inset-0 h-full w-full object-cover"
+        />
         {halftone && (
           <motion.img
             src={halftone}
             alt={ev.imageAlt}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.55, ease: "easeOut" }}
             style={{ scale: reduced ? 1 : scaleMV }}
-            className="h-full w-full object-cover"
+            className="absolute inset-0 h-full w-full object-cover"
           />
         )}
       </div>
@@ -77,13 +88,20 @@ export function EventsSection() {
   const reduced = useReducedMotion();
   const [index, setIndex] = useState(0);
   const [paused, setPaused] = useState(false);
+  const [pulse, setPulse] = useState(0); // conta só trocas reais — o véu NÃO pulsa no mount/reload
 
   const n = EVENTS.length;
-  const go = (i: number) => setIndex(((i % n) + n) % n);
+  const change = (i: number) => {
+    setIndex(((i % n) + n) % n);
+    setPulse((p) => p + 1);
+  };
 
   useEffect(() => {
     if (reduced || paused || n < 2 || !inView) return;
-    const t = setTimeout(() => setIndex((i) => (i + 1) % n), AUTO_MS);
+    const t = setTimeout(() => {
+      setIndex((i) => (i + 1) % n);
+      setPulse((p) => p + 1);
+    }, AUTO_MS);
     return () => clearTimeout(t);
   }, [index, paused, reduced, n, inView]);
 
@@ -131,10 +149,10 @@ export function EventsSection() {
         </div>
 
         {/* véu de escurecimento: pulsa de leve (0 → 0.5 → 0) a cada troca, sincronizado com o
-            crossfade, dando o "escurecer e revelar" suave (key = index força o replay) */}
-        {!reduced && (
+            crossfade. Só renderiza após a 1ª troca (pulse > 0), então NÃO dá flash no mount/reload. */}
+        {!reduced && pulse > 0 && (
           <motion.div
-            key={index}
+            key={pulse}
             aria-hidden
             className="pointer-events-none absolute inset-0 z-10 bg-[#02021c]"
             initial={{ opacity: 0 }}
@@ -150,7 +168,7 @@ export function EventsSection() {
               <button
                 key={e.id}
                 type="button"
-                onClick={() => go(i)}
+                onClick={() => change(i)}
                 aria-label={`Ir para ${e.name}`}
                 aria-current={i === index}
                 className={cn(
@@ -165,7 +183,7 @@ export function EventsSection() {
           </div>
           <button
             type="button"
-            onClick={() => go(index + 1)}
+            onClick={() => change(index + 1)}
             aria-label="Próximo evento"
             className={cn(
               "group/arrow -mr-1 rounded-md p-1 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2",
