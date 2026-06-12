@@ -17,7 +17,7 @@ import { EASE_EXPO } from "@/lib/motion";
  * (tour dates) com **toggle Food Service Show / Feiras** (switch da §3). `prefers-reduced-motion`:
  * estático (sem snap/blur). Datas/cidades/estandes são `// TODO`.
  */
-const FSS_LOGO = "/assets/teknisa/events/food-service-show-logo.svg";
+const FSS_LOGO = "/assets/teknisa/events/Food-Service-Show.svg";
 const TABS = [
   { id: "turne", label: "Food Service Show" },
   { id: "feira", label: "Feiras" },
@@ -128,7 +128,7 @@ export function FoodServiceShowSection() {
                 src={FSS_LOGO}
                 onError={() => setLogoOk(false)}
                 alt="Food Service Show"
-                className="h-20 w-auto sm:h-24"
+                className="h-28 w-auto sm:h-36 lg:h-44"
               />
             ) : (
               <FssWordmark />
