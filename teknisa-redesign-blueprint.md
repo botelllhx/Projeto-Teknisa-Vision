@@ -245,7 +245,7 @@ evento, não cor nova; o resto do site segue branco+azul). **Fundo 100% em códi
 azul→ciano + grão + curva de horizonte sutil), **sem imagem de fundo**; o único asset é a **logo do
 FSS** (entra por cima, protagonista). **Entrada showcase** (blur/reveal) + **scroll que escurece
 (section reveal) + trava leve** (scroll-snap suave), **reusando a mecânica da §6 IA** (`Reveal` +
-`[data-snap-start]`). **SEM mapa.** *Conteúdo:* **lista de datas "tour dates"** (data · cidade · local
+`[data-snap-start]`). **SEM mapa.** *Conteúdo:* **cards de evento** (data · cidade · local
 · status · CTA) com **toggle "Food Service Show / Feiras"** (switch da §3): a **turnê** (Food Service
 Show, evento itinerante da Teknisa, 10+ edições por capitais) e as **feiras** (Fispal · NRF · Anuga
 2026/2027). CTA por linha ("Inscreva-se" / "Agende uma reunião"). *Conversão:* leads de altíssimo

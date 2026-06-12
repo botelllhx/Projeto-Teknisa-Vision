@@ -133,7 +133,7 @@ links, ênfases e títulos). Seções **dark** apenas pontuais/estratégicas.
 | 7   | Ponte TecFood (mockup com **Container Scroll Animation**, tela do produto) | ✅ **pronto**     |
 | 8   | Casos de sucesso (**carrossel infinito** de cards de vídeo + textuais, blur-reveal) | ✅ **pronto** |
 | 9   | Integrações & ecossistema (**logos em órbita**, Orbiting Circles) | ✅ **pronto** ★          |
-| 10  | Food Service Show & Feiras (**escura**, entrada showcase, lista de datas, sem mapa) | ✅ **pronto** ★ |
+| 10  | Food Service Show & Feiras (**escura**, showcase + scroll-darken, **cards** de evento, sem mapa) | ✅ **pronto** ★ |
 | 11  | Por que Teknisa                         | ⬜ placeholder                                      |
 | 12  | Prêmios & certificações                 | ⬜ placeholder                                      |
 | 13  | Hub de conteúdo                         | ⬜ placeholder                                      |
