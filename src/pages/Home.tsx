@@ -18,12 +18,10 @@ import { SectionPlaceholder } from "@/components/sections/SectionPlaceholder";
  * ponte para o Ecossistema (§5). Numeração ajustada no blueprint e abaixo.
  */
 const placeholderSections = [
-  { index: 10, title: "Food Service Show", anchor: "eventos", note: "Mapa da turnê pelo Brasil + timeline de edições.", dark: true, signature: true },
-  { index: 11, title: "Onde nos encontrar (feiras)", anchor: "feiras", note: "Timeline Fispal · NRF · Anuga 2026/2027." },
-  { index: 12, title: "Por que Teknisa", anchor: "por-que", note: "Pilares escaneáveis com micro-animação." },
-  { index: 13, title: "Prêmios & certificações", anchor: "premios", note: "Selos em faixa discreta, monocromáticos." },
-  { index: 14, title: "Hub de conteúdo", anchor: "recursos", note: "Bento de 3 posts/e-books + EAD." },
-  { index: 15, title: "CTA final de conversão", anchor: "contato", note: "Full-bleed gradiente azul Teknisa + form.", signature: false },
+  { index: 10, title: "Onde nos encontrar (Food Service Show & Feiras)", anchor: "eventos", note: "Momento-assinatura escuro a construir: turnê do Food Service Show + feiras (Fispal · NRF · Anuga).", dark: true, signature: true },
+  { index: 11, title: "EAD Teknisa", anchor: "ead", note: "Ensino a distância / capacitação da Teknisa. // TODO: design e conteúdo a definir (não inventar números/cursos)." },
+  { index: 12, title: "Hub de conteúdo", anchor: "recursos", note: "Bento de 3 posts/e-books." },
+  { index: 13, title: "CTA final de conversão", anchor: "contato", note: "Full-bleed gradiente azul Teknisa + form.", signature: false },
 ] as const;
 
 export function Home() {
@@ -58,7 +56,7 @@ export function Home() {
         {/* 9 · Integrações & ecossistema — logos em órbita (Orbiting Circles) ✅ */}
         <EcosystemOrbit />
 
-        {/* 10–15 · placeholders na ordem do blueprint */}
+        {/* 10–13 · placeholders na ordem do blueprint */}
         {placeholderSections.map((s) => (
           <SectionPlaceholder
             key={s.index}
@@ -72,7 +70,7 @@ export function Home() {
         ))}
       </main>
 
-      {/* 16 · Rodapé */}
+      {/* 14 · Rodapé */}
       <Footer />
     </>
   );

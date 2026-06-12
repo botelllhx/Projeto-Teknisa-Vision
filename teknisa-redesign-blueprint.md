@@ -237,31 +237,30 @@ mobile com menos logos/raios menores. *Conversão:* remove objeção técnica ("
 usa"). Logos/parceiros reais (`// TODO`) entram em `public/assets/teknisa/integrations/`, validados com o
 marketing (não inventar marca).
 
-### 10 · Food Service Show (evento próprio) — momento-assinatura #2 ⭐ NOVO
-**O ativo de autoridade mais subaproveitado hoje.** O Food Service Show é o **evento itinerante exclusivo da Teknisa** (10+ edições por capitais — SP, RJ, Curitiba, Brasília…), que reúne líderes do setor, palestras, demos ao vivo de TecFood/Retail/HCM e celebrou os **35 anos** em 2025.
-- **Conteúdo:** pitch do evento + **próxima edição com CTA "Inscreva-se"** + reel de vídeo/fotos das edições + depoimentos.
-- **Momento-assinatura:** **mapa do Brasil** com as cidades-sede acendendo em sequência (a "turnê" vira gráfico vivo) + timeline de edições.
-- **Conversão:** captura de leads de altíssimo valor (gestores do setor) e prova de que a Teknisa **lidera a pauta**, não só vende software.
+### 10 · Onde nos encontrar (Food Service Show & Feiras) — momento-assinatura ⭐
+**§10 e §11 fundidas** numa seção só (a construir depois; a primeira tentativa foi descartada).
+Junta o **Food Service Show** (evento itinerante exclusivo da Teknisa, 10+ edições por capitais: SP, RJ,
+Curitiba, Brasília, que reúne líderes do setor, palestras e demos ao vivo, e celebrou os **35 anos** em
+2025) e as **feiras** do setor (**Fispal Food Service**, **NRF** via parceria Gertec, **Anuga Select
+Brazil**, entre outras).
+- **Conteúdo (a definir):** datas escaneáveis (data · cidade · local · status · CTA "Inscreva-se" /
+  "Agende uma reunião"), **sem mapa**.
+- **Craft:** **momento escuro** (identidade do Food Service Show) com showcase da logo.
+- **Conversão:** leads de altíssimo valor (gestores do setor) + prova de que a Teknisa lidera a pauta.
+- **Datas/cidades/estandes `// TODO`** (validar com marketing, não inventar). **Placeholder por ora.**
 
-### 11 · Onde nos encontrar (feiras do setor) — NOVO
-A Teknisa marca presença nas maiores feiras: **Fispal Food Service** (maior da América do Sul — 70 mil visitantes, Distrito Anhembi/SP), **NRF** (NY, maior varejo do mundo, via parceria Gertec), **Anuga Select Brazil**, entre outras.
-- **Conteúdo:** timeline/calendário 2026–2027 com logos das feiras, datas e "Agende uma reunião no estande".
-- **Craft:** linha do tempo horizontal com scroll; cards de evento com status (próximo/realizado).
-- **Conversão:** agendamento de reunião presencial = lead quente.
+### 11 · EAD Teknisa
+Destaque do **EAD Teknisa** (ensino a distância / capacitação da Teknisa). Substitui a antiga "Por que
+Teknisa", considerada menos relevante. *Conteúdo e design a definir numa sessão futura* (`// TODO`; não
+inventar números/cursos/claims). **Placeholder por ora.**
 
-### 12 · Por que Teknisa (diferenciais)
-Pilares escaneáveis: *35 anos de especialização · Cloud + On-premise · Suporte e implantação especializados · Verticalização profunda.* *Craft:* bento com ícones e micro-animação. *Conversão:* quebra objeções de confiança.
+### 12 · Hub de conteúdo (Recursos)
+3 posts recentes + e-books. *Craft:* bento de 3 cards com tag. *Conversão:* topo de funil; captura por e-book.
 
-### 13 · Prêmios & certificações
-Selos em faixa discreta, monocromáticos. *Conversão:* credibilidade enterprise.
-
-### 14 · Hub de conteúdo (Recursos)
-3 posts recentes + e-books + EAD/Teknisa Treinamentos. *Craft:* bento de 3 cards com tag. *Conversão:* topo de funil; captura por e-book.
-
-### 15 · CTA final de conversão
+### 13 · CTA final de conversão
 Headline de fechamento + form curto ("Ligamos para você": nome, empresa, segmento, contato) ou agendamento de demo. *Craft:* full-bleed com **gradiente azul Teknisa**, validação animada (checkmark). *Conversão:* **captura principal.**
 
-### 16 · Rodapé rico
+### 14 · Rodapé rico
 Colunas Produtos · Segmentos · Recursos · **Eventos** · Empresa (Sobre, Carreiras "Vamos tomar um café?", Revenda) · Contato (Rua Sergipe 1014, Savassi, BH) · social · seletor PT/EN/ES · newsletter. *Nota:* mover o recrutamento "Vamos tomar um café?" para cá / página de Carreiras, fora do fluxo comercial.
 
 ### Mapa-resumo
@@ -276,13 +275,11 @@ Colunas Produtos · Segmentos · Recursos · **Eventos** · Empresa (Sobre, Carr
 7  Deep-dive TecFood (sticky scroll)                ★ assinatura
 8  Casos de sucesso
 9  Integrações (orbital)                            ★ assinatura
-10 Food Service Show (mapa da turnê)        NOVO    ★ assinatura
-11 Onde nos encontrar / feiras (Fispal, NRF) NOVO
-12 Por que Teknisa
-13 Prêmios & certificações
-14 Hub de conteúdo
-15 CTA final (form)                                 ← captura principal
-16 Rodapé rico (+ Eventos, PT/EN/ES)
+10 Onde nos encontrar (Food Service Show & Feiras)  NOVO  ★ assinatura
+11 EAD Teknisa                                      (era "Por que Teknisa")
+12 Hub de conteúdo
+13 CTA final (form)                                 ← captura principal
+14 Rodapé rico (+ Eventos, PT/EN/ES)
 ```
 
 ---
