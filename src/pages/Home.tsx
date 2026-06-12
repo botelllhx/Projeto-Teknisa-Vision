@@ -9,6 +9,7 @@ import { AISection } from "@/components/sections/AISection";
 import { TecFoodScrollBridge } from "@/components/sections/TecFoodScrollBridge";
 import { CasesSection } from "@/components/sections/CasesSection";
 import { EcosystemOrbit } from "@/components/sections/EcosystemOrbit";
+import { EventsSection } from "@/components/sections/EventsSection";
 import { SectionPlaceholder } from "@/components/sections/SectionPlaceholder";
 
 /**
@@ -18,7 +19,6 @@ import { SectionPlaceholder } from "@/components/sections/SectionPlaceholder";
  * ponte para o Ecossistema (§5). Numeração ajustada no blueprint e abaixo.
  */
 const placeholderSections = [
-  { index: 10, title: "Onde nos encontrar (Food Service Show & Feiras)", anchor: "eventos", note: "Momento-assinatura escuro a construir: turnê do Food Service Show + feiras (Fispal · NRF · Anuga).", dark: true, signature: true },
   { index: 11, title: "EAD Teknisa", anchor: "ead", note: "Ensino a distância / capacitação da Teknisa. // TODO: design e conteúdo a definir (não inventar números/cursos)." },
   { index: 12, title: "Hub de conteúdo", anchor: "recursos", note: "Bento de 3 posts/e-books." },
   { index: 13, title: "CTA final de conversão", anchor: "contato", note: "Full-bleed gradiente azul Teknisa + form.", signature: false },
@@ -56,7 +56,10 @@ export function Home() {
         {/* 9 · Integrações & ecossistema — logos em órbita (Orbiting Circles) ✅ */}
         <EcosystemOrbit />
 
-        {/* 10–13 · placeholders na ordem do blueprint */}
+        {/* 10 · Onde nos encontrar — slider de eventos (halftone + parallax + darken) ✅ */}
+        <EventsSection />
+
+        {/* 11–13 · placeholders na ordem do blueprint */}
         {placeholderSections.map((s) => (
           <SectionPlaceholder
             key={s.index}
@@ -64,8 +67,6 @@ export function Home() {
             title={s.title}
             anchor={s.anchor}
             note={s.note}
-            dark={"dark" in s ? s.dark : false}
-            signature={"signature" in s ? s.signature : false}
           />
         ))}
       </main>

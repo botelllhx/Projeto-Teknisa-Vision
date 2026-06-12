@@ -237,17 +237,20 @@ mobile com menos logos/raios menores. *Conversão:* remove objeção técnica ("
 usa"). Logos/parceiros reais (`// TODO`) entram em `public/assets/teknisa/integrations/`, validados com o
 marketing (não inventar marca).
 
-### 10 · Onde nos encontrar (Food Service Show & Feiras) — momento-assinatura ⭐
-**§10 e §11 fundidas** numa seção só (a construir depois; a primeira tentativa foi descartada).
-Junta o **Food Service Show** (evento itinerante exclusivo da Teknisa, 10+ edições por capitais: SP, RJ,
-Curitiba, Brasília, que reúne líderes do setor, palestras e demos ao vivo, e celebrou os **35 anos** em
-2025) e as **feiras** do setor (**Fispal Food Service**, **NRF** via parceria Gertec, **Anuga Select
-Brazil**, entre outras).
-- **Conteúdo (a definir):** datas escaneáveis (data · cidade · local · status · CTA "Inscreva-se" /
-  "Agende uma reunião"), **sem mapa**.
-- **Craft:** **momento escuro** (identidade do Food Service Show) com showcase da logo.
+### 10 · Onde nos encontrar (Food Service Show & Feiras) — momento-assinatura ⭐ ✅
+**§10 e §11 fundidas** numa seção só (**slider de eventos**). Junta o **Food Service Show** (evento
+itinerante exclusivo da Teknisa) e as **feiras** do setor (**Fispal Food Service**, e futuramente NRF /
+Anuga). *Estrutura (do rascunho do cliente):* topo branco (eyebrow "Nossos Eventos & Participações" +
+"Onde nos encontrar"), **imagem full-width com halftone** (efeito aplicado **no código**, parallax que
+**cresce no scroll**) e uma **faixa com a cor da marca do evento** (logo + texto + CTA + setas).
+- **Slider:** auto-avança + setas + dots, **pausa no hover/foco**. Cada evento tem `theme`: **Food
+  Service Show = faixa navy**, **Fispal = faixa branca**; a troca **escurece** a área na transição (os
+  slides dão crossfade sobre uma base escura, `mode="wait"`), não um swap sólido de cor.
+- **Assets:** fotos + logos reais do cliente (otimizadas em `public/assets/teknisa/events/`; originais
+  pesados só em `raw-assets/`). Textos/CTAs **`// TODO`** (validar com marketing, não inventar).
+- **Motion:** `Reveal`/parallax (`useScroll`); `prefers-reduced-motion` → sem auto-avanço/parallax/blur
+  (troca instantânea, navegação por setas). Mobile empilha, sem scroll-jack.
 - **Conversão:** leads de altíssimo valor (gestores do setor) + prova de que a Teknisa lidera a pauta.
-- **Datas/cidades/estandes `// TODO`** (validar com marketing, não inventar). **Placeholder por ora.**
 
 ### 11 · EAD Teknisa
 Destaque do **EAD Teknisa** (ensino a distância / capacitação da Teknisa). Substitui a antiga "Por que

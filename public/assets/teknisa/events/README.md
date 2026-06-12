@@ -1,4 +1,7 @@
-Food Service Show (§10) — coloque aqui a LOGO do Food Service Show enviada pelo cliente:
-  food-service-show-logo.svg  (PNG/SVG com transparencia; entra POR CIMA do fundo escuro)
-Enquanto nao chegar, a secao mostra um wordmark placeholder (Food Service + SHOW em ciano).
-TODO: receber a logo do cliente. O fundo escuro e 100% em codigo (sem imagem de fundo).
+Eventos (§10 Onde nos encontrar) — slider de eventos.
+USADOS (otimizados, versionados):
+  food-service-show.webp + Food-Service-Show.svg (logo branca) -> slide Food Service Show (navy)
+  fispal.webp + fispal-logo.png (logo navy) -> slide Fispal (branco)
+Originais pesados (JPG/HEIC/AVIF) ficam SO em raw-assets/events (gitignored).
+Para adicionar um evento: otimize a foto p/ webp aqui, a logo p/ svg/png, e adicione o slide em src/data/events.ts.
+Halftone e aplicado no codigo (foto limpa). Textos/CTAs: // TODO (validar com marketing).
