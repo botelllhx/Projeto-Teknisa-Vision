@@ -33,14 +33,14 @@ function Slide({
 
   return (
     <motion.div
-      className="col-start-1 row-start-1"
+      className="col-start-1 row-start-1 flex flex-col"
       animate={{ opacity: active ? 1 : 0 }}
       transition={reduced ? { duration: 0 } : { duration: 0.9, ease: "easeInOut" }}
       style={{ pointerEvents: active ? "auto" : "none" }}
       aria-hidden={!active}
     >
       {/* imagem halftone (parallax) */}
-      <div className="relative h-[44vh] overflow-hidden bg-[#05060f] sm:h-[50vh] lg:h-[56vh]">
+      <div className="relative h-[44vh] shrink-0 overflow-hidden bg-[#05060f] sm:h-[50vh] lg:h-[56vh]">
         {halftone && (
           <motion.img
             src={halftone}
@@ -51,9 +51,9 @@ function Slide({
         )}
       </div>
 
-      {/* faixa com a cor da marca */}
-      <div className={dark ? "bg-primary text-white" : "bg-white text-foreground"}>
-        <div className="section-container grid items-center gap-8 pb-28 pt-12 lg:grid-cols-[auto_1fr] lg:gap-20 lg:pb-32 lg:pt-16">
+      {/* faixa com a cor da marca — flex-1 preenche a altura (sem buraco escuro), conteúdo centrado */}
+      <div className={cn("flex flex-1 items-center", dark ? "bg-primary text-white" : "bg-white text-foreground")}>
+        <div className="section-container grid w-full items-center gap-8 pb-24 pt-10 lg:grid-cols-[auto_1fr] lg:gap-20 lg:pb-28 lg:pt-12">
           <div className="flex items-center">
             <img src={ev.logo} alt={ev.logoAlt} className={cn("w-auto", ev.logoClass)} />
           </div>

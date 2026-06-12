@@ -41,7 +41,7 @@ export const EVENTS: EventSlide[] = [
     imageAlt: "Estande da Teknisa na Fispal Food Service",
     logo: A("fispal-logo.png"),
     logoAlt: "Fispal Food Service e Fispal Sorvetes",
-    logoClass: "h-16 sm:h-20 lg:h-28",
+    logoClass: "h-20 sm:h-28 lg:h-36",
     text: "A Teknisa marca presença na Fispal Food Service. Venha conhecer a plataforma e falar com nosso time direto no estande.",
   },
 ];
