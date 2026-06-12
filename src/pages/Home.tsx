@@ -11,18 +11,13 @@ import { CasesSection } from "@/components/sections/CasesSection";
 import { EcosystemOrbit } from "@/components/sections/EcosystemOrbit";
 import { EventsSection } from "@/components/sections/EventsSection";
 import { BlogSection } from "@/components/sections/BlogSection";
-import { SectionPlaceholder } from "@/components/sections/SectionPlaceholder";
+import { ConversionSection } from "@/components/sections/ConversionSection";
 
 /**
- * Home — shell. Navbar ✅ + Hero ✅ + §2 Barra de confiança ✅ + §3 Explorador de
- * segmentos ✅ + §4 Faixa de impacto/ROI (ponte) ✅. Demais seções como placeholders.
- * NOTA: a Faixa de impacto foi realocada (era §7) para logo após os segmentos, virando
- * ponte para o Ecossistema (§5). Numeração ajustada no blueprint e abaixo.
+ * Home — shell. Todas as seções da home construídas; a última antes do rodapé é a
+ * §13 Conversão (CTA + formulário). NOTA: a Faixa de impacto foi realocada (era §7) para
+ * logo após os segmentos, virando ponte para o Ecossistema (§5).
  */
-const placeholderSections = [
-  { index: 13, title: "CTA final de conversão", anchor: "contato", note: "Full-bleed gradiente azul Teknisa + form." },
-] as const;
-
 export function Home() {
   return (
     <>
@@ -62,16 +57,8 @@ export function Home() {
             (EAD removida; o sticky stacking foi descartado por ficar apertado vs o resto do site) */}
         <BlogSection />
 
-        {/* 13 · placeholder na ordem do blueprint */}
-        {placeholderSections.map((s) => (
-          <SectionPlaceholder
-            key={s.index}
-            index={s.index}
-            title={s.title}
-            anchor={s.anchor}
-            note={s.note}
-          />
-        ))}
+        {/* 13 · Conversão — CTA + formulário qualificador (estilo Klyro), antes do rodapé ✅ */}
+        <ConversionSection />
       </main>
 
       {/* 14 · Rodapé */}

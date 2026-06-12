@@ -135,7 +135,7 @@ links, ênfases e títulos). Seções **dark** apenas pontuais/estratégicas.
 | 9   | Integrações & ecossistema (**logos em órbita**, Orbiting Circles) | ✅ **pronto** ★          |
 | 10  | Onde nos encontrar (**slider de eventos**: halftone + parallax + darken na troca) | ✅ **pronto** ★ |
 | 11  | Blog / Conteúdo (**galeria sticky + scroll sincronizado**: featured grande à esq. + índice à dir.) | ✅ **pronto** (conteúdo `// TODO`) |
-| 13  | CTA final (form)                        | ⬜ placeholder                                      |
+| 13  | Conversão (CTA + **formulário qualificador** estilo Klyro, inputs de linha) | ✅ **pronto**     |
 | 14  | Rodapé rico (**wordmark gigante + pontos que docam** via GSAP) | ✅ **pronto** ★            |
 
 ★ = momento-assinatura (os 5 instantes de "wow" do blueprint §4).
@@ -219,6 +219,21 @@ próprio; a lib `asciify` renderizava em branco), **fundo transparente** e **cor
 blurb no card. **Scroll-snap gentil** via **Lenis** (`lenis/snap`, `type: 'proximity'`, só desktop, alvo
 `[data-snap-start]` em `useSmoothScroll`); reduced-motion/mobile sem snap. **§7 (TecFood) segue sticky
 scroll/dark.**
+
+**§13 Conversão (pronto · `ConversionSection` + `ui/FormField`):** CTA + **formulário qualificador**
+**antes do rodapé**, estética **Klyro** (editorial claro, headline grande bold **navy**, eyebrow com
+**barrinhas**, inputs de **linha**/underline) na paleta **branca+azul** (base `teknisa-50`). Cabeçalho:
+eyebrow "Fale com a Teknisa" + headline travada "Sua operação pode render muito mais. A gente mostra
+como." + subhead. **Coluna lateral = reforço de conversão (NÃO repete contato do footer):** linha de
+prova "A maior do food service na América Latina" (`// TODO` validar marketing) + **"O que acontece
+depois"** (3 passos). **Formulário** (`FormField` reutilizável: input/select/textarea como linha, foco
+azul, **`<label>` real** + `aria-invalid`/`role="alert"`): Nome\* · E-mail corporativo\* · Empresa\* ·
+Telefone · Segmento (select) · Produto (select) · Porte · Mensagem · **consentimento LGPD\*** (checkbox)
++ botão "Falar com especialista" + microcopy "Sem compromisso. Resposta rápida." (`// TODO` SLA).
+**Validação acessível** (obrigatórios, formato de e-mail, consentimento; foca o 1º erro); **NÃO submete
+de verdade** (`// TODO` backend/CRM), **sem `localStorage`**, `<form noValidate>` + `preventDefault`
+(sem reload), **estado de sucesso fake** (`sent`). Reveal discreto (`whileInView`, respeita
+reduced-motion). Mobile empilha (texto → prova → passos → form). Âncora `#contato`.
 
 **§14 Rodapé (pronto · `Footer` + `DockingDots`):** **fundo azul Teknisa** (`bg-primary`), texto branco
 (a marca). Conteúdo **editorial** (refs: Monogrid · Raxo · Sheertex) e **todo jogado à esquerda**
