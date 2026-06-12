@@ -137,7 +137,7 @@ links, ênfases e títulos). Seções **dark** apenas pontuais/estratégicas.
 | 11  | EAD Teknisa (editorial + **sticky stacking** GSAP) | ✅ **pronto** (conteúdo `// TODO`)       |
 | 12  | Blog / Conteúdo (editorial + **sticky stacking** GSAP) | ✅ **pronto** (conteúdo `// TODO`)   |
 | 13  | CTA final (form)                        | ⬜ placeholder                                      |
-| 14  | Rodapé rico (+ Eventos, PT/EN/ES)       | ⬜ placeholder (Footer mínimo)                      |
+| 14  | Rodapé rico (**wordmark gigante + pontos que docam** via GSAP) | ✅ **pronto** ★            |
 
 ★ = momento-assinatura (os 5 instantes de "wow" do blueprint §4).
 
@@ -220,6 +220,37 @@ próprio; a lib `asciify` renderizava em branco), **fundo transparente** e **cor
 blurb no card. **Scroll-snap gentil** via **Lenis** (`lenis/snap`, `type: 'proximity'`, só desktop, alvo
 `[data-snap-start]` em `useSmoothScroll`); reduced-motion/mobile sem snap. **§7 (TecFood) segue sticky
 scroll/dark.**
+
+**§14 Rodapé (pronto · `Footer` + `DockingDots`):** **fundo azul Teknisa** (`bg-primary`), texto branco
+(a marca). Conteúdo **editorial** (refs: Monogrid · Raxo · Sheertex) e **todo jogado à esquerda**
+(`max-w-2xl`/`max-w-5xl`), deixando a **direita aberta** p/ o "T" de pontos descer. Topo: **frase grande
+de newsletter** (h2 display, `// TODO` copy marketing) + subtexto + **input em LINHA** (border só
+embaixo, **sem box**; `focus-within` acende a linha) com botão-seta; **newsletter só UI** (`onSubmit`
+faz `preventDefault`, não submete de verdade). Abaixo (2 cols à esquerda): bloco de marca + contato
+(endereço real Savassi/BH; **e-mail/telefone NÃO inventados**, `// TODO`) + redes sociais (`href="#"`
+`// TODO`), e as 4 colunas de navegação (Produtos · Segmentos · Empresa · Suporte, âncoras reais onde
+já existem e `// TODO` no resto). Linha legal (© + Política/Termos). **Todo o conteúdo é envolto por
+`md:max-w-[min(64rem,76vw)]`** — reserva a **faixa direita (~24vw)** p/ o "T" de pontos **descer sem
+cruzar texto nem a barra (border)** em qualquer largura ≥768px (o início dos pontos fica em ~83vw).
+**A navbar some ao entrar no rodapé e volta ao subir pra fora** (IntersectionObserver no `#rodape`,
+`rootMargin: '0px 0px -70% 0px'`, anima `y` do header; ver `Navbar.tsx`). No fim, o **momento-assinatura**:
+o **wordmark "TEKNISA" gigante full-width**
+(`teknisa-wordmark.svg`, branco) **encostando na base** da página, e o **cluster de pontos da marca**
+(`teknisa-dots.svg`) formando o "T" da marca. **O conjunto (wordmark + "T" de pontos) ocupa 100% da
+largura:** o wordmark **sangra na borda esquerda** (container interno **`w-[90%]`**, sem padding) e o
+"T" de pontos **alcança a borda direita**, **encaixado justinho logo após o "A"** (a haste fica a
+poucos px do fim do A, não solta no vão). O cluster é **maior que o wordmark** (~135–140% da altura),
+com a **haste descendo e parando na metade da altura do "A"**. **Branding sensível: bater com a ref do
+Figma / o logo oficial (`src/assets/teknisa-logo.png`); largura do wordmark e tamanho dos pontos andam
+juntos p/ encaixar (se o "T" ficar longe do A, alargar o wordmark, não só mexer no `DOCK_RIGHT`).** O encaixe é feito por `DockingDots`:
+no desktop (fora de `prefers-reduced-motion`) um **GSAP ScrollTrigger `scrub`** faz os pontos
+**"choverem"** de cima (queda vertical, ficam na direita) até **docar** conforme o rodapé entra na
+viewport (`start: 'top bottom'`, `end: 'bottom bottom'`, `invalidateOnRefresh`); em
+`prefers-reduced-motion`/mobile (`max-width:767px`) os pontos já vêm **docados estáticos** (marca
+completa, **nunca quebrada**). Constantes de encaixe em **% do WORDMARK** (`DOCK_WIDTH 18%`/`DOCK_RIGHT
+-10.5%` = alcança a borda direita/`DOCK_TOP -86%`) ajustáveis; o lockup tem `mt` generoso (`lg:mt-40`)
+p/ os pontos (maiores, que sobem ~140px acima do wordmark) não colidirem com a linha legal. SVGs da marca
+em **`public/assets/teknisa/brand/`**. Decorativo `aria-hidden`.
 
 ---
 

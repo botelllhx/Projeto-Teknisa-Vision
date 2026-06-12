@@ -36,6 +36,7 @@ function useDesktopHoverMega() {
 
 export function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
+  const [hideNav, setHideNav] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [megaPanel, setMegaPanel] = useState<MegaMenuPanelType | null>(null);
   /** Mantém o último conteúdo montado durante o recolhimento (grid 1fr→0fr). */
@@ -65,6 +66,26 @@ export function Navbar() {
     window.addEventListener("scroll", handleScroll, { passive: true });
     handleScroll();
     return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  // Esconde a navbar ao **entrar no rodapé** e a traz de volta ao **subir pra fora** dele.
+  // root = só os ~30% do topo da viewport (rootMargin recorta 70% de baixo): "intersecta"
+  // quando o topo do rodapé sobe até essa faixa, ou seja, quando estamos dentro do rodapé.
+  useEffect(() => {
+    const footer = document.getElementById("rodape");
+    if (!footer || typeof IntersectionObserver === "undefined") return;
+    const io = new IntersectionObserver(
+      ([entry]) => {
+        setHideNav(entry.isIntersecting);
+        if (entry.isIntersecting) {
+          setMegaPanel(null);
+          setIsMobileMenuOpen(false);
+        }
+      },
+      { rootMargin: "0px 0px -70% 0px", threshold: 0 },
+    );
+    io.observe(footer);
+    return () => io.disconnect();
   }, []);
 
   // Esc fecha o mega-menu.
@@ -103,8 +124,9 @@ export function Navbar() {
   return (
     <motion.header
       initial={{ y: -100 }}
-      animate={{ y: 0 }}
-      transition={{ duration: 0.6, ease: EASE_SMOOTH }}
+      animate={{ y: hideNav ? -160 : 0 }}
+      transition={{ duration: 0.45, ease: EASE_SMOOTH }}
+      aria-hidden={hideNav}
       className="fixed left-2 right-2 top-2 z-50 sm:left-4 sm:right-4 sm:top-3 lg:left-6 lg:right-6 lg:top-4"
     >
       <div
