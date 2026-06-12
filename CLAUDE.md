@@ -133,13 +133,12 @@ links, ênfases e títulos). Seções **dark** apenas pontuais/estratégicas.
 | 7   | Ponte TecFood (mockup com **Container Scroll Animation**, tela do produto) | ✅ **pronto**     |
 | 8   | Casos de sucesso (**carrossel infinito** de cards de vídeo + textuais, blur-reveal) | ✅ **pronto** |
 | 9   | Integrações & ecossistema (**logos em órbita**, Orbiting Circles) | ✅ **pronto** ★          |
-| 10  | Food Service Show (mapa da turnê, dark) | ⬜ placeholder ★                                    |
-| 11  | Onde nos encontrar / feiras             | ⬜ placeholder                                      |
-| 12  | Por que Teknisa                         | ⬜ placeholder                                      |
-| 13  | Prêmios & certificações                 | ⬜ placeholder                                      |
-| 14  | Hub de conteúdo                         | ⬜ placeholder                                      |
-| 15  | CTA final (form)                        | ⬜ placeholder                                      |
-| 16  | Rodapé rico (+ Eventos, PT/EN/ES)       | ⬜ placeholder (Footer mínimo)                      |
+| 10  | Food Service Show & Feiras (**escura**, entrada showcase, lista de datas, sem mapa) | ✅ **pronto** ★ |
+| 11  | Por que Teknisa                         | ⬜ placeholder                                      |
+| 12  | Prêmios & certificações                 | ⬜ placeholder                                      |
+| 13  | Hub de conteúdo                         | ⬜ placeholder                                      |
+| 14  | CTA final (form)                        | ⬜ placeholder                                      |
+| 15  | Rodapé rico (+ Eventos, PT/EN/ES)       | ⬜ placeholder (Footer mínimo)                      |
 
 ★ = momento-assinatura (os 5 instantes de "wow" do blueprint §4).
 

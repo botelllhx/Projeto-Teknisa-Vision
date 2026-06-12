@@ -9,6 +9,7 @@ import { AISection } from "@/components/sections/AISection";
 import { TecFoodScrollBridge } from "@/components/sections/TecFoodScrollBridge";
 import { CasesSection } from "@/components/sections/CasesSection";
 import { EcosystemOrbit } from "@/components/sections/EcosystemOrbit";
+import { FoodServiceShowSection } from "@/components/sections/FoodServiceShowSection";
 import { SectionPlaceholder } from "@/components/sections/SectionPlaceholder";
 
 /**
@@ -18,12 +19,10 @@ import { SectionPlaceholder } from "@/components/sections/SectionPlaceholder";
  * ponte para o Ecossistema (§5). Numeração ajustada no blueprint e abaixo.
  */
 const placeholderSections = [
-  { index: 10, title: "Food Service Show", anchor: "eventos", note: "Mapa da turnê pelo Brasil + timeline de edições.", dark: true, signature: true },
-  { index: 11, title: "Onde nos encontrar (feiras)", anchor: "feiras", note: "Timeline Fispal · NRF · Anuga 2026/2027." },
-  { index: 12, title: "Por que Teknisa", anchor: "por-que", note: "Pilares escaneáveis com micro-animação." },
-  { index: 13, title: "Prêmios & certificações", anchor: "premios", note: "Selos em faixa discreta, monocromáticos." },
-  { index: 14, title: "Hub de conteúdo", anchor: "recursos", note: "Bento de 3 posts/e-books + EAD." },
-  { index: 15, title: "CTA final de conversão", anchor: "contato", note: "Full-bleed gradiente azul Teknisa + form.", signature: false },
+  { index: 11, title: "Por que Teknisa", anchor: "por-que", note: "Pilares escaneáveis com micro-animação." },
+  { index: 12, title: "Prêmios & certificações", anchor: "premios", note: "Selos em faixa discreta, monocromáticos." },
+  { index: 13, title: "Hub de conteúdo", anchor: "recursos", note: "Bento de 3 posts/e-books + EAD." },
+  { index: 14, title: "CTA final de conversão", anchor: "contato", note: "Full-bleed gradiente azul Teknisa + form." },
 ] as const;
 
 export function Home() {
@@ -58,7 +57,10 @@ export function Home() {
         {/* 9 · Integrações & ecossistema — logos em órbita (Orbiting Circles) ✅ */}
         <EcosystemOrbit />
 
-        {/* 10–15 · placeholders na ordem do blueprint */}
+        {/* 10 · Food Service Show & Feiras — momento-assinatura escuro (entrada showcase) ✅ */}
+        <FoodServiceShowSection />
+
+        {/* 11–14 · placeholders na ordem do blueprint */}
         {placeholderSections.map((s) => (
           <SectionPlaceholder
             key={s.index}
@@ -66,13 +68,11 @@ export function Home() {
             title={s.title}
             anchor={s.anchor}
             note={s.note}
-            dark={"dark" in s ? s.dark : false}
-            signature={"signature" in s ? s.signature : false}
           />
         ))}
       </main>
 
-      {/* 16 · Rodapé */}
+      {/* 15 · Rodapé */}
       <Footer />
     </>
   );

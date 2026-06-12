@@ -155,6 +155,12 @@
   }
 }
 
+/* Grão/ruído (§10 Food Service Show, fundo escuro em código). Noise SVG estático e leve,
+   aplicado por cima do gradiente com baixa opacidade. */
+.bg-grain {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
 /* Órbita (§9, base Magic UI — Orbiting Circles). Cada item gira no seu anel mantendo o ícone
    "em pé"; as CSS vars --angle, --radius e --duration vêm inline por item. Fica no CSS global
    (não no tailwind.config) para hot-reload confiável. */
