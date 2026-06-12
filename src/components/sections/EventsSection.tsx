@@ -1,40 +1,43 @@
 import { useEffect, useRef, useState } from "react";
-import { AnimatePresence, motion, useInView, useReducedMotion, useScroll, useTransform, type MotionValue } from "framer-motion";
+import { motion, useInView, useReducedMotion, useScroll, useTransform, type MotionValue } from "framer-motion";
 import { ArrowRight } from "lucide-react";
-import { EVENTS } from "@/data/events";
+import { EVENTS, type EventSlide } from "@/data/events";
 import { EASE_EXPO } from "@/lib/motion";
 import { useHalftone } from "@/lib/halftone";
 import { cn } from "@/lib/utils";
 
 /**
  * §10 · Onde nos encontrar — **slider de eventos**. Topo branco (eyebrow + título), imagem
- * full-width com **halftone real** (canvas, `useHalftone`) e **parallax** (cresce no scroll), e
- * uma **faixa com a cor da marca do evento** (logo + texto bold à direita + seta). É um slider
- * (auto-avança + seta + dots, pausa no hover/foco): a troca **escurece** a área (a transição
- * mergulha no escuro via `brightness` + base navy). Food Service Show = faixa **azul da marca**
- * (`primary`), Fispal = faixa **branca**. `prefers-reduced-motion` → instantâneo; mobile empilha.
+ * full-width com **halftone real** (canvas) + **parallax** (cresce no scroll), e uma **faixa com a
+ * cor da marca** (logo grande + texto bold à direita + seta simples). Slider auto-avança + seta +
+ * dots (pausa no hover/foco). Transição **suave**: os slides ficam **empilhados** e dão crossfade
+ * de opacidade (sem `mode="wait"`, sem travar), e um **véu escuro pulsa de leve** na troca
+ * (escurecimento gentil, sem filtros pesados). Food Service Show = faixa **azul da marca**
+ * (`primary`), Fispal = **branca**. `prefers-reduced-motion` → instantâneo; mobile empilha.
  */
 const AUTO_MS = 7000;
 
-function Slide({ index, scaleMV, reduced }: { index: number; scaleMV: MotionValue<number>; reduced: boolean }) {
-  const ev = EVENTS[index];
+function Slide({
+  ev,
+  active,
+  scaleMV,
+  reduced,
+}: {
+  ev: EventSlide;
+  active: boolean;
+  scaleMV: MotionValue<number>;
+  reduced: boolean;
+}) {
   const dark = ev.theme === "dark";
   const halftone = useHalftone(ev.image);
 
   return (
     <motion.div
-      key={ev.id}
-      initial={reduced ? { opacity: 0 } : { opacity: 0, filter: "brightness(0.2)", scale: 1.04 }}
-      animate={
-        reduced
-          ? { opacity: 1 }
-          : { opacity: 1, filter: "brightness(1)", scale: 1, transition: { duration: 0.85, ease: EASE_EXPO } }
-      }
-      exit={
-        reduced
-          ? { opacity: 0 }
-          : { opacity: 0, filter: "brightness(0.2)", scale: 1.01, transition: { duration: 0.5, ease: EASE_EXPO } }
-      }
+      className="col-start-1 row-start-1"
+      animate={{ opacity: active ? 1 : 0 }}
+      transition={reduced ? { duration: 0 } : { duration: 0.9, ease: "easeInOut" }}
+      style={{ pointerEvents: active ? "auto" : "none" }}
+      aria-hidden={!active}
     >
       {/* imagem halftone (parallax) */}
       <div className="relative h-[44vh] overflow-hidden bg-[#05060f] sm:h-[50vh] lg:h-[56vh]">
@@ -50,7 +53,7 @@ function Slide({ index, scaleMV, reduced }: { index: number; scaleMV: MotionValu
 
       {/* faixa com a cor da marca */}
       <div className={dark ? "bg-primary text-white" : "bg-white text-foreground"}>
-        <div className="section-container grid items-center gap-8 pb-24 pt-12 lg:grid-cols-[auto_1fr] lg:gap-20 lg:pb-28 lg:pt-14">
+        <div className="section-container grid items-center gap-8 pb-28 pt-12 lg:grid-cols-[auto_1fr] lg:gap-20 lg:pb-32 lg:pt-16">
           <div className="flex items-center">
             <img src={ev.logo} alt={ev.logoAlt} className={cn("w-auto", ev.logoClass)} />
           </div>
@@ -70,7 +73,7 @@ function Slide({ index, scaleMV, reduced }: { index: number; scaleMV: MotionValu
 
 export function EventsSection() {
   const ref = useRef<HTMLElement>(null);
-  const inView = useInView(ref, { once: true, amount: 0.25 });
+  const inView = useInView(ref, { once: false, amount: 0.25 });
   const reduced = useReducedMotion();
   const [index, setIndex] = useState(0);
   const [paused, setPaused] = useState(false);
@@ -79,23 +82,23 @@ export function EventsSection() {
   const go = (i: number) => setIndex(((i % n) + n) % n);
 
   useEffect(() => {
-    if (reduced || paused || n < 2) return;
+    if (reduced || paused || n < 2 || !inView) return;
     const t = setTimeout(() => setIndex((i) => (i + 1) % n), AUTO_MS);
     return () => clearTimeout(t);
-  }, [index, paused, reduced, n]);
+  }, [index, paused, reduced, n, inView]);
 
   const { scrollYProgress } = useScroll({ target: ref, offset: ["start end", "end start"] });
-  const imgScale = useTransform(scrollYProgress, [0, 1], [1.0, 1.2]);
+  const imgScale = useTransform(scrollYProgress, [0, 1], [1.0, 1.18]);
 
-  const ev = EVENTS[index];
-  const dark = ev.theme === "dark";
+  const dark = EVENTS[index].theme === "dark";
 
   return (
     <section id="eventos" ref={ref} aria-label="Onde nos encontrar" className="scroll-mt-24 bg-background">
       <div className="section-container pb-10 pt-20 lg:pt-28">
         <motion.div
           initial={reduced ? false : { opacity: 0, y: 16 }}
-          animate={inView ? { opacity: 1, y: 0 } : undefined}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.4 }}
           transition={{ duration: 0.6, ease: EASE_EXPO }}
         >
           <span className="text-sm font-semibold text-primary">Nossos Eventos &amp; Participações</span>
@@ -105,10 +108,11 @@ export function EventsSection() {
         </motion.div>
       </div>
 
-      {/* slider — base navy escura dá o "escurecimento" na transição */}
+      {/* slider — base navy escura por trás (o véu escuro pulsa nela na troca) */}
       <motion.div
         initial={reduced ? false : { opacity: 0, scale: 0.99 }}
-        animate={inView ? { opacity: 1, scale: 1 } : undefined}
+        whileInView={{ opacity: 1, scale: 1 }}
+        viewport={{ once: true, amount: 0.2 }}
         transition={{ duration: 0.8, ease: EASE_EXPO }}
         className="relative w-full overflow-hidden bg-[#04052a]"
         onMouseEnter={() => setPaused(true)}
@@ -119,12 +123,28 @@ export function EventsSection() {
         aria-roledescription="carrossel"
         aria-label="Eventos e participações da Teknisa"
       >
-        <AnimatePresence mode="wait">
-          <Slide key={ev.id} index={index} scaleMV={imgScale} reduced={!!reduced} />
-        </AnimatePresence>
+        {/* slides empilhados (crossfade suave) */}
+        <div className="grid">
+          {EVENTS.map((ev, i) => (
+            <Slide key={ev.id} ev={ev} active={i === index} scaleMV={imgScale} reduced={!!reduced} />
+          ))}
+        </div>
 
-        {/* controles: dots (esq) + seta → simples, sem círculo (dir) */}
-        <div className="section-container absolute inset-x-0 bottom-7 flex items-center justify-between lg:bottom-10">
+        {/* véu de escurecimento: pulsa de leve (0 → 0.5 → 0) a cada troca, sincronizado com o
+            crossfade, dando o "escurecer e revelar" suave (key = index força o replay) */}
+        {!reduced && (
+          <motion.div
+            key={index}
+            aria-hidden
+            className="pointer-events-none absolute inset-0 z-10 bg-[#02021c]"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: [0, 0.5, 0] }}
+            transition={{ duration: 1.0, ease: "easeInOut", times: [0, 0.42, 1] }}
+          />
+        )}
+
+        {/* controles: dots (esq) + seta simples sem círculo (dir) */}
+        <div className="section-container absolute inset-x-0 bottom-7 z-20 flex items-center justify-between lg:bottom-10">
           <div className="flex items-center gap-2">
             {EVENTS.map((e, i) => (
               <button
@@ -148,7 +168,7 @@ export function EventsSection() {
             onClick={() => go(index + 1)}
             aria-label="Próximo evento"
             className={cn(
-              "group/arrow -mr-1 rounded-md p-1 transition-transform focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2",
+              "group/arrow -mr-1 rounded-md p-1 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2",
               dark ? "text-white focus-visible:ring-white focus-visible:ring-offset-primary" : "text-primary focus-visible:ring-primary focus-visible:ring-offset-white",
             )}
           >
