@@ -20,5 +20,12 @@ dist-ssr
 .env.*
 !.env.example
 
-# Cases — originais pesados dos videos (so as versoes web-otimizadas em public/ vao pro git)
-raw-assets/cases/
+# raw-assets/ — originais (fotos, videos, capturas) ficam SO LOCAIS; no git vao apenas as
+# versoes otimizadas em public/. Nunca versionar os brutos.
+raw-assets/
+
+# Artefatos temporarios de verificacao (screenshots e scripts headless na raiz)
+/_*.png
+/_*.mjs
+/_*.mp4
+/_*.webm
